@@ -1,0 +1,647 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>张钹院士 - 人工智能的发展现状与未来</title>
+<style>
+:root {
+  --lavender: #F0E6FF;
+  --light-purple: #E6D5FF;
+  --purple: #9B7ED8;
+  --deep-purple: #5B3FA0;
+  --dark-purple: #2E1B5E;
+  --text: #2D2A3E;
+  --muted: rgba(45,42,62,0.65);
+  --gold: #C9A84C;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+html, body {
+  height: 100%;
+  font-family: -apple-system, BlinkMacSystemFont, "PingFang SC", "Microsoft YaHei", "Noto Sans SC", sans-serif;
+  background: var(--lavender);
+  color: var(--text);
+}
+
+body { overflow: hidden; }
+
+.deck {
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  overflow-x: auto;
+  overflow-y: hidden;
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+}
+
+.deck::-webkit-scrollbar { display: none; }
+
+.slide {
+  min-width: 100vw;
+  height: 100vh;
+  scroll-snap-align: start;
+  position: relative;
+  overflow: hidden;
+  padding: 40px 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Cover slide - Page 1 */
+.slide-cover {
+  background:
+    radial-gradient(circle at 15% 20%, rgba(155,126,216,0.35), transparent 40%),
+    radial-gradient(circle at 85% 80%, rgba(201,168,76,0.15), transparent 40%),
+    linear-gradient(160deg, #F5F0FF 0%, #EDE5FA 50%, #E6D9F5 100%);
+}
+
+/* Subtle grid overlay */
+.slide::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0.06;
+  background-image:
+    linear-gradient(rgba(91,63,160,.15) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(91,63,160,.12) 1px, transparent 1px);
+  background-size: 48px 48px;
+}
+
+.content {
+  position: relative;
+  z-index: 2;
+  max-width: 960px;
+  width: 100%;
+}
+
+/* Decorative elements */
+.deco-circle {
+  position: absolute;
+  border-radius: 50%;
+  border: 1px solid rgba(155,126,216,0.25);
+  pointer-events: none;
+  z-index: 1;
+}
+
+.deco-circle-1 {
+  width: 400px;
+  height: 400px;
+  top: -100px;
+  right: -80px;
+}
+
+.deco-circle-2 {
+  width: 280px;
+  height: 280px;
+  bottom: -60px;
+  left: -40px;
+  border-color: rgba(201,168,76,0.2);
+}
+
+.deco-dot {
+  position: absolute;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--gold);
+  opacity: 0.6;
+  z-index: 1;
+}
+
+.deco-dot-1 { top: 20%; right: 15%; }
+.deco-dot-2 { top: 35%; right: 22%; opacity: 0.3; width: 4px; height: 4px; }
+.deco-dot-3 { bottom: 25%; left: 12%; background: var(--purple); opacity: 0.4; }
+
+/* Typography */
+.accent-line {
+  width: 48px;
+  height: 3px;
+  background: var(--gold);
+  margin-bottom: 32px;
+  border-radius: 2px;
+}
+
+.kicker {
+  font-size: 14px;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--purple);
+  margin-bottom: 20px;
+  font-weight: 500;
+}
+
+h1 {
+  font-size: clamp(2.2rem, 5vw, 4rem);
+  font-weight: 700;
+  line-height: 1.15;
+  margin-bottom: 28px;
+  color: var(--dark-purple);
+  letter-spacing: -0.01em;
+}
+
+h1 .highlight {
+  color: var(--deep-purple);
+  position: relative;
+}
+
+h1 .highlight::after {
+  content: "";
+  position: absolute;
+  bottom: 4px;
+  left: 0;
+  right: 0;
+  height: 8px;
+  background: rgba(155,126,216,0.2);
+  border-radius: 4px;
+  z-index: -1;
+}
+
+.subtitle {
+  font-size: clamp(1.1rem, 2.5vw, 1.5rem);
+  line-height: 1.6;
+  color: var(--muted);
+  max-width: 640px;
+  margin-bottom: 48px;
+  font-weight: 400;
+}
+
+.meta {
+  display: flex;
+  gap: 40px;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.meta-item {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.meta-label {
+  font-size: 12px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--purple);
+  opacity: 0.8;
+}
+
+.meta-value {
+  font-size: 15px;
+  font-weight: 500;
+  color: var(--text);
+}
+
+.meta-divider {
+  width: 1px;
+  height: 40px;
+  background: rgba(155,126,216,0.3);
+}
+
+/* Scroll hint */
+.scroll-hint {
+  position: absolute;
+  bottom: 32px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  z-index: 3;
+}
+
+.scroll-hint-text {
+  font-size: 12px;
+  letter-spacing: 0.08em;
+  color: var(--purple);
+  opacity: 0.7;
+}
+
+.scroll-arrow {
+  width: 24px;
+  height: 24px;
+  border-right: 2px solid var(--purple);
+  border-bottom: 2px solid var(--purple);
+  transform: rotate(-45deg);
+  opacity: 0.5;
+  animation: bounceRight 2s ease-in-out infinite;
+}
+
+@keyframes bounceRight {
+  0%, 100% { transform: rotate(-45deg) translateX(0); }
+  50% { transform: rotate(-45deg) translateX(6px); }
+}
+
+/* Quote watermark */
+.quote-watermark {
+  position: absolute;
+  bottom: 80px;
+  right: 60px;
+  max-width: 320px;
+  text-align: right;
+  z-index: 1;
+  opacity: 0.5;
+}
+
+.quote-watermark p {
+  font-size: 15px;
+  line-height: 1.7;
+  color: var(--deep-purple);
+  font-style: italic;
+}
+
+.quote-watermark .quote-mark {
+  font-size: 48px;
+  line-height: 1;
+  color: var(--gold);
+  opacity: 0.4;
+  margin-bottom: -16px;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .slide { padding: 30px 24px; }
+  .meta { gap: 20px; }
+  .meta-divider { display: none; }
+  .quote-watermark { display: none; }
+}
+</style>
+</head>
+<body>
+<div class="deck">
+  <!-- Slide 1: Cover -->
+  <div class="slide slide-cover">
+    <div class="deco-circle deco-circle-1"></div>
+    <div class="deco-circle deco-circle-2"></div>
+    <div class="deco-dot deco-dot-1"></div>
+    <div class="deco-dot deco-dot-2"></div>
+    <div class="deco-dot deco-dot-3"></div>
+
+    <div class="content">
+      <div class="accent-line"></div>
+      <p class="kicker">清华大学 人工智能研究院</p>
+      <h1>
+        张钹院士<br>
+        <span class="highlight">人工智能</span>的发展现状与未来
+      </h1>
+      <p class="subtitle">
+        从知识驱动到数据驱动，再到知识+数据融合驱动的第三代人工智能——探索通用人工智能之路
+      </p>
+      <div class="meta">
+        <div class="meta-item">
+          <span class="meta-label">演讲者</span>
+          <span class="meta-value">张钹 院士</span>
+        </div>
+        <div class="meta-divider"></div>
+        <div class="meta-item">
+          <span class="meta-label">身份</span>
+          <span class="meta-value">中国科学院院士</span>
+        </div>
+        <div class="meta-divider"></div>
+        <div class="meta-item">
+          <span class="meta-label">机构</span>
+          <span class="meta-value">清华大学计算机系</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="quote-watermark">
+      <div class="quote-mark">"</div>
+      <p>人工智能是探索"无人区"，其魅力就在于它永远在路上。</p>
+    </div>
+
+    <div class="scroll-hint">
+      <span class="scroll-hint-text">向右滑动探索</span>
+      <div class="scroll-arrow"></div>
+    </div>
+  </div>
+
+  <!-- Slide 2: 三代人工智能概览 -->
+  <div class="slide" style="background: linear-gradient(160deg, #EDE5FA 0%, #E3D8F5 50%, #DCCFF0 100%);">
+    <div class="deco-circle" style="width: 350px; height: 350px; top: -80px; left: -60px; border-color: rgba(155,126,216,0.2);"></div>
+    <div class="deco-circle" style="width: 200px; height: 200px; bottom: -40px; right: -20px; border-color: rgba(201,168,76,0.15);"></div>
+    <div class="content" style="max-width: 1100px;">
+      <div class="accent-line"></div>
+      <p class="kicker">核心理论框架</p>
+      <h1 style="font-size: clamp(1.8rem, 4vw, 3rem); margin-bottom: 48px;">
+        三代人工智能的演进之路
+      </h1>
+
+      <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 32px;">
+        <!-- Gen 1 -->
+        <div style="background: rgba(255,255,255,0.6); border-radius: 16px; padding: 32px; border: 1px solid rgba(155,126,216,0.15);">
+          <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 20px;">
+            <div style="width: 40px; height: 40px; border-radius: 10px; background: rgba(155,126,216,0.15); display: flex; align-items: center; justify-content: center; font-weight: 700; color: var(--deep-purple); font-size: 16px;">01</div>
+            <span style="font-size: 13px; letter-spacing: 0.08em; color: var(--purple); text-transform: uppercase;">1956年起</span>
+          </div>
+          <h3 style="font-size: 1.25rem; margin-bottom: 12px; color: var(--dark-purple);">第一代：知识驱动</h3>
+          <p style="font-size: 14px; line-height: 1.7; color: var(--muted);">
+            基于知识与经验的推理模型，将人类知识放入计算机知识库，实现推理、决策、诊断等功能。可解释性强，但缺乏自学能力。
+          </p>
+          <div style="margin-top: 16px; padding-top: 16px; border-top: 1px solid rgba(155,126,216,0.15);">
+            <span style="font-size: 12px; color: var(--gold); font-weight: 500;">三要素：知识 + 算法 + 算力</span>
+          </div>
+        </div>
+
+        <!-- Gen 2 -->
+        <div style="background: rgba(255,255,255,0.6); border-radius: 16px; padding: 32px; border: 1px solid rgba(155,126,216,0.15);">
+          <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 20px;">
+            <div style="width: 40px; height: 40px; border-radius: 10px; background: rgba(155,126,216,0.15); display: flex; align-items: center; justify-content: center; font-weight: 700; color: var(--deep-purple); font-size: 16px;">02</div>
+            <span style="font-size: 13px; letter-spacing: 0.08em; color: var(--purple); text-transform: uppercase;">1980年代起</span>
+          </div>
+          <h3 style="font-size: 1.25rem; margin-bottom: 12px; color: var(--dark-purple);">第二代：数据驱动</h3>
+          <p style="font-size: 14px; line-height: 1.7; color: var(--muted);">
+            基于大数据的深度学习，模拟人类感性行为。在图像识别、语音识别等任务上效率极高，但存在不安全、不可信、不可控、不可靠的根本缺陷。
+          </p>
+          <div style="margin-top: 16px; padding-top: 16px; border-top: 1px solid rgba(155,126,216,0.15);">
+            <span style="font-size: 12px; color: var(--gold); font-weight: 500;">三要素：数据 + 算法 + 算力</span>
+          </div>
+        </div>
+
+        <!-- Gen 3 -->
+        <div style="background: rgba(91,63,160,0.08); border-radius: 16px; padding: 32px; border: 2px solid rgba(155,126,216,0.25);">
+          <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 20px;">
+            <div style="width: 40px; height: 40px; border-radius: 10px; background: var(--deep-purple); display: flex; align-items: center; justify-content: center; font-weight: 700; color: white; font-size: 16px;">03</div>
+            <span style="font-size: 13px; letter-spacing: 0.08em; color: var(--purple); text-transform: uppercase;">2020年起</span>
+          </div>
+          <h3 style="font-size: 1.25rem; margin-bottom: 12px; color: var(--dark-purple);">第三代：知识+数据融合</h3>
+          <p style="font-size: 14px; line-height: 1.7; color: var(--muted);">
+            知识驱动与数据驱动的融合。建立可解释的鲁棒AI理论，发展安全、可信、可靠、可扩展的AI技术，通向通用人工智能（AGI）。
+          </p>
+          <div style="margin-top: 16px; padding-top: 16px; border-top: 1px solid rgba(155,126,216,0.15);">
+            <span style="font-size: 12px; color: var(--gold); font-weight: 500;">四要素：知识 + 数据 + 算法 + 算力</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Slide 3: 通向AGI的四步 -->
+  <div class="slide" style="background: linear-gradient(160deg, #E6D9F5 0%, #DCCFF0 50%, #D5C5EB 100%);">
+    <div class="content" style="max-width: 1000px;">
+      <div class="accent-line"></div>
+      <p class="kicker">迈向通用人工智能</p>
+      <h1 style="font-size: clamp(1.8rem, 4vw, 3rem); margin-bottom: 40px;">
+        通往 AGI 的四个步骤
+      </h1>
+      <p style="font-size: 16px; line-height: 1.7; color: var(--muted); margin-bottom: 48px; max-width: 700px;">
+        2024年6月，张钹在清华大学"人文清华讲坛"发表演讲，提出从大语言模型迈向通用人工智能需要迈出的四步——但完成四步并不意味着实现了AGI。
+      </p>
+
+      <div style="display: flex; gap: 0; position: relative;">
+        <!-- Connecting line -->
+        <div style="position: absolute; top: 28px; left: 60px; right: 60px; height: 2px; background: linear-gradient(90deg, var(--purple), var(--gold)); opacity: 0.3; z-index: 0;"></div>
+
+        <div style="flex: 1; text-align: center; position: relative; z-index: 1;">
+          <div style="width: 56px; height: 56px; border-radius: 50%; background: white; border: 2px solid var(--purple); display: flex; align-items: center; justify-content: center; margin: 0 auto 20px; font-weight: 700; color: var(--deep-purple); font-size: 18px;">1</div>
+          <h4 style="font-size: 15px; margin-bottom: 10px; color: var(--dark-purple);">与人类交互</h4>
+          <p style="font-size: 13px; line-height: 1.6; color: var(--muted); padding: 0 8px;">与人类对齐<br>大语言模型的对话能力</p>
+        </div>
+
+        <div style="flex: 1; text-align: center; position: relative; z-index: 1;">
+          <div style="width: 56px; height: 56px; border-radius: 50%; background: white; border: 2px solid var(--purple); display: flex; align-items: center; justify-content: center; margin: 0 auto 20px; font-weight: 700; color: var(--deep-purple); font-size: 18px;">2</div>
+          <h4 style="font-size: 15px; margin-bottom: 10px; color: var(--dark-purple);">多模态生成</h4>
+          <p style="font-size: 13px; line-height: 1.6; color: var(--muted); padding: 0 8px;">文本、图像、视频、音频<br>的跨模态生成</p>
+        </div>
+
+        <div style="flex: 1; text-align: center; position: relative; z-index: 1;">
+          <div style="width: 56px; height: 56px; border-radius: 50%; background: white; border: 2px solid var(--purple); display: flex; align-items: center; justify-content: center; margin: 0 auto 20px; font-weight: 700; color: var(--deep-purple); font-size: 18px;">3</div>
+          <h4 style="font-size: 15px; margin-bottom: 10px; color: var(--dark-purple);">与数字世界交互</h4>
+          <p style="font-size: 13px; line-height: 1.6; color: var(--muted); padding: 0 8px;">AI智能体（Agent）<br>在数字世界操作与反馈</p>
+        </div>
+
+        <div style="flex: 1; text-align: center; position: relative; z-index: 1;">
+          <div style="width: 56px; height: 56px; border-radius: 50%; background: var(--deep-purple); border: 2px solid var(--deep-purple); display: flex; align-items: center; justify-content: center; margin: 0 auto 20px; font-weight: 700; color: white; font-size: 18px;">4</div>
+          <h4 style="font-size: 15px; margin-bottom: 10px; color: var(--dark-purple);">与客观世界交互</h4>
+          <p style="font-size: 13px; line-height: 1.6; color: var(--muted); padding: 0 8px;">具身智能（Embodied AI）<br>通过机器人连接物理世界</p>
+        </div>
+      </div>
+
+      <div style="margin-top: 48px; padding: 24px 32px; background: rgba(255,255,255,0.5); border-radius: 12px; border-left: 4px solid var(--gold);">
+        <p style="font-size: 14px; line-height: 1.7; color: var(--muted); font-style: italic;">
+          "通往通用人工智能这个目标，至少需要迈出以上四步，但并不是说，完成这四步就意味着实现了通用人工智能。"
+        </p>
+        <p style="font-size: 12px; color: var(--purple); margin-top: 8px; text-align: right;">—— 张钹，2024年6月</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Slide 4: 关于大语言模型 -->
+  <div class="slide" style="background: linear-gradient(160deg, #F5F0FF 0%, #EDE5FA 50%, #E6D9F5 100%);">
+    <div class="content" style="max-width: 1000px;">
+      <div class="accent-line"></div>
+      <p class="kicker">深度分析</p>
+      <h1 style="font-size: clamp(1.8rem, 4vw, 3rem); margin-bottom: 36px;">
+        大语言模型的"两个大"
+      </h1>
+
+      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 40px; margin-bottom: 40px;">
+        <div>
+          <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 16px;">
+            <div style="width: 36px; height: 36px; border-radius: 8px; background: rgba(155,126,216,0.15); display: flex; align-items: center; justify-content: center;">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--deep-purple)" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"></rect><path d="M3 9h18"></path><path d="M9 21V9"></path></svg>
+            </div>
+            <h3 style="font-size: 1.2rem; color: var(--dark-purple);">大模型</h3>
+          </div>
+          <ul style="list-style: none; font-size: 14px; line-height: 2; color: var(--muted);">
+            <li style="padding-left: 20px; position: relative;"><span style="position: absolute; left: 0; color: var(--purple);">•</span>巨大的人工神经网络（Transformer架构）</li>
+            <li style="padding-left: 20px; position: relative;"><span style="position: absolute; left: 0; color: var(--purple);">•</span>一次能够输入 2000+ 字（token）</li>
+            <li style="padding-left: 20px; position: relative;"><span style="position: absolute; left: 0; color: var(--purple);">•</span>深度神经网络的强大计算能力</li>
+          </ul>
+        </div>
+
+        <div>
+          <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 16px;">
+            <div style="width: 36px; height: 36px; border-radius: 8px; background: rgba(155,126,216,0.15); display: flex; align-items: center; justify-content: center;">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--deep-purple)" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline></svg>
+            </div>
+            <h3 style="font-size: 1.2rem; color: var(--dark-purple);">大文本</h3>
+          </div>
+          <ul style="list-style: none; font-size: 14px; line-height: 2; color: var(--muted);">
+            <li style="padding-left: 20px; position: relative;"><span style="position: absolute; left: 0; color: var(--purple);">•</span>文本用语意向量表示（最重要的突破）</li>
+            <li style="padding-left: 20px; position: relative;"><span style="position: absolute; left: 0; color: var(--purple);">•</span>自监督学习：原始文本无需预处理</li>
+            <li style="padding-left: 20px; position: relative;"><span style="position: absolute; left: 0; color: var(--purple);">•</span>"接龙式学习"：用前文预测后文</li>
+          </ul>
+        </div>
+      </div>
+
+      <div style="background: rgba(255,255,255,0.5); border-radius: 12px; padding: 28px 32px; border: 1px solid rgba(155,126,216,0.15);">
+        <h4 style="font-size: 14px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--purple); margin-bottom: 12px;">涌现现象</h4>
+        <p style="font-size: 14px; line-height: 1.7; color: var(--muted);">
+          当系统规模达到一定阈值时，生成质量会突然发生质变。但"到目前为止，全世界范围内都还无法完全理解'涌现'现象出现的原因。"
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Slide 5: 清醒认识差距 -->
+  <div class="slide" style="background: linear-gradient(160deg, #EDE5FA 0%, #E3D8F5 50%, #DCCFF0 100%);">
+    <div class="content" style="max-width: 900px;">
+      <div class="accent-line"></div>
+      <p class="kicker">深刻反思</p>
+      <h1 style="font-size: clamp(1.8rem, 4vw, 3rem); margin-bottom: 48px;">
+        清醒认识差距
+      </h1>
+
+      <div style="background: rgba(255,255,255,0.55); border-radius: 16px; padding: 40px; margin-bottom: 32px; border: 1px solid rgba(155,126,216,0.15);">
+        <div style="font-size: 48px; line-height: 1; color: var(--gold); opacity: 0.5; margin-bottom: -12px;">"</div>
+        <p style="font-size: clamp(1.1rem, 2.5vw, 1.4rem); line-height: 1.8; color: var(--dark-purple); font-style: italic; margin-bottom: 20px;">
+          千万别听那些不负责任的宣传，说我们在人工智能方面跟外国已经差不多。怎么会差不多呢？在人工智能六七十年研究过程中，仅就ChatGPT而言，就有十几项的重大创新，所有这些创新几乎都是外国人提出的。
+        </p>
+        <p style="font-size: 14px; color: var(--muted); text-align: right;">—— 张钹</p>
+      </div>
+
+      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 24px;">
+        <div style="padding: 24px; background: rgba(255,255,255,0.4); border-radius: 12px;">
+          <h4 style="font-size: 14px; color: var(--deep-purple); margin-bottom: 10px; font-weight: 600;">问题所在</h4>
+          <p style="font-size: 13px; line-height: 1.7; color: var(--muted);">这说明我们的创新能力不足，尤其是从0到1的创新能力很差，不解决这个问题，我们是很难赶超人家的。</p>
+        </div>
+        <div style="padding: 24px; background: rgba(255,255,255,0.4); border-radius: 12px;">
+          <h4 style="font-size: 14px; color: var(--deep-purple); margin-bottom: 10px; font-weight: 600;">历史视角</h4>
+          <p style="font-size: 13px; line-height: 1.7; color: var(--muted);">现在用的神经网络是什么时候开始研究的？1943年。也就是说，人类花了74年时间，才得到今天的Transformer模型，这不是一天、两天做出来的。</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Slide 6: 中国AI的机遇 -->
+  <div class="slide" style="background: linear-gradient(160deg, #E6D9F5 0%, #DCCFF0 50%, #D5C5EB 100%);">
+    <div class="content" style="max-width: 900px; text-align: center;">
+      <div class="accent-line" style="margin: 0 auto 32px;"></div>
+      <p class="kicker">发展机遇</p>
+      <h1 style="font-size: clamp(1.8rem, 4vw, 3.2rem); margin-bottom: 36px;">
+        同一起跑线上的机遇
+      </h1>
+
+      <div style="background: rgba(255,255,255,0.5); border-radius: 16px; padding: 40px 48px; margin-bottom: 40px; border: 1px solid rgba(155,126,216,0.2);">
+        <div style="font-size: 48px; line-height: 1; color: var(--gold); opacity: 0.5; margin-bottom: -8px;">"</div>
+        <p style="font-size: clamp(1.1rem, 2.5vw, 1.35rem); line-height: 1.8; color: var(--dark-purple); font-style: italic; margin-bottom: 20px;">
+          在第三代人工智能发展上，中国科学家今天与国际同行处在同一起跑线上。我们已经摸索出中国人工智能的发展道路，正在向新的科技高峰继续攀登。
+        </p>
+        <p style="font-size: 14px; color: var(--muted);">—— 张钹</p>
+      </div>
+
+      <div style="display: flex; justify-content: center; gap: 48px; flex-wrap: wrap;">
+        <div style="text-align: center;">
+          <div style="width: 64px; height: 64px; border-radius: 50%; background: rgba(155,126,216,0.12); display: flex; align-items: center; justify-content: center; margin: 0 auto 12px;">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="var(--deep-purple)" stroke-width="1.5"><path d="M12 2L2 7l10 5 10-5-10-5z"></path><path d="M2 17l10 5 10-5"></path><path d="M2 12l10 5 10-5"></path></svg>
+          </div>
+          <h4 style="font-size: 14px; color: var(--dark-purple); margin-bottom: 6px;">同一起跑线</h4>
+          <p style="font-size: 12px; color: var(--muted);">第三代AI的新起点</p>
+        </div>
+        <div style="text-align: center;">
+          <div style="width: 64px; height: 64px; border-radius: 50%; background: rgba(155,126,216,0.12); display: flex; align-items: center; justify-content: center; margin: 0 auto 12px;">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="var(--deep-purple)" stroke-width="1.5"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
+          </div>
+          <h4 style="font-size: 14px; color: var(--dark-purple); margin-bottom: 6px;">发展道路</h4>
+          <p style="font-size: 12px; color: var(--muted);">已摸索出中国AI路径</p>
+        </div>
+        <div style="text-align: center;">
+          <div style="width: 64px; height: 64px; border-radius: 50%; background: rgba(155,126,216,0.12); display: flex; align-items: center; justify-content: center; margin: 0 auto 12px;">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="var(--deep-purple)" stroke-width="1.5"><path d="M23 6l-9.5 9.5-5-5L1 18"></path><path d="M17 6h6v6"></path></svg>
+          </div>
+          <h4 style="font-size: 14px; color: var(--dark-purple); margin-bottom: 6px;">持续攀登</h4>
+          <p style="font-size: 12px; color: var(--muted);">向新的科技高峰迈进</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Slide 7: 治学理念 -->
+  <div class="slide" style="background: linear-gradient(160deg, #F5F0FF 0%, #EDE5FA 50%, #E6D9F5 100%);">
+    <div class="content" style="max-width: 900px;">
+      <div class="accent-line"></div>
+      <p class="kicker">治学理念与人生态度</p>
+      <h1 style="font-size: clamp(1.8rem, 4vw, 3rem); margin-bottom: 48px;">
+        一辈子做了两件事
+      </h1>
+
+      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 32px; margin-bottom: 40px;">
+        <div style="background: rgba(255,255,255,0.5); border-radius: 16px; padding: 32px; border: 1px solid rgba(155,126,216,0.15);">
+          <h3 style="font-size: 1.1rem; color: var(--dark-purple); margin-bottom: 16px;">读书与育人</h3>
+          <p style="font-size: 14px; line-height: 1.8; color: var(--muted);">
+            "我一辈子就做了两件事，一件是读书，另一件就是在清华大学教书育人。"
+          </p>
+          <div style="margin-top: 16px; padding-top: 16px; border-top: 1px solid rgba(155,126,216,0.12);">
+            <span style="font-size: 12px; color: var(--purple);">在三尺讲台坚守超过一甲子（60余年）· 培养博士研究生近90名</span>
+          </div>
+        </div>
+
+        <div style="background: rgba(255,255,255,0.5); border-radius: 16px; padding: 32px; border: 1px solid rgba(155,126,216,0.15);">
+          <h3 style="font-size: 1.1rem; color: var(--dark-purple); margin-bottom: 16px;">对学生的态度</h3>
+          <p style="font-size: 14px; line-height: 1.8; color: var(--muted);">
+            "国外知名导师的科研、教学水平比我高，培养条件也比我这里好。你们选择出国深造和科研，我非常支持。但是如果你选择留下来，我会全心全意地培养你，绝不辜负。"
+          </p>
+        </div>
+      </div>
+
+      <div style="text-align: center; padding: 32px; background: rgba(91,63,160,0.06); border-radius: 12px;">
+        <div style="font-size: 48px; line-height: 1; color: var(--gold); opacity: 0.5; margin-bottom: -8px;">"</div>
+        <p style="font-size: clamp(1rem, 2vw, 1.25rem); line-height: 1.8; color: var(--dark-purple); font-style: italic;">
+          我们不能因为它的进展而过于乐观，也不必因为它的挫折而沮丧，我们需要的是坚持不懈地努力。人工智能是探索"无人区"，其魅力就在于它永远在路上。
+        </p>
+        <p style="font-size: 13px; color: var(--muted); margin-top: 16px;">—— 张钹</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Slide 8: End / Credits -->
+  <div class="slide" style="background: linear-gradient(160deg, #2E1B5E 0%, #5B3FA0 50%, #7B5FB8 100%); color: white;">
+    <div class="content" style="text-align: center;">
+      <div style="width: 48px; height: 3px; background: var(--gold); margin: 0 auto 32px; border-radius: 2px;"></div>
+      <h1 style="font-size: clamp(1.8rem, 4vw, 3rem); color: white; margin-bottom: 24px;">
+        探索永无止境
+      </h1>
+      <p style="font-size: 18px; line-height: 1.7; opacity: 0.8; max-width: 600px; margin: 0 auto 48px;">
+        在第三代人工智能发展上，中国科学家与国际同行处在同一起跑线上。我们有能力为造福国家和民族、造福全人类作出更多、更大贡献。
+      </p>
+
+      <div style="display: inline-block; padding: 20px 40px; border: 1px solid rgba(255,255,255,0.2); border-radius: 12px; margin-bottom: 48px;">
+        <p style="font-size: 14px; opacity: 0.7; margin-bottom: 8px;">整理日期</p>
+        <p style="font-size: 16px; font-weight: 500;">2026年5月27日</p>
+      </div>
+
+      <p style="font-size: 12px; opacity: 0.5; letter-spacing: 0.1em;">
+        资料来源：新华网、清华大学官网、人民日报海外版、新浪科技、智源社区等公开报道
+      </p>
+    </div>
+  </div>
+</div>
+
+<script>
+// Smooth scroll with arrow keys
+let currentSlide = 0;
+const slides = document.querySelectorAll('.slide');
+const deck = document.querySelector('.deck');
+
+document.addEventListener('keydown', (e) => {
+  if (e.key === 'ArrowRight' || e.key === 'ArrowDown') {
+    e.preventDefault();
+    if (currentSlide < slides.length - 1) {
+      currentSlide++;
+      slides[currentSlide].scrollIntoView({ behavior: 'smooth', inline: 'start' });
+    }
+  } else if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') {
+    e.preventDefault();
+    if (currentSlide > 0) {
+      currentSlide--;
+      slides[currentSlide].scrollIntoView({ behavior: 'smooth', inline: 'start' });
+    }
+  }
+});
+
+// Track scroll position
+deck.addEventListener('scroll', () => {
+  const slideWidth = window.innerWidth;
+  currentSlide = Math.round(deck.scrollLeft / slideWidth);
+});
+</script>
+</body>
+</html>
