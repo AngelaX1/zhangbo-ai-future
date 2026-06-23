@@ -21,8 +21,8 @@
 html, body {
   height: 100%;
   font-family: -apple-system, BlinkMacSystemFont, "PingFang SC", "Microsoft YaHei", "Noto Sans SC", sans-serif;
-  background: var(--lavender);
-  color: var(--text);
+  background: var(--dark-purple);
+  color: white;
 }
 
 body { overflow: hidden; }
@@ -52,11 +52,10 @@ body { overflow: hidden; }
   justify-content: center;
 }
 
-/* Background gradients */
-.bg-1 { background: linear-gradient(160deg, #F5F0FF 0%, #EDE5FA 50%, #E6D9F5 100%); }
-.bg-2 { background: linear-gradient(160deg, #EDE5FA 0%, #E3D8F5 50%, #DCCFF0 100%); }
-.bg-3 { background: linear-gradient(160deg, #E6D9F5 0%, #DCCFF0 50%, #D5C5EB 100%); }
-.bg-dark { background: linear-gradient(160deg, #2E1B5E 0%, #5B3FA0 50%, #7B5FB8 100%); color: white; }
+/* Background gradients - all dark */
+.bg-1 { background: linear-gradient(160deg, #2E1B5E 0%, #5B3FA0 40%, #7B5FB8 100%); }
+.bg-2 { background: linear-gradient(160deg, #251450 0%, #4E3590 40%, #6B50A8 100%); }
+.bg-3 { background: linear-gradient(160deg, #1E1045 0%, #452D80 40%, #5F45A0 100%); }
 
 /* Subtle grid overlay */
 .slide::after {
@@ -66,8 +65,8 @@ body { overflow: hidden; }
   pointer-events: none;
   opacity: 0.04;
   background-image:
-    linear-gradient(rgba(91,63,160,.12) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(91,63,160,.1) 1px, transparent 1px);
+    linear-gradient(rgba(255,255,255,.08) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,.06) 1px, transparent 1px);
   background-size: 56px 56px;
 }
 
@@ -96,7 +95,7 @@ body { overflow: hidden; }
   font-size: 13px;
   letter-spacing: 0.2em;
   text-transform: uppercase;
-  color: var(--purple);
+  color: rgba(255,255,255,0.5);
   margin-bottom: 24px;
   font-weight: 500;
 }
@@ -106,12 +105,12 @@ h1 {
   font-weight: 700;
   line-height: 1.1;
   margin-bottom: 32px;
-  color: var(--dark-purple);
+  color: white;
   letter-spacing: -0.02em;
 }
 
 h1 .highlight {
-  color: var(--deep-purple);
+  color: #E6D5FF;
   position: relative;
 }
 
@@ -122,7 +121,7 @@ h1 .highlight::after {
   left: 0;
   right: 0;
   height: 10px;
-  background: rgba(155,126,216,0.18);
+  background: rgba(155,126,216,0.35);
   border-radius: 4px;
   z-index: -1;
 }
@@ -132,13 +131,13 @@ h2 {
   font-weight: 600;
   line-height: 1.2;
   margin-bottom: 24px;
-  color: var(--dark-purple);
+  color: white;
 }
 
 .lead {
   font-size: clamp(1.2rem, 2.5vw, 1.6rem);
   line-height: 1.6;
-  color: var(--muted);
+  color: rgba(255,255,255,0.7);
   max-width: 600px;
 }
 
@@ -165,14 +164,14 @@ h2 {
 .quote-block p {
   font-size: clamp(1.4rem, 3vw, 2.2rem);
   line-height: 1.6;
-  color: var(--dark-purple);
+  color: white;
   font-style: italic;
   font-weight: 500;
 }
 
 .quote-block .attribution {
   font-size: 15px;
-  color: var(--purple);
+  color: rgba(255,255,255,0.6);
   margin-top: 24px;
   font-style: normal;
 }
@@ -182,7 +181,7 @@ h2 {
   width: 72px;
   height: 72px;
   border-radius: 50%;
-  background: var(--deep-purple);
+  background: rgba(255,255,255,0.15);
   color: white;
   display: flex;
   align-items: center;
@@ -192,23 +191,12 @@ h2 {
   margin-bottom: 32px;
 }
 
-.step-number-outline {
-  background: transparent;
-  border: 2px solid var(--deep-purple);
-  color: var(--deep-purple);
-}
-
 /* Card */
 .card {
-  background: rgba(255,255,255,0.55);
+  background: rgba(255,255,255,0.08);
   border-radius: 20px;
   padding: 48px;
-  border: 1px solid rgba(155,126,216,0.12);
-}
-
-.card-dark {
-  background: rgba(255,255,255,0.08);
-  border: 1px solid rgba(255,255,255,0.12);
+  border: 1px solid rgba(255,255,255,0.1);
 }
 
 /* Feature list */
@@ -220,7 +208,7 @@ h2 {
 .feature-list li {
   font-size: 18px;
   line-height: 2.2;
-  color: var(--muted);
+  color: rgba(255,255,255,0.65);
   padding-left: 28px;
   position: relative;
 }
@@ -233,36 +221,7 @@ h2 {
   width: 8px;
   height: 8px;
   border-radius: 50%;
-  background: var(--purple);
-  opacity: 0.5;
-}
-
-/* Meta info */
-.meta-row {
-  display: flex;
-  gap: 48px;
-  margin-top: 48px;
-  flex-wrap: wrap;
-}
-
-.meta-item {
-  display: flex;
-  flex-direction: column;
-  gap: 6px;
-}
-
-.meta-label {
-  font-size: 11px;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  color: var(--purple);
-  opacity: 0.7;
-}
-
-.meta-value {
-  font-size: 16px;
-  font-weight: 500;
-  color: var(--text);
+  background: rgba(255,255,255,0.35);
 }
 
 /* Scroll hint */
@@ -281,17 +240,15 @@ h2 {
 .scroll-hint-text {
   font-size: 11px;
   letter-spacing: 0.1em;
-  color: var(--purple);
-  opacity: 0.6;
+  color: rgba(255,255,255,0.4);
 }
 
 .scroll-arrow {
   width: 20px;
   height: 20px;
-  border-right: 2px solid var(--purple);
-  border-bottom: 2px solid var(--purple);
+  border-right: 2px solid rgba(255,255,255,0.3);
+  border-bottom: 2px solid rgba(255,255,255,0.3);
   transform: rotate(-45deg);
-  opacity: 0.4;
   animation: bounceRight 2s ease-in-out infinite;
 }
 
@@ -308,24 +265,11 @@ h2 {
   align-items: center;
 }
 
-/* Timeline connector */
-.timeline-connector {
-  position: absolute;
-  top: 50%;
-  left: 0;
-  right: 0;
-  height: 2px;
-  background: linear-gradient(90deg, var(--purple), var(--gold));
-  opacity: 0.25;
-  z-index: 0;
-}
-
 /* Responsive */
 @media (max-width: 768px) {
   .slide { padding: 32px 24px; }
   .two-col { grid-template-columns: 1fr; gap: 32px; }
   .card { padding: 32px 24px; }
-  .meta-row { gap: 24px; }
   .quote-block .quote-mark { font-size: 48px; }
 }
 </style>
@@ -339,7 +283,7 @@ h2 {
       <div class="deco-line"></div>
       <p class="kicker">清华大学 · 人工智能研究院</p>
       <h1>张钹院士</h1>
-      <h2 style="font-size: clamp(1.3rem, 3vw, 2rem); color: var(--deep-purple); margin-bottom: 36px;">
+      <h2 style="font-size: clamp(1.3rem, 3vw, 2rem); color: #E6D5FF; margin-bottom: 36px;">
         人工智能的<br><span class="highlight">发展现状与未来</span>
       </h2>
       <p class="lead">从知识驱动到数据驱动，再到知识+数据融合驱动——探索通用人工智能之路</p>
@@ -373,43 +317,43 @@ h2 {
   </div>
 
   <!-- Slide 3: Three Generations Overview -->
-  <div class="slide bg-1">
+  <div class="slide bg-3">
     <div class="content" style="text-align: center;">
       <div class="deco-line deco-line-center"></div>
       <p class="kicker">核心理论</p>
       <h1>三代人工智能</h1>
       <p class="lead lead-center" style="margin-bottom: 48px;">张钹将AI发展划分为三个阶段，提出了第三代AI的发展方向。</p>
       <div style="display: flex; gap: 24px; justify-content: center; flex-wrap: wrap;">
-        <div style="text-align: center; padding: 24px 32px; background: rgba(255,255,255,0.5); border-radius: 16px;">
-          <div style="font-size: 36px; font-weight: 700; color: var(--deep-purple); margin-bottom: 8px;">01</div>
-          <div style="font-size: 14px; color: var(--muted);">知识驱动</div>
+        <div style="text-align: center; padding: 24px 32px; background: rgba(255,255,255,0.08); border-radius: 16px;">
+          <div style="font-size: 36px; font-weight: 700; color: white; margin-bottom: 8px;">01</div>
+          <div style="font-size: 14px; color: rgba(255,255,255,0.5);">知识驱动</div>
         </div>
-        <div style="text-align: center; padding: 24px 32px; background: rgba(255,255,255,0.5); border-radius: 16px;">
-          <div style="font-size: 36px; font-weight: 700; color: var(--deep-purple); margin-bottom: 8px;">02</div>
-          <div style="font-size: 14px; color: var(--muted);">数据驱动</div>
+        <div style="text-align: center; padding: 24px 32px; background: rgba(255,255,255,0.08); border-radius: 16px;">
+          <div style="font-size: 36px; font-weight: 700; color: white; margin-bottom: 8px;">02</div>
+          <div style="font-size: 14px; color: rgba(255,255,255,0.5);">数据驱动</div>
         </div>
-        <div style="text-align: center; padding: 24px 32px; background: rgba(91,63,160,0.08); border-radius: 16px; border: 2px solid rgba(155,126,216,0.2);">
-          <div style="font-size: 36px; font-weight: 700; color: var(--deep-purple); margin-bottom: 8px;">03</div>
-          <div style="font-size: 14px; color: var(--muted);">知识+数据融合</div>
+        <div style="text-align: center; padding: 24px 32px; background: rgba(255,255,255,0.12); border-radius: 16px; border: 1px solid rgba(255,255,255,0.15);">
+          <div style="font-size: 36px; font-weight: 700; color: white; margin-bottom: 8px;">03</div>
+          <div style="font-size: 14px; color: rgba(255,255,255,0.5);">知识+数据融合</div>
         </div>
       </div>
     </div>
   </div>
 
   <!-- Slide 4: Generation 1 -->
-  <div class="slide bg-2">
+  <div class="slide bg-1">
     <div class="content">
       <div class="deco-line"></div>
       <p class="kicker">第一代 · 1956年起</p>
       <h1>知识驱动</h1>
       <p class="lead" style="margin-bottom: 36px;">把人类的知识放进计算机，让机器像人一样推理、决策。</p>
       <div class="card" style="max-width: 500px;">
-        <div style="font-size: 15px; line-height: 1.8; color: var(--muted);">
-          <strong style="color: var(--dark-purple);">核心思路</strong><br>
+        <div style="font-size: 15px; line-height: 1.8; color: rgba(255,255,255,0.6);">
+          <strong style="color: white;">核心思路</strong><br>
           知识库 + 推理机制<br><br>
-          <strong style="color: var(--dark-purple);">优点</strong><br>
+          <strong style="color: white;">优点</strong><br>
           可解释、可理解<br><br>
-          <strong style="color: var(--dark-purple);">局限</strong><br>
+          <strong style="color: white;">局限</strong><br>
           不会自己学习，所有知识靠人类灌输
         </div>
       </div>
@@ -417,19 +361,19 @@ h2 {
   </div>
 
   <!-- Slide 5: Generation 2 -->
-  <div class="slide bg-3">
+  <div class="slide bg-2">
     <div class="content">
       <div class="deco-line"></div>
       <p class="kicker">第二代 · 1980年代起</p>
       <h1>数据驱动</h1>
       <p class="lead" style="margin-bottom: 36px;">用海量数据训练神经网络，让机器学会识别图像、语音和文本。</p>
       <div class="card" style="max-width: 500px;">
-        <div style="font-size: 15px; line-height: 1.8; color: var(--muted);">
-          <strong style="color: var(--dark-purple);">核心思路</strong><br>
+        <div style="font-size: 15px; line-height: 1.8; color: rgba(255,255,255,0.6);">
+          <strong style="color: white;">核心思路</strong><br>
           大数据 + 深度学习<br><br>
-          <strong style="color: var(--dark-purple);">优点</strong><br>
+          <strong style="color: white;">优点</strong><br>
           图像识别、语音识别精度极高<br><br>
-          <strong style="color: var(--dark-purple);">本质</strong><br>
+          <strong style="color: white;">本质</strong><br>
           机器"不知道马在哪儿"，只是在向量空间里做分类
         </div>
       </div>
@@ -437,55 +381,55 @@ h2 {
   </div>
 
   <!-- Slide 6: Generation 2 Problems -->
-  <div class="slide bg-1">
+  <div class="slide bg-3">
     <div class="content" style="text-align: center;">
       <div class="deco-line deco-line-center"></div>
       <p class="kicker">第二代的根本缺陷</p>
       <h1>五个"不"</h1>
       <div style="display: grid; grid-template-columns: repeat(5, 1fr); gap: 16px; margin-top: 48px;">
         <div style="text-align: center;">
-          <div style="font-size: 32px; font-weight: 700; color: var(--deep-purple); margin-bottom: 12px;">不安全</div>
-          <p style="font-size: 13px; color: var(--muted); line-height: 1.6;">对微小扰动极其脆弱</p>
+          <div style="font-size: 20px; font-weight: 600; color: white; margin-bottom: 8px;">不安全</div>
+          <p style="font-size: 13px; color: rgba(255,255,255,0.5); line-height: 1.6;">对微小扰动极其脆弱</p>
         </div>
         <div style="text-align: center;">
-          <div style="font-size: 32px; font-weight: 700; color: var(--deep-purple); margin-bottom: 12px;">不可信</div>
-          <p style="font-size: 13px; color: var(--muted); line-height: 1.6;">黑箱算法，无法解释</p>
+          <div style="font-size: 20px; font-weight: 600; color: white; margin-bottom: 8px;">不可信</div>
+          <p style="font-size: 13px; color: rgba(255,255,255,0.5); line-height: 1.6;">黑箱算法，无法解释</p>
         </div>
         <div style="text-align: center;">
-          <div style="font-size: 32px; font-weight: 700; color: var(--deep-purple); margin-bottom: 12px;">不可控</div>
-          <p style="font-size: 13px; color: var(--muted); line-height: 1.6;">行为难以预测</p>
+          <div style="font-size: 20px; font-weight: 600; color: white; margin-bottom: 8px;">不可控</div>
+          <p style="font-size: 13px; color: rgba(255,255,255,0.5); line-height: 1.6;">行为难以预测</p>
         </div>
         <div style="text-align: center;">
-          <div style="font-size: 32px; font-weight: 700; color: var(--deep-purple); margin-bottom: 12px;">不可靠</div>
-          <p style="font-size: 13px; color: var(--muted); line-height: 1.6;">泛化能力差</p>
+          <div style="font-size: 20px; font-weight: 600; color: white; margin-bottom: 8px;">不可靠</div>
+          <p style="font-size: 13px; color: rgba(255,255,255,0.5); line-height: 1.6;">泛化能力差</p>
         </div>
         <div style="text-align: center;">
-          <div style="font-size: 32px; font-weight: 700; color: var(--deep-purple); margin-bottom: 12px;">不易推广</div>
-          <p style="font-size: 13px; color: var(--muted); line-height: 1.6;">只能区分，不能真正"认识"</p>
+          <div style="font-size: 20px; font-weight: 600; color: white; margin-bottom: 8px;">不易推广</div>
+          <p style="font-size: 13px; color: rgba(255,255,255,0.5); line-height: 1.6;">只能区分，不能真正"认识"</p>
         </div>
       </div>
     </div>
   </div>
 
   <!-- Slide 7: Generation 3 -->
-  <div class="slide bg-2">
+  <div class="slide bg-1">
     <div class="content">
       <div class="deco-line"></div>
       <p class="kicker">第三代 · 2020年起</p>
       <h1>知识+数据<br>融合驱动</h1>
       <p class="lead" style="margin-bottom: 36px;">把知识和数据同时用起来，建立可解释、可信赖的AI。</p>
       <div style="display: flex; gap: 16px; flex-wrap: wrap;">
-        <div style="padding: 16px 24px; background: rgba(255,255,255,0.5); border-radius: 12px; font-size: 15px; font-weight: 500; color: var(--deep-purple);">知识</div>
-        <div style="padding: 16px 24px; background: rgba(255,255,255,0.5); border-radius: 12px; font-size: 15px; font-weight: 500; color: var(--deep-purple);">数据</div>
-        <div style="padding: 16px 24px; background: rgba(255,255,255,0.5); border-radius: 12px; font-size: 15px; font-weight: 500; color: var(--deep-purple);">算法</div>
-        <div style="padding: 16px 24px; background: var(--deep-purple); border-radius: 12px; font-size: 15px; font-weight: 500; color: white;">算力</div>
+        <div style="padding: 16px 24px; background: rgba(255,255,255,0.1); border-radius: 12px; font-size: 15px; font-weight: 500; color: white;">知识</div>
+        <div style="padding: 16px 24px; background: rgba(255,255,255,0.1); border-radius: 12px; font-size: 15px; font-weight: 500; color: white;">数据</div>
+        <div style="padding: 16px 24px; background: rgba(255,255,255,0.1); border-radius: 12px; font-size: 15px; font-weight: 500; color: white;">算法</div>
+        <div style="padding: 16px 24px; background: rgba(255,255,255,0.2); border-radius: 12px; font-size: 15px; font-weight: 500; color: white;">算力</div>
       </div>
-      <p style="margin-top: 24px; font-size: 14px; color: var(--muted); font-style: italic;">"为了克服人工智能的固有缺点，唯一的办法是把四个要素同时运用。"</p>
+      <p style="margin-top: 24px; font-size: 14px; color: rgba(255,255,255,0.5); font-style: italic;">"为了克服人工智能的固有缺点，唯一的办法是把四个要素同时运用。"</p>
     </div>
   </div>
 
   <!-- Slide 8: AGI Intro -->
-  <div class="slide bg-1">
+  <div class="slide bg-2">
     <div class="content" style="text-align: center;">
       <div class="deco-line deco-line-center"></div>
       <p class="kicker">通用人工智能</p>
@@ -495,51 +439,51 @@ h2 {
   </div>
 
   <!-- Slide 9: Step 1 -->
-  <div class="slide bg-2">
+  <div class="slide bg-3">
     <div class="content">
       <div class="step-number">1</div>
       <p class="kicker">第一步</p>
       <h1>与人类交互</h1>
       <p class="lead">让AI学会和人类对话、对齐人类的价值观。</p>
-      <p style="margin-top: 24px; font-size: 18px; color: var(--purple);">→ 大语言模型的对话能力</p>
+      <p style="margin-top: 24px; font-size: 18px; color: rgba(255,255,255,0.5);">→ 大语言模型的对话能力</p>
     </div>
   </div>
 
   <!-- Slide 10: Step 2 -->
-  <div class="slide bg-3">
+  <div class="slide bg-1">
     <div class="content">
       <div class="step-number">2</div>
       <p class="kicker">第二步</p>
       <h1>多模态生成</h1>
       <p class="lead">AI不仅能说话，还能生成图像、视频、音频。</p>
-      <p style="margin-top: 24px; font-size: 18px; color: var(--purple);">→ 跨模态理解与生成</p>
+      <p style="margin-top: 24px; font-size: 18px; color: rgba(255,255,255,0.5);">→ 跨模态理解与生成</p>
     </div>
   </div>
 
   <!-- Slide 11: Step 3 -->
-  <div class="slide bg-1">
+  <div class="slide bg-2">
     <div class="content">
       <div class="step-number">3</div>
       <p class="kicker">第三步</p>
       <h1>与数字世界交互</h1>
       <p class="lead">AI成为智能体，能在数字世界里操作工具、获取反馈。</p>
-      <p style="margin-top: 24px; font-size: 18px; color: var(--purple);">→ AI Agent（智能体）</p>
+      <p style="margin-top: 24px; font-size: 18px; color: rgba(255,255,255,0.5);">→ AI Agent（智能体）</p>
     </div>
   </div>
 
   <!-- Slide 12: Step 4 -->
-  <div class="slide bg-2">
+  <div class="slide bg-3">
     <div class="content">
       <div class="step-number">4</div>
       <p class="kicker">第四步</p>
       <h1>与客观世界交互</h1>
       <p class="lead">AI通过机器人与物理世界连接，感知真实环境、执行真实动作。</p>
-      <p style="margin-top: 24px; font-size: 18px; color: var(--purple);">→ 具身智能（Embodied AI）</p>
+      <p style="margin-top: 24px; font-size: 18px; color: rgba(255,255,255,0.5);">→ 具身智能（Embodied AI）</p>
     </div>
   </div>
 
   <!-- Slide 13: AGI Quote -->
-  <div class="slide bg-3">
+  <div class="slide bg-1">
     <div class="content">
       <div class="quote-block">
         <div class="quote-mark">"</div>
@@ -550,7 +494,7 @@ h2 {
   </div>
 
   <!-- Slide 14: Two Big Things -->
-  <div class="slide bg-1">
+  <div class="slide bg-2">
     <div class="content">
       <div class="deco-line"></div>
       <p class="kicker">大语言模型</p>
@@ -577,7 +521,7 @@ h2 {
   </div>
 
   <!-- Slide 15: Emergence -->
-  <div class="slide bg-2">
+  <div class="slide bg-3">
     <div class="content" style="text-align: center;">
       <div class="deco-line deco-line-center"></div>
       <p class="kicker">涌现现象</p>
@@ -587,7 +531,7 @@ h2 {
   </div>
 
   <!-- Slide 16: Gap -->
-  <div class="slide bg-3">
+  <div class="slide bg-1">
     <div class="content">
       <div class="quote-block">
         <div class="quote-mark">"</div>
@@ -598,20 +542,20 @@ h2 {
   </div>
 
   <!-- Slide 17: Gap Detail -->
-  <div class="slide bg-1">
+  <div class="slide bg-2">
     <div class="content">
       <div class="deco-line"></div>
       <p class="kicker">清醒认识差距</p>
       <h1>创新能力不足</h1>
       <p class="lead" style="margin-bottom: 36px;">从0到1的创新能力很差，ChatGPT的十几项重大创新几乎都是外国人提出的。</p>
       <div class="card" style="max-width: 600px;">
-        <p style="font-size: 16px; line-height: 1.8; color: var(--muted);">现在用的神经网络是什么时候开始研究的？<strong style="color: var(--dark-purple);">1943年</strong>。人类花了<strong style="color: var(--dark-purple);">74年</strong>才得到今天的Transformer模型。这不是一天、两天做出来的。</p>
+        <p style="font-size: 16px; line-height: 1.8; color: rgba(255,255,255,0.6);">现在用的神经网络是什么时候开始研究的？<strong style="color: white;">1943年</strong>。人类花了<strong style="color: white;">74年</strong>才得到今天的Transformer模型。这不是一天、两天做出来的。</p>
       </div>
     </div>
   </div>
 
   <!-- Slide 18: Opportunity -->
-  <div class="slide bg-2">
+  <div class="slide bg-3">
     <div class="content" style="text-align: center;">
       <div class="deco-line deco-line-center"></div>
       <p class="kicker">发展机遇</p>
@@ -642,10 +586,10 @@ h2 {
   </div>
 
   <!-- Slide 21: End -->
-  <div class="slide bg-dark">
+  <div class="slide bg-3">
     <div class="content" style="text-align: center;">
       <div class="deco-line deco-line-center" style="background: var(--gold);"></div>
-      <h1 style="color: white; font-size: clamp(2rem, 4vw, 3.5rem);">探索永无止境</h1>
+      <h1 style="font-size: clamp(2rem, 4vw, 3.5rem);">探索永无止境</h1>
       <p style="font-size: 18px; opacity: 0.7; margin-top: 24px; max-width: 600px; margin-left: auto; margin-right: auto;">在第三代人工智能发展上，中国科学家与国际同行处在同一起跑线上。我们有能力为造福国家和民族、造福全人类作出更多、更大贡献。</p>
       <p style="font-size: 12px; opacity: 0.4; margin-top: 48px; letter-spacing: 0.1em;">张钹院士 · 人工智能的发展现状与未来</p>
     </div>
@@ -681,4 +625,3 @@ deck.addEventListener('scroll', () => {
 </script>
 </body>
 </html>
-
