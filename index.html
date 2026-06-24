@@ -205,20 +205,20 @@ h2 { font-size: 28px; font-weight: 600; line-height: 1.3; margin-bottom: 20px; c
       <p class="kicker">发展简史</p>
       <h1>三代人工智能</h1>
       <div class="step-grid" style="margin-top: 16px;">
-        <div class="step-item">
-          <div class="num">第一代</div>
-          <div class="label">符号主义 · 知识驱动</div>
-          <div class="desc">1956-1980s</div>
+        <div class="step-item" style="border-left: 3px solid #9B7ED8;">
+          <div class="num" style="color: #9B7ED8;">第一代</div>
+          <div class="label">知识驱动 · 符号主义</div>
+          <div class="desc">1956年起 · 基于知识与经验的推理模型</div>
         </div>
-        <div class="step-item">
-          <div class="num">第二代</div>
-          <div class="label">连接主义 · 数据驱动</div>
-          <div class="desc">1987-2015</div>
+        <div class="step-item" style="border-left: 3px solid #7EC8A0;">
+          <div class="num" style="color: #7EC8A0;">第二代</div>
+          <div class="label">数据驱动 · 连接主义</div>
+          <div class="desc">20世纪80年代起 · 基于大数据的深度学习</div>
         </div>
-        <div class="step-item">
-          <div class="num">第三代</div>
-          <div class="label">生成式AI · 大模型</div>
-          <div class="desc">2015-</div>
+        <div class="step-item" style="border-left: 3px solid #E6A07E;">
+          <div class="num" style="color: #E6A07E;">第三代</div>
+          <div class="label">知识+数据融合驱动</div>
+          <div class="desc">2020年提出 · 建立可解释的鲁棒AI理论</div>
         </div>
       </div>
       <p class="text-block" style="margin-top: 16px; font-size: 15px; color: rgba(255,255,255,0.5);">1978年 清华成立人工智能教研组</p>
@@ -231,19 +231,113 @@ h2 { font-size: 28px; font-weight: 600; line-height: 1.3; margin-bottom: 20px; c
       <div class="deco-line"></div>
       <p class="kicker">第一代 · 1956年起</p>
       <h1>知识驱动</h1>
-      <p class="text-block">模拟白领能从事的工作：</p>
+      <p class="text-block"><strong style="color: white;">核心：</strong>基于知识与经验的推理模型</p>
       <ul class="bullet-list">
-        <li>基于知识和经验</li>
-        <li>运用推理能力</li>
-        <li>符号主义</li>
-        <li>模型可解释、可理解</li>
+        <li>将人类知识放入计算机知识库</li>
+        <li>将推理过程放入推理机制</li>
+        <li>三要素：知识 + 算法 + 算力</li>
       </ul>
-      <p class="text-block" style="margin-top: 16px; font-size: 15px; color: rgba(255,255,255,0.5); font-style: italic;">"感性知识很难传授，用概念来讲述很难。"</p>
+      <div class="step-item" style="margin-top: 16px;">
+        <div class="label" style="color: #7EC8A0;">优点</div>
+        <div class="desc">可解释性强 · 可理解性好</div>
+      </div>
+      <div class="step-item" style="margin-top: 10px;">
+        <div class="label" style="color: #E6A07E;">局限</div>
+        <div class="desc">缺乏自学能力 · 知识源于人类灌输 · 永远无法超越人类</div>
+      </div>
     </div>
   </div>
 
-  <!-- 10. Meituan -->
+  <!-- 10. Gen 2 -->
   <div class="slide bg-1">
+    <div class="content">
+      <div class="deco-line"></div>
+      <p class="kicker">第二代 · 20世纪80年代起</p>
+      <h1>数据驱动</h1>
+      <p class="text-block"><strong style="color: white;">核心：</strong>基于大数据的深度学习</p>
+      <ul class="bullet-list">
+        <li>模拟人类的感性行为（图像/语音/文本）</li>
+        <li>通过大量数据训练人工神经网络</li>
+        <li>三要素：数据 + 算法 + 算力</li>
+      </ul>
+      <div class="step-item" style="margin-top: 16px;">
+        <div class="label" style="color: #7EC8A0;">优点</div>
+        <div class="desc">特定任务效率极高 · 图像/语音识别达到很高精度</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 11. Gen 2 Problem -->
+  <div class="slide bg-2">
+    <div class="content">
+      <div class="deco-line"></div>
+      <p class="kicker">第二代的根本缺陷</p>
+      <h1>五个"不"</h1>
+      <ul class="bullet-list">
+        <li>不安全 — 对微小扰动极其脆弱</li>
+        <li>不可信 — 黑箱算法，无法解释</li>
+        <li>不可控 — 行为难以预测</li>
+        <li>不可靠 — 泛化能力差</li>
+        <li>不易推广 — 只能区分，不能真正"认识"</li>
+      </ul>
+      <p class="text-block" style="margin-top: 16px; font-size: 15px; color: rgba(255,255,255,0.5); font-style: italic;">计算机"不知道马在哪儿"，只是在特征向量空间中分类</p>
+    </div>
+  </div>
+
+  <!-- 12. Snow Mountain -->
+  <div class="slide bg-3">
+    <div class="content">
+      <h1>雪山变狗</h1>
+      <ul class="bullet-list" style="margin-top: 20px;">
+        <li>添加一点噪声</li>
+        <li>雪山变狗</li>
+        <li>自信度 99.99%</li>
+      </ul>
+      <p class="text-block" style="margin-top: 20px; font-size: 16px; color: rgba(255,255,255,0.5);">刷脸也不安全</p>
+    </div>
+  </div>
+
+  <!-- 13. Gen 3 -->
+  <div class="slide bg-1">
+    <div class="content">
+      <div class="deco-line"></div>
+      <p class="kicker">第三代 · 2020年提出</p>
+      <h1>知识+数据融合驱动</h1>
+      <p class="text-block"><strong style="color: white;">核心：</strong>知识驱动与数据驱动的融合</p>
+      <ul class="bullet-list">
+        <li>四要素：知识 + 数据 + 算法 + 算力</li>
+        <li>建立可解释的鲁棒人工智能理论</li>
+        <li>发展安全、可信、可靠、可扩展的AI技术</li>
+      </ul>
+      <p class="text-block" style="margin-top: 16px; font-size: 15px; color: rgba(255,255,255,0.5); font-style: italic;">"为了克服AI的固有缺点，唯一的办法是把四个要素同时运用。"</p>
+    </div>
+  </div>
+
+  <!-- 14. Gen 3 Two Paradigms -->
+  <div class="slide bg-2">
+    <div class="content">
+      <div class="deco-line"></div>
+      <p class="kicker">第三代 · 两个探索范式</p>
+      <h1>打通离散与连续空间</h1>
+      <div class="step-grid" style="margin-top: 16px;">
+        <div class="step-item">
+          <div class="num">范式一</div>
+          <div class="label">所有处理在连续空间进行</div>
+          <div class="desc" style="color: #7EC8A0;">优点：计算机处理方便</div>
+          <div class="desc" style="color: #E6A07E;">缺点：知识转为向量时丢失大量语义</div>
+        </div>
+        <div class="step-item">
+          <div class="num">范式二</div>
+          <div class="label">打通离散空间和连续空间</div>
+          <div class="desc" style="color: #7EC8A0;">优点：可能从根本上实现第三代AI</div>
+          <div class="desc" style="color: #E6A07E;">缺点：难以进行模型表示和获取</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 15. Meituan -->
+  <div class="slide bg-3">
     <div class="content">
       <div class="deco-line"></div>
       <p class="kicker">应用案例</p>
@@ -262,8 +356,8 @@ h2 { font-size: 28px; font-weight: 600; line-height: 1.3; margin-bottom: 20px; c
     </div>
   </div>
 
-  <!-- 11. High-Speed Rail -->
-  <div class="slide bg-2">
+  <!-- 16. High-Speed Rail -->
+  <div class="slide bg-1">
     <div class="content">
       <div class="deco-line"></div>
       <p class="kicker">自主创新</p>
@@ -289,8 +383,8 @@ h2 { font-size: 28px; font-weight: 600; line-height: 1.3; margin-bottom: 20px; c
     </div>
   </div>
 
-  <!-- 12. Expert System -->
-  <div class="slide bg-3">
+  <!-- 17. Expert System -->
+  <div class="slide bg-2">
     <div class="content">
       <div class="deco-line"></div>
       <p class="kicker">专家系统</p>
@@ -303,8 +397,8 @@ h2 { font-size: 28px; font-weight: 600; line-height: 1.3; margin-bottom: 20px; c
     </div>
   </div>
 
-  <!-- 13. Tsinghua -->
-  <div class="slide bg-1">
+  <!-- 18. Tsinghua -->
+  <div class="slide bg-3">
     <div class="content">
       <div class="deco-line"></div>
       <p class="kicker">清华贡献</p>
@@ -331,8 +425,8 @@ h2 { font-size: 28px; font-weight: 600; line-height: 1.3; margin-bottom: 20px; c
     </div>
   </div>
 
-  <!-- 14. Deep Blue -->
-  <div class="slide bg-2">
+  <!-- 19. Deep Blue -->
+  <div class="slide bg-1">
     <div class="content">
       <div class="deco-line"></div>
       <p class="kicker">深蓝成功</p>
@@ -356,55 +450,24 @@ h2 { font-size: 28px; font-weight: 600; line-height: 1.3; margin-bottom: 20px; c
     </div>
   </div>
 
-  <!-- 15. Five Nos -->
-  <div class="slide bg-3">
+  <!-- 20. Five Nos -->
+  <div class="slide bg-2">
     <div class="content">
       <div class="deco-line"></div>
       <p class="kicker">第二代的缺陷</p>
       <h1>五个"不"</h1>
       <ul class="bullet-list">
         <li>不安全 — 对微小扰动极其脆弱</li>
-        <li>不可信 — 黑箱无法解释</li>
+        <li>不可信 — 黑箱算法，无法解释</li>
         <li>不可控 — 行为难以预测</li>
         <li>不可靠 — 泛化能力差</li>
-        <li>不易推广 — 不能真正"认识"</li>
+        <li>不易推广 — 只能区分，不能真正"认识"</li>
       </ul>
+      <p class="text-block" style="margin-top: 16px; font-size: 15px; color: rgba(255,255,255,0.5); font-style: italic;">计算机"不知道马在哪儿"，只是在特征向量空间中分类</p>
     </div>
   </div>
 
-  <!-- 16. Snow Mountain -->
-  <div class="slide bg-1">
-    <div class="content">
-      <h1>雪山变狗</h1>
-      <ul class="bullet-list" style="margin-top: 20px;">
-        <li>添加一点噪声</li>
-        <li>雪山变狗</li>
-        <li>自信度 99%</li>
-      </ul>
-      <p class="text-block" style="margin-top: 20px; font-size: 16px; color: rgba(255,255,255,0.5);">刷脸也不安全</p>
-    </div>
-  </div>
-
-  <!-- 17. Gen 3 LLM -->
-  <div class="slide bg-2">
-    <div class="content">
-      <div class="deco-line"></div>
-      <p class="kicker">第三代 · 2020年起</p>
-      <h1>LLM 的诞生</h1>
-      <p class="text-block">主流学派的硅基智能道路走得通：</p>
-      <ul class="bullet-list">
-        <li>大语言模型带来前所未有的突破</li>
-        <li>中国的工程实现能力极强</li>
-      </ul>
-      <div class="tag-row">
-        <div class="tag">机器会创作</div>
-        <div class="tag tag-highlight">机器有意识</div>
-        <div class="tag">有自知之明</div>
-      </div>
-    </div>
-  </div>
-
-  <!-- 18. Two Big -->
+  <!-- 21. Gen 3 LLM -->
   <div class="slide bg-3">
     <div class="content">
       <div class="deco-line"></div>
