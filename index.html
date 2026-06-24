@@ -22,12 +22,10 @@ body { position: fixed; top: 0; left: 0; right: 0; bottom: 0; }
 .content { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 100%; max-width: 600px; padding: 0 24px; z-index: 2; }
 
 .deco-line { width: 48px; height: 3px; background: #C9A84C; margin-bottom: 24px; border-radius: 2px; }
-.deco-line-center { margin: 0 auto 24px; }
 .kicker { font-size: 14px; letter-spacing: 0.2em; text-transform: uppercase; color: rgba(255,255,255,0.5); margin-bottom: 16px; font-weight: 500; }
 
 h1 { font-size: 40px; font-weight: 700; line-height: 1.2; margin-bottom: 24px; color: white; }
 h1 .highlight { color: #E6D5FF; }
-h2 { font-size: 30px; font-weight: 600; line-height: 1.3; margin-bottom: 20px; color: white; }
 
 .text-block { font-size: 20px; line-height: 1.8; color: rgba(255,255,255,0.7); margin-bottom: 16px; }
 
@@ -61,11 +59,12 @@ h2 { font-size: 30px; font-weight: 600; line-height: 1.3; margin-bottom: 20px; c
 .progress-fill { height: 100%; background: #C9A84C; width: 0%; transition: width 0.3s ease; }
 .progress-text { position: fixed; bottom: 10px; right: 16px; font-size: 12px; color: rgba(255,255,255,0.4); z-index: 10; }
 
+.step-badge { display: inline-block; background: #C9A84C; color: #1E1045; font-size: 13px; font-weight: 700; padding: 6px 14px; border-radius: 20px; margin-bottom: 16px; }
+
 @media (max-width: 768px) { 
   .slide { padding: 40px 24px 80px; } 
   .content { max-width: 100%; } 
   h1 { font-size: 32px; } 
-  h2 { font-size: 26px; } 
   .text-block { font-size: 18px; } 
   .bullet-list li { font-size: 18px; } 
   .step-item .label { font-size: 16px; }
@@ -225,122 +224,107 @@ h2 { font-size: 30px; font-weight: 600; line-height: 1.3; margin-bottom: 20px; c
     </div>
   </div>
 
-  <!-- 9. Gen 1 -->
+  <!-- 9. Gen 1 Overview -->
   <div class="slide bg-3">
     <div class="content">
       <div class="deco-line"></div>
       <p class="kicker">第一代 · 1956年起</p>
       <h1>知识驱动</h1>
-      <p class="text-block"><strong style="color: white;">核心：</strong>基于知识与经验的推理模型</p>
+      <p class="text-block"><strong style="color: white;">诞生：</strong>1956年美国达特茅斯夏季研讨会</p>
       <ul class="bullet-list">
-        <li>将人类知识放入计算机知识库</li>
-        <li>将推理过程放入推理机制</li>
-        <li>三要素：知识 + 算法 + 算力</li>
+        <li>John McCarthy、Marvin Minsky等十大先驱</li>
+        <li>提出"学习的任何方面都能被机器模拟"</li>
+        <li>符号主义诞生</li>
       </ul>
       <div class="step-item" style="margin-top: 16px;">
-        <div class="label" style="color: #7EC8A0;">优点</div>
-        <div class="desc">可解释性强 · 可理解性好</div>
-      </div>
-      <div class="step-item" style="margin-top: 10px;">
-        <div class="label" style="color: #F0D878;">局限</div>
-        <div class="desc">缺乏自学能力 · 知识源于人类灌输 · 永远无法超越人类</div>
+        <div class="label">核心目标</div>
+        <div class="desc">让机器像人类一样思考（推理、决策、诊断、设计、规划等）</div>
       </div>
     </div>
   </div>
 
-  <!-- 10. Gen 2 -->
+  <!-- 10. Knowledge Model -->
   <div class="slide bg-1">
     <div class="content">
       <div class="deco-line"></div>
-      <p class="kicker">第二代 · 20世纪80年代起</p>
-      <h1>数据驱动</h1>
-      <p class="text-block"><strong style="color: white;">核心：</strong>基于大数据的深度学习</p>
+      <p class="kicker">第一代 · 核心架构</p>
+      <h1>知识驱动模型</h1>
+      <p class="text-block">基于知识与经验的物理符号推理模型</p>
       <ul class="bullet-list">
-        <li>模拟人类的感性行为（图像/语音/文本）</li>
-        <li>通过大量数据训练人工神经网络</li>
-        <li>三要素：数据 + 算法 + 算力</li>
+        <li>专家 → 知识库（人工编制知识）</li>
+        <li>推理机制 → 处理符号与搜索</li>
+        <li>用户 ↔ 系统 双向交互</li>
+      </ul>
+      <p class="text-block" style="margin-top: 16px; font-size: 15px; color: rgba(255,255,255,0.5);">Newell & Simon, ACM 1976</p>
+    </div>
+  </div>
+
+  <!-- 11. MYCIN -->
+  <div class="slide bg-2">
+    <div class="content">
+      <div class="deco-line"></div>
+      <p class="kicker">第一代 · 经典案例</p>
+      <h1>MYCIN 专家系统</h1>
+      <p class="text-block">1970年代初 · 斯坦福大学与附属医院联合研制</p>
+      <ul class="bullet-list">
+        <li>血液细菌感染及凝血疾病诊断</li>
+        <li>抗菌素处方推荐</li>
+        <li>600多条专家规则</li>
       </ul>
       <div class="step-item" style="margin-top: 16px;">
-        <div class="label" style="color: #7EC8A0;">优点</div>
-        <div class="desc">特定任务效率极高 · 图像/语音识别达到很高精度</div>
+        <div class="label">五模块架构</div>
+        <div class="desc">咨询 → 解释 → 知识获取 → 知识库 → 推理机制</div>
       </div>
     </div>
   </div>
 
-  <!-- 11. Gen 2 Problem -->
-  <div class="slide bg-2">
-    <div class="content">
-      <div class="deco-line"></div>
-      <p class="kicker">第二代的根本缺陷</p>
-      <h1>五个"不"</h1>
-      <ul class="bullet-list">
-        <li>不安全 — 对微小扰动极其脆弱</li>
-        <li>不可信 — 黑箱算法，无法解释</li>
-        <li>不可控 — 行为难以预测</li>
-        <li>不可靠 — 泛化能力差</li>
-        <li>不易推广 — 只能区分，不能真正"认识"</li>
-      </ul>
-      <p class="text-block" style="margin-top: 16px; font-size: 15px; color: rgba(255,255,255,0.5); font-style: italic;">计算机"不知道马在哪儿"，只是在特征向量空间中分类</p>
-    </div>
-  </div>
-
-  <!-- 12. Snow Mountain -->
+  <!-- 12. Guan Youbo -->
   <div class="slide bg-3">
     <div class="content">
-      <h1>雪山变狗</h1>
-      <ul class="bullet-list" style="margin-top: 20px;">
-        <li>添加一点噪声</li>
-        <li>雪山变狗</li>
-        <li>自信度 99.99%</li>
+      <div class="deco-line"></div>
+      <p class="kicker">第一代 · 中国实践</p>
+      <h1>关幼波中医诊断系统</h1>
+      <p class="text-block">1980年代 · 西苑医院与中科院自动化所</p>
+      <ul class="bullet-list">
+        <li>著名中医肝病专家关幼波的经验</li>
+        <li>肝炎诊断知识库 + 推理机制</li>
+        <li>医生输入病人数据，系统给出诊断</li>
       </ul>
-      <p class="text-block" style="margin-top: 20px; font-size: 16px; color: rgba(255,255,255,0.5);">刷脸也不安全</p>
+      <p class="text-block" style="margin-top: 16px; font-size: 15px; color: rgba(255,255,255,0.5);">中国专家系统应用于传统医学的代表</p>
     </div>
   </div>
 
-  <!-- 13. Gen 3 -->
+  <!-- 13. Deep Blue -->
   <div class="slide bg-1">
     <div class="content">
       <div class="deco-line"></div>
-      <p class="kicker">第三代 · 2020年提出</p>
-      <h1>知识+数据融合驱动</h1>
-      <p class="text-block"><strong style="color: white;">核心：</strong>知识驱动与数据驱动的融合</p>
-      <ul class="bullet-list">
-        <li>四要素：知识 + 数据 + 算法 + 算力</li>
-        <li>建立可解释的鲁棒人工智能理论</li>
-        <li>发展安全、可信、可靠、可扩展的AI技术</li>
-      </ul>
-      <p class="text-block" style="margin-top: 16px; font-size: 15px; color: rgba(255,255,255,0.5); font-style: italic;">"为了克服AI的固有缺点，唯一的办法是把四个要素同时运用。"</p>
-    </div>
-  </div>
-
-  <!-- 14. Gen 3 Two Paradigms -->
-  <div class="slide bg-2">
-    <div class="content">
-      <div class="deco-line"></div>
-      <p class="kicker">第三代 · 两个探索范式</p>
-      <h1>打通离散与连续空间</h1>
+      <p class="kicker">第一代 · 巅峰之作</p>
+      <h1>深蓝 · 1997</h1>
+      <p class="text-block">知识 + 算法 + 算力</p>
       <div class="step-grid" style="margin-top: 16px;">
         <div class="step-item">
-          <div class="num">范式一</div>
-          <div class="label">所有处理在连续空间进行</div>
-          <div class="desc" style="color: #7EC8A0;">优点：计算机处理方便</div>
-          <div class="desc" style="color: #F0D878;">缺点：知识转为向量时丢失大量语义</div>
+          <div class="num">70万</div>
+          <div class="label">盘大师棋局</div>
+          <div class="desc">评价函数8000参数</div>
         </div>
         <div class="step-item">
-          <div class="num">范式二</div>
-          <div class="label">打通离散空间和连续空间</div>
-          <div class="desc" style="color: #7EC8A0;">优点：可能从根本上实现第三代AI</div>
-          <div class="desc" style="color: #F0D878;">缺点：难以进行模型表示和获取</div>
+          <div class="num">α-β</div>
+          <div class="label">剪枝并行算法</div>
         </div>
+      </div>
+      <div class="step-item" style="margin-top: 14px; text-align: center;">
+        <div class="big-num">2亿</div>
+        <div class="label">棋局/秒</div>
+        <div class="desc">平均预测8-12步</div>
       </div>
     </div>
   </div>
 
-  <!-- 15. Meituan -->
-  <div class="slide bg-3">
+  <!-- 14. Meituan -->
+  <div class="slide bg-2">
     <div class="content">
       <div class="deco-line"></div>
-      <p class="kicker">应用案例</p>
+      <p class="kicker">现代应用</p>
       <h1>美团即时物流</h1>
       <p class="text-block">外卖平台 → 配送平台 → 骑手</p>
       <ul class="bullet-list">
@@ -356,8 +340,8 @@ h2 { font-size: 30px; font-weight: 600; line-height: 1.3; margin-bottom: 20px; c
     </div>
   </div>
 
-  <!-- 16. High-Speed Rail -->
-  <div class="slide bg-1">
+  <!-- 15. High-Speed Rail -->
+  <div class="slide bg-3">
     <div class="content">
       <div class="deco-line"></div>
       <p class="kicker">自主创新</p>
@@ -383,8 +367,8 @@ h2 { font-size: 30px; font-weight: 600; line-height: 1.3; margin-bottom: 20px; c
     </div>
   </div>
 
-  <!-- 17. Expert System -->
-  <div class="slide bg-2">
+  <!-- 16. Expert System -->
+  <div class="slide bg-1">
     <div class="content">
       <div class="deco-line"></div>
       <p class="kicker">专家系统</p>
@@ -397,8 +381,8 @@ h2 { font-size: 30px; font-weight: 600; line-height: 1.3; margin-bottom: 20px; c
     </div>
   </div>
 
-  <!-- 18. Tsinghua -->
-  <div class="slide bg-3">
+  <!-- 17. Tsinghua -->
+  <div class="slide bg-2">
     <div class="content">
       <div class="deco-line"></div>
       <p class="kicker">清华贡献</p>
@@ -425,33 +409,96 @@ h2 { font-size: 30px; font-weight: 600; line-height: 1.3; margin-bottom: 20px; c
     </div>
   </div>
 
-  <!-- 19. Deep Blue -->
-  <div class="slide bg-1">
+  <!-- 18. Gen 2 -->
+  <div class="slide bg-3">
     <div class="content">
       <div class="deco-line"></div>
-      <p class="kicker">深蓝成功</p>
-      <h1>知识 + 算法 + 算力</h1>
-      <div class="step-grid" style="margin-top: 16px;">
-        <div class="step-item">
-          <div class="num">70万</div>
-          <div class="label">盘大师棋局</div>
-          <div class="desc">评价函数8000参数</div>
-        </div>
-        <div class="step-item">
-          <div class="num">α-β</div>
-          <div class="label">剪枝并行算法</div>
-        </div>
-      </div>
-      <div class="step-item" style="margin-top: 14px; text-align: center;">
-        <div class="big-num">2亿</div>
-        <div class="label">棋局/秒</div>
-        <div class="desc">平均预测8-12步</div>
+      <p class="kicker">第二代 · 20世纪80年代起</p>
+      <h1>数据驱动</h1>
+      <p class="text-block"><strong style="color: white;">核心：</strong>基于大数据的深度学习</p>
+      <ul class="bullet-list">
+        <li>模拟人类的感性行为（图像/语音/文本）</li>
+        <li>通过大量数据训练人工神经网络</li>
+        <li>三要素：数据 + 算法 + 算力</li>
+      </ul>
+      <div class="step-item" style="margin-top: 16px;">
+        <div class="label" style="color: #7EC8A0;">优点</div>
+        <div class="desc">特定任务效率极高 · 图像/语音识别达到很高精度</div>
       </div>
     </div>
   </div>
 
-  <!-- 20. Two Big -->
+  <!-- 19. Five Nos -->
+  <div class="slide bg-1">
+    <div class="content">
+      <div class="deco-line"></div>
+      <p class="kicker">第二代的根本缺陷</p>
+      <h1>五个"不"</h1>
+      <ul class="bullet-list">
+        <li>不安全 — 对微小扰动极其脆弱</li>
+        <li>不可信 — 黑箱算法，无法解释</li>
+        <li>不可控 — 行为难以预测</li>
+        <li>不可靠 — 泛化能力差</li>
+        <li>不易推广 — 只能区分，不能真正"认识"</li>
+      </ul>
+      <p class="text-block" style="margin-top: 16px; font-size: 15px; color: rgba(255,255,255,0.5); font-style: italic;">计算机"不知道马在哪儿"，只是在特征向量空间中分类</p>
+    </div>
+  </div>
+
+  <!-- 20. Snow Mountain -->
+  <div class="slide bg-2">
+    <div class="content">
+      <h1>雪山变狗</h1>
+      <ul class="bullet-list" style="margin-top: 20px;">
+        <li>添加一点噪声</li>
+        <li>雪山变狗</li>
+        <li>自信度 99.99%</li>
+      </ul>
+      <p class="text-block" style="margin-top: 20px; font-size: 16px; color: rgba(255,255,255,0.5);">刷脸也不安全</p>
+    </div>
+  </div>
+
+  <!-- 21. Gen 3 -->
   <div class="slide bg-3">
+    <div class="content">
+      <div class="deco-line"></div>
+      <p class="kicker">第三代 · 2020年提出</p>
+      <h1>知识+数据融合驱动</h1>
+      <p class="text-block"><strong style="color: white;">核心：</strong>知识驱动与数据驱动的融合</p>
+      <ul class="bullet-list">
+        <li>四要素：知识 + 数据 + 算法 + 算力</li>
+        <li>建立可解释的鲁棒人工智能理论</li>
+        <li>发展安全、可信、可靠、可扩展的AI技术</li>
+      </ul>
+      <p class="text-block" style="margin-top: 16px; font-size: 15px; color: rgba(255,255,255,0.5); font-style: italic;">"为了克服AI的固有缺点，唯一的办法是把四个要素同时运用。"</p>
+    </div>
+  </div>
+
+  <!-- 22. Gen 3 Two Paradigms -->
+  <div class="slide bg-1">
+    <div class="content">
+      <div class="deco-line"></div>
+      <p class="kicker">第三代 · 两个探索范式</p>
+      <h1>打通离散与连续空间</h1>
+      <div class="step-grid" style="margin-top: 16px;">
+        <div class="step-item">
+          <div class="num">范式一</div>
+          <div class="label">所有处理在连续空间进行</div>
+          <div class="desc" style="color: #7EC8A0;">优点：计算机处理方便</div>
+          <div class="desc" style="color: #F0D878;">缺点：知识转为向量时丢失大量语义</div>
+        </div>
+        <div class="step-item">
+          <div class="num">范式二</div>
+          <div class="label">打通离散空间和连续空间</div>
+          <div class="desc" style="color: #7EC8A0;">优点：可能从根本上实现第三代AI</div>
+          <div class="desc" style="color: #F0D878;">缺点：难以进行模型表示和获取</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 23. Two Big -->
+  <div class="slide bg-2">
     <div class="content">
       <div class="deco-line"></div>
       <p class="kicker">两个"大"</p>
@@ -470,8 +517,8 @@ h2 { font-size: 30px; font-weight: 600; line-height: 1.3; margin-bottom: 20px; c
     </div>
   </div>
 
-  <!-- 21. AGI -->
-  <div class="slide bg-1">
+  <!-- 24. AGI -->
+  <div class="slide bg-3">
     <div class="content">
       <div class="deco-line"></div>
       <p class="kicker">通往AGI</p>
@@ -510,11 +557,11 @@ h2 { font-size: 30px; font-weight: 600; line-height: 1.3; margin-bottom: 20px; c
     </div>
   </div>
 
-  <!-- 22. AI Alignment -->
-  <div class="slide bg-2">
+  <!-- 25. AI Alignment -->
+  <div class="slide bg-1">
     <div class="content">
       <div class="deco-line"></div>
-      <div style="display: inline-block; background: #C9A84C; color: #1E1045; font-size: 13px; font-weight: 700; padding: 6px 14px; border-radius: 20px; margin-bottom: 16px;">STEP 1 / 4</div>
+      <div class="step-badge">STEP 1 / 4</div>
       <p class="kicker" style="margin-bottom: 8px;">第一步</p>
       <h1>AI对齐</h1>
       <p class="text-block">让AI学会和人类对话<br>对齐人类的价值观</p>
@@ -527,8 +574,8 @@ h2 { font-size: 30px; font-weight: 600; line-height: 1.3; margin-bottom: 20px; c
     </div>
   </div>
 
-  <!-- 23. Neuro-Symbolic -->
-  <div class="slide bg-3">
+  <!-- 26. Neuro-Symbolic -->
+  <div class="slide bg-2">
     <div class="content">
       <div class="deco-line"></div>
       <p class="kicker">未来架构</p>
@@ -543,11 +590,11 @@ h2 { font-size: 30px; font-weight: 600; line-height: 1.3; margin-bottom: 20px; c
     </div>
   </div>
 
-  <!-- 24. Image Generation -->
-  <div class="slide bg-1">
+  <!-- 27. Image Generation -->
+  <div class="slide bg-3">
     <div class="content">
       <div class="deco-line"></div>
-      <div style="display: inline-block; background: #C9A84C; color: #1E1045; font-size: 13px; font-weight: 700; padding: 6px 14px; border-radius: 20px; margin-bottom: 16px;">STEP 2 / 4</div>
+      <div class="step-badge">STEP 2 / 4</div>
       <p class="kicker" style="margin-bottom: 8px;">第二步：多模态</p>
       <h1>图像生成 · ViT</h1>
       <p class="text-block">将图像分割为patches<br>视为tokens<br>统一用Transformer处理</p>
@@ -564,11 +611,11 @@ h2 { font-size: 30px; font-weight: 600; line-height: 1.3; margin-bottom: 20px; c
     </div>
   </div>
 
-  <!-- 25. Agent -->
-  <div class="slide bg-2">
+  <!-- 28. Agent -->
+  <div class="slide bg-1">
     <div class="content">
       <div class="deco-line"></div>
-      <div style="display: inline-block; background: #C9A84C; color: #1E1045; font-size: 13px; font-weight: 700; padding: 6px 14px; border-radius: 20px; margin-bottom: 16px;">STEP 3 / 4</div>
+      <div class="step-badge">STEP 3 / 4</div>
       <p class="kicker" style="margin-bottom: 8px;">第三步：智能体</p>
       <h1>Agent</h1>
       <p class="text-block">能在环境中持续感知—思考—行动的系统：</p>
@@ -584,11 +631,11 @@ h2 { font-size: 30px; font-weight: 600; line-height: 1.3; margin-bottom: 20px; c
     </div>
   </div>
 
-  <!-- 26. Embodied AI -->
-  <div class="slide bg-3">
+  <!-- 29. Embodied AI -->
+  <div class="slide bg-2">
     <div class="content">
       <div class="deco-line"></div>
-      <div style="display: inline-block; background: #C9A84C; color: #1E1045; font-size: 13px; font-weight: 700; padding: 6px 14px; border-radius: 20px; margin-bottom: 16px;">STEP 4 / 4</div>
+      <div class="step-badge">STEP 4 / 4</div>
       <p class="kicker" style="margin-bottom: 8px;">第四步：具身智能</p>
       <h1>无需人型</h1>
       <ul class="bullet-list">
@@ -599,8 +646,8 @@ h2 { font-size: 30px; font-weight: 600; line-height: 1.3; margin-bottom: 20px; c
     </div>
   </div>
 
-  <!-- 27. Machine Creation -->
-  <div class="slide bg-1">
+  <!-- 30. Machine Creation -->
+  <div class="slide bg-3">
     <div class="content">
       <div class="deco-line"></div>
       <p class="kicker">机器的能力</p>
@@ -613,8 +660,8 @@ h2 { font-size: 30px; font-weight: 600; line-height: 1.3; margin-bottom: 20px; c
     </div>
   </div>
 
-  <!-- 28. AI Education -->
-  <div class="slide bg-2">
+  <!-- 31. AI Education -->
+  <div class="slide bg-1">
     <div class="content">
       <div class="deco-line"></div>
       <h1>AI改变教育</h1>
@@ -625,8 +672,8 @@ h2 { font-size: 30px; font-weight: 600; line-height: 1.3; margin-bottom: 20px; c
     </div>
   </div>
 
-  <!-- 29. Discussion 1: AI Art -->
-  <div class="slide bg-3">
+  <!-- 32. Discussion 1: AI Art -->
+  <div class="slide bg-2">
     <div class="content">
       <div class="deco-line"></div>
       <p class="kicker">互动讨论</p>
@@ -642,8 +689,8 @@ h2 { font-size: 30px; font-weight: 600; line-height: 1.3; margin-bottom: 20px; c
     </div>
   </div>
 
-  <!-- 30. Discussion 2: Enterprise AI -->
-  <div class="slide bg-1">
+  <!-- 33. Discussion 2: Enterprise AI -->
+  <div class="slide bg-3">
     <div class="content">
       <div class="deco-line"></div>
       <p class="kicker">互动讨论</p>
@@ -659,8 +706,8 @@ h2 { font-size: 30px; font-weight: 600; line-height: 1.3; margin-bottom: 20px; c
     </div>
   </div>
 
-  <!-- 31. Quote -->
-  <div class="slide bg-2">
+  <!-- 34. Quote -->
+  <div class="slide bg-1">
     <div class="content">
       <div class="quote-block">
         <div class="quote-mark">"</div>
@@ -670,8 +717,8 @@ h2 { font-size: 30px; font-weight: 600; line-height: 1.3; margin-bottom: 20px; c
     </div>
   </div>
 
-  <!-- 32. End -->
-  <div class="slide bg-3">
+  <!-- 35. End -->
+  <div class="slide bg-2">
     <div class="content" style="text-align: center;">
       <div class="deco-line" style="margin: 0 auto 24px;"></div>
       <p class="text-block" style="font-size: 16px; color: rgba(255,255,255,0.45); margin-bottom: 16px;">中国科学家与国际同行<br>处在同一起跑线上</p>
@@ -682,7 +729,7 @@ h2 { font-size: 30px; font-weight: 600; line-height: 1.3; margin-bottom: 20px; c
 </div>
 
 <div class="progress-bar"><div class="progress-fill" id="progressFill"></div></div>
-<div class="progress-text" id="progressText">1 / 30</div>
+<div class="progress-text" id="progressText">1 / 35</div>
 
 <script>
 (function(){
