@@ -638,14 +638,48 @@ h1 .highlight { color: #E6D5FF; }
     <div class="content">
       <div class="deco-line"></div>
       <p class="kicker">第三代 · 2020年提出</p>
-      <h1>知识+数据融合驱动</h1>
-      <p class="text-block"><strong style="color: white;">核心：</strong>知识驱动与数据驱动的融合</p>
+      <h1>60年探索的总结</h1>
+      <p class="text-block">前两代AI的共同三要素：</p>
+      <div class="tag-row">
+        <div class="tag">知识/数据</div>
+        <div class="tag">算法</div>
+        <div class="tag">算力</div>
+      </div>
+      <p class="text-block" style="margin-top: 16px;">现阶段的AI本质上是<br><strong style="color: white;">专用（弱）AI — ANI</strong></p>
       <ul class="bullet-list">
-        <li>四要素：知识 + 数据 + 算法 + 算力</li>
-        <li>建立可解释的鲁棒人工智能理论</li>
-        <li>发展安全、可信、可靠、可扩展的AI技术</li>
+        <li>针对特定领域</li>
+        <li>利用特定模型（算法）</li>
+        <li>完成特定任务</li>
       </ul>
-      <p class="text-block" style="margin-top: 16px; font-size: 15px; color: rgba(255,255,255,0.5); font-style: italic;">"为了克服AI的固有缺点，唯一的办法是把四个要素同时运用。"</p>
+    </div>
+  </div>
+
+  <!-- 27b. Gen 3 Fusion -->
+  <div class="slide bg-1">
+    <div class="content">
+      <div class="deco-line"></div>
+      <p class="kicker">第三代 · 融合驱动</p>
+      <h1>知识+数据融合驱动</h1>
+      <p class="text-block">为了克服AI的固有缺点<br>唯一的办法是<strong style="color: white;">四要素同时运用</strong></p>
+      <div class="step-grid" style="margin-top: 16px;">
+        <div class="step-item">
+          <div class="num">知识</div>
+          <div class="label">符号推理</div>
+        </div>
+        <div class="step-item">
+          <div class="num">数据</div>
+          <div class="label">统计学习</div>
+        </div>
+        <div class="step-item">
+          <div class="num">算法</div>
+          <div class="label">模型方法</div>
+        </div>
+        <div class="step-item">
+          <div class="num">算力</div>
+          <div class="label">工程实现</div>
+        </div>
+      </div>
+      <p class="text-block" style="margin-top: 16px; font-size: 15px; color: rgba(255,255,255,0.5);">建立可解释的鲁棒AI理论<br>发展安全、可信、可靠、可扩展的AI技术</p>
     </div>
   </div>
 
@@ -681,14 +715,189 @@ h1 .highlight { color: #E6D5FF; }
       <div class="step-grid" style="margin-top: 16px;">
         <div class="step-item">
           <div class="num">大模型</div>
-          <div class="desc">Transformer神经网络<br>一次输入2000+ token<br>强大计算能力</div>
+          <div class="label">Transformer架构</div>
+          <div class="desc">一次输入2000+ token</div>
         </div>
         <div class="step-item">
           <div class="num">大文本</div>
-          <div class="desc">语意向量表示<br>自监督学习<br>"接龙式学习"预测下一个词</div>
+          <div class="label">自监督学习</div>
+          <div class="desc">"接龙式学习"预测下一个词</div>
         </div>
       </div>
-      <p class="text-block" style="margin-top: 16px; font-size: 15px; color: rgba(255,255,255,0.5); font-style: italic;">规模达到阈值，质量突然质变——但原因尚不明</p>
+      <p class="text-block" style="margin-top: 16px; font-size: 15px; color: rgba(255,255,255,0.5);">规模达到阈值，质量突然质变</p>
+    </div>
+  </div>
+
+  <!-- 29b. GPT -->
+  <div class="slide bg-3">
+    <div class="content">
+      <div class="deco-line"></div>
+      <p class="kicker">大语言模型</p>
+      <h1>GPT · ChatGPT</h1>
+      <div class="step-grid" style="margin-top: 16px;">
+        <div class="step-item">
+          <div class="num">2018.06</div>
+          <div class="label">GPT-1 发布</div>
+          <div class="desc">生成式预训练范式开端</div>
+        </div>
+        <div class="step-item" style="border: 1px solid rgba(240,216,120,0.3);">
+          <div class="num" style="color: #F0D878;">2022.11</div>
+          <div class="label">ChatGPT 发布</div>
+          <div class="desc">引爆全球AI应用浪潮</div>
+        </div>
+      </div>
+      <p class="text-block" style="margin-top: 16px; font-size: 15px; color: rgba(255,255,255,0.5);">G = Generative 生成式<br>P = Pre-trained 预训练<br>T = Transformer 转换器</p>
+    </div>
+  </div>
+
+  <!-- 29c. Scaling Law -->
+  <div class="slide bg-1">
+    <div class="content">
+      <div class="deco-line"></div>
+      <p class="kicker">规模定律</p>
+      <h1>算力出奇迹</h1>
+      <p class="text-block">GPT系列参数增长：</p>
+      <div class="step-grid" style="margin-top: 16px;">
+        <div class="step-item">
+          <div class="num">GPT-1</div>
+          <div class="label">1.17亿参数</div>
+          <div class="desc">2018.06</div>
+        </div>
+        <div class="step-item">
+          <div class="num">GPT-2</div>
+          <div class="label">15亿参数</div>
+          <div class="desc">2019.02</div>
+        </div>
+        <div class="step-item">
+          <div class="num">GPT-3</div>
+          <div class="label">1750亿参数</div>
+          <div class="desc">2020.05</div>
+        </div>
+        <div class="step-item" style="border: 1px solid rgba(240,216,120,0.3);">
+          <div class="num" style="color: #F0D878;">GPT-4</div>
+          <div class="label">1.7万亿参数</div>
+          <div class="desc">2023.03</div>
+        </div>
+      </div>
+      <p class="text-block" style="margin-top: 16px; font-size: 15px; color: rgba(255,255,255,0.5);">1.17亿 → 1.7万亿，约1450倍增长</p>
+    </div>
+  </div>
+
+  <!-- 29d. LLM Capabilities -->
+  <div class="slide bg-2">
+    <div class="content">
+      <div class="deco-line"></div>
+      <p class="kicker">LLM 能力</p>
+      <h1>语言生成 · 交互 · 迁移</h1>
+      <div class="step-grid" style="margin-top: 16px;">
+        <div class="step-item">
+          <div class="num">①</div>
+          <div class="label">强大的语言生成能力</div>
+          <div class="desc">开领域中生成多样性、语义连贯、风格可控的类人文本</div>
+        </div>
+        <div class="step-item">
+          <div class="num">②</div>
+          <div class="label">强大的语言交互能力</div>
+          <div class="desc">开领域中实现人-机自然语言对话</div>
+        </div>
+        <div class="step-item">
+          <div class="num">③</div>
+          <div class="label">一定的迁移推广能力</div>
+          <div class="desc">预训练 → 微调适配下游任务</div>
+        </div>
+      </div>
+      <div class="step-item" style="margin-top: 14px; border: 1px solid rgba(240,216,120,0.3);">
+        <div class="label" style="color: #F0D878;">⚠️ 固有缺陷：幻觉 Hallucination</div>
+        <div class="desc">生成看似合理但实际虚假的内容</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 29e. Two Paths -->
+  <div class="slide bg-3">
+    <div class="content">
+      <div class="deco-line"></div>
+      <p class="kicker">提升LLM能力</p>
+      <h1>两大路径</h1>
+      <div class="step-grid" style="margin-top: 16px;">
+        <div class="step-item">
+          <div class="num">外部驱动</div>
+          <div class="label">利用外部资源提高能力</div>
+          <div class="desc">提示工程 · 上下文学习</div>
+          <div class="desc">AI对齐 · RLHF人类反馈强化学习</div>
+        </div>
+        <div class="step-item">
+          <div class="num">内部优化</div>
+          <div class="label">利用内部能力提高性能</div>
+          <div class="desc">RLAIF AI反馈强化学习</div>
+          <div class="desc">蒸馏 · CoT思维链</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 29f. Nine Songs -->
+  <div class="slide bg-1">
+    <div class="content">
+      <div class="deco-line"></div>
+      <p class="kicker">早期AI创作</p>
+      <h1>"九歌"的局限</h1>
+      <p class="text-block">清华大学AI诗歌生成系统<br>30万首古诗训练</p>
+      <ul class="bullet-list">
+        <li>编码器-解码器 + 约束条件</li>
+        <li>主题词、音律、长度约束</li>
+      </ul>
+      <div class="step-item" style="margin-top: 16px;">
+        <div class="label" style="color: #F0D878;">核心问题：推广能力差</div>
+        <div class="desc">"鹦鹉学舌"而非真正创作</div>
+        <div class="desc">写"扶贫"主题：陈词滥调、文不对题</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 29g. DeepSeek Poetry -->
+  <div class="slide bg-2">
+    <div class="content">
+      <div class="deco-line"></div>
+      <p class="kicker">AI真的会创作</p>
+      <h1>DeepSeek 写诗</h1>
+      <p class="text-block">七言绝句 · 《扶贫》</p>
+      <div class="step-item" style="text-align: center; margin-top: 16px;">
+        <div class="desc" style="font-size: 18px; color: white; line-height: 2;">
+          春风越岭叩柴门<br>
+          暖语融开冻土痕<br>
+          莫道青山无富路<br>
+          金犁一划破穷根
+        </div>
+      </div>
+      <p class="text-block" style="margin-top: 16px; font-size: 15px; color: rgba(255,255,255,0.5);">意象构造、情感表达、格律遵守<br>非数据库直接复制</p>
+    </div>
+  </div>
+
+  <!-- 29h. AI Philosophy -->
+  <div class="slide bg-3">
+    <div class="content">
+      <div class="deco-line"></div>
+      <p class="kicker">哲学之问</p>
+      <h1>AI 三问</h1>
+      <div class="step-grid" style="margin-top: 16px;">
+        <div class="step-item">
+          <div class="num">问一</div>
+          <div class="label">机器会创作吗？</div>
+          <div class="desc">还是只会鹦鹉学舌？</div>
+        </div>
+        <div class="step-item">
+          <div class="num">问二</div>
+          <div class="label">机器理解自己的行为吗？</div>
+          <div class="desc">它具有"意识"吗？</div>
+        </div>
+        <div class="step-item">
+          <div class="num">问三</div>
+          <div class="label">机器有自知之明吗？</div>
+          <div class="desc">知道自己知道什么、不知道什么？</div>
+        </div>
+      </div>
+      <p class="text-block" style="margin-top: 16px; font-size: 15px; color: rgba(255,255,255,0.5); font-style: italic;">"我的语言界限，就是我的世界界限"<br>—— 维特根斯坦</p>
     </div>
   </div>
 
@@ -821,6 +1030,39 @@ h1 .highlight { color: #E6D5FF; }
     </div>
   </div>
 
+  <!-- 35b. World Models -->
+  <div class="slide bg-3">
+    <div class="content">
+      <div class="deco-line"></div>
+      <p class="kicker">世界模型</p>
+      <h1>想象—规划—执行</h1>
+      <p class="text-block">智能体内部的"可预测世界表征"</p>
+      <ul class="bullet-list">
+        <li>状态表征：压缩环境信息</li>
+        <li>动力学：预测"这样做世界会怎样"</li>
+        <li>观测模型：生成多模态输出</li>
+        <li>奖励/代价：评估好坏与危险</li>
+      </ul>
+      <p class="text-block" style="margin-top: 16px; font-size: 15px; color: rgba(255,255,255,0.5);">不是直接感知世界<br>而是构建可预测的内部模型</p>
+    </div>
+  </div>
+
+  <!-- 35c. LDM -->
+  <div class="slide bg-1">
+    <div class="content">
+      <div class="deco-line"></div>
+      <p class="kicker">新方向</p>
+      <h1>结构化数据通用大模型</h1>
+      <p class="text-block">Large Data Model（LDM）</p>
+      <ul class="bullet-list">
+        <li>处理结构化数据（表格、数据库、知识图谱）</li>
+        <li>解决LLM的"数值幻觉"问题</li>
+        <li>跨表推理、数据一致性</li>
+      </ul>
+      <p class="text-block" style="margin-top: 16px; font-size: 15px; color: rgba(255,255,255,0.5);">与大语言模型（LLM）形成对应<br>拓展大模型范式 beyond 语言</p>
+    </div>
+  </div>
+
   <!-- 36. Machine Creation -->
   <div class="slide bg-3">
     <div class="content">
@@ -896,7 +1138,26 @@ h1 .highlight { color: #E6D5FF; }
   <div class="slide bg-2">
     <div class="content" style="text-align: center;">
       <div class="deco-line" style="margin: 0 auto 24px;"></div>
-      <p class="text-block" style="font-size: 16px; color: rgba(255,255,255,0.45); margin-bottom: 16px;">中国科学家与国际同行<br>处在同一起跑线上</p>
+      <p class="text-block" style="font-size: 16px; color: rgba(255,255,255,0.45); margin-bottom: 16px;">人工智能是探索"无人区"<br>其魅力就在于它永远在路上</p>
+      <div class="step-grid" style="margin: 24px 0;">
+        <div class="step-item">
+          <div class="num">理论</div>
+          <div class="desc">新发现</div>
+        </div>
+        <div class="step-item">
+          <div class="num">→ 技术</div>
+          <div class="desc">创新</div>
+        </div>
+        <div class="step-item">
+          <div class="num">→ 应用</div>
+          <div class="desc">落地</div>
+        </div>
+        <div class="step-item">
+          <div class="num">→ 产业</div>
+          <div class="desc">发展</div>
+        </div>
+      </div>
+      <p class="text-block" style="font-size: 15px; color: rgba(255,255,255,0.4); margin-bottom: 16px;">任重道远</p>
       <h1 style="font-size: 26px;">张钹院士<br>人工智能的发展现状与未来</h1>
     </div>
   </div>
@@ -904,7 +1165,7 @@ h1 .highlight { color: #E6D5FF; }
 </div>
 
 <div class="progress-bar"><div class="progress-fill" id="progressFill"></div></div>
-<div class="progress-text" id="progressText">1 / 41</div>
+<div class="progress-text" id="progressText">1 / 51</div>
 
 <script>
 (function(){
