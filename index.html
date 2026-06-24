@@ -25,14 +25,14 @@ body { position: fixed; top: 0; left: 0; right: 0; bottom: 0; }
 .deco-line-center { margin: 0 auto 24px; }
 .kicker { font-size: 14px; letter-spacing: 0.2em; text-transform: uppercase; color: rgba(255,255,255,0.5); margin-bottom: 16px; font-weight: 500; }
 
-h1 { font-size: 36px; font-weight: 700; line-height: 1.2; margin-bottom: 24px; color: white; }
+h1 { font-size: 40px; font-weight: 700; line-height: 1.2; margin-bottom: 24px; color: white; }
 h1 .highlight { color: #E6D5FF; }
-h2 { font-size: 28px; font-weight: 600; line-height: 1.3; margin-bottom: 20px; color: white; }
+h2 { font-size: 30px; font-weight: 600; line-height: 1.3; margin-bottom: 20px; color: white; }
 
-.text-block { font-size: 18px; line-height: 1.8; color: rgba(255,255,255,0.7); margin-bottom: 16px; }
+.text-block { font-size: 20px; line-height: 1.8; color: rgba(255,255,255,0.7); margin-bottom: 16px; }
 
 .bullet-list { list-style: none; margin-top: 12px; }
-.bullet-list li { font-size: 18px; line-height: 1.9; color: rgba(255,255,255,0.7); padding-left: 24px; position: relative; margin-bottom: 12px; }
+.bullet-list li { font-size: 20px; line-height: 1.9; color: rgba(255,255,255,0.7); padding-left: 24px; position: relative; margin-bottom: 12px; }
 .bullet-list li::before { content: "·"; position: absolute; left: 0; color: #C9A84C; font-weight: bold; font-size: 24px; }
 
 .tag-row { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 20px; }
@@ -64,10 +64,10 @@ h2 { font-size: 28px; font-weight: 600; line-height: 1.3; margin-bottom: 20px; c
 @media (max-width: 768px) { 
   .slide { padding: 40px 24px 80px; } 
   .content { max-width: 100%; } 
-  h1 { font-size: 30px; } 
-  h2 { font-size: 24px; } 
-  .text-block { font-size: 16px; } 
-  .bullet-list li { font-size: 16px; } 
+  h1 { font-size: 32px; } 
+  h2 { font-size: 26px; } 
+  .text-block { font-size: 18px; } 
+  .bullet-list li { font-size: 18px; } 
   .step-item .label { font-size: 16px; }
   .step-item .desc { font-size: 14px; }
   .quote-block p { font-size: 20px; }
@@ -215,8 +215,8 @@ h2 { font-size: 28px; font-weight: 600; line-height: 1.3; margin-bottom: 20px; c
           <div class="label">数据驱动 · 连接主义</div>
           <div class="desc">20世纪80年代起 · 基于大数据的深度学习</div>
         </div>
-        <div class="step-item" style="border-left: 3px solid #E6A07E;">
-          <div class="num" style="color: #E6A07E;">第三代</div>
+        <div class="step-item" style="border-left: 3px solid #F0D878;">
+          <div class="num" style="color: #F0D878;">第三代</div>
           <div class="label">知识+数据融合驱动</div>
           <div class="desc">2020年提出 · 建立可解释的鲁棒AI理论</div>
         </div>
@@ -242,7 +242,7 @@ h2 { font-size: 28px; font-weight: 600; line-height: 1.3; margin-bottom: 20px; c
         <div class="desc">可解释性强 · 可理解性好</div>
       </div>
       <div class="step-item" style="margin-top: 10px;">
-        <div class="label" style="color: #E6A07E;">局限</div>
+        <div class="label" style="color: #F0D878;">局限</div>
         <div class="desc">缺乏自学能力 · 知识源于人类灌输 · 永远无法超越人类</div>
       </div>
     </div>
@@ -324,13 +324,13 @@ h2 { font-size: 28px; font-weight: 600; line-height: 1.3; margin-bottom: 20px; c
           <div class="num">范式一</div>
           <div class="label">所有处理在连续空间进行</div>
           <div class="desc" style="color: #7EC8A0;">优点：计算机处理方便</div>
-          <div class="desc" style="color: #E6A07E;">缺点：知识转为向量时丢失大量语义</div>
+          <div class="desc" style="color: #F0D878;">缺点：知识转为向量时丢失大量语义</div>
         </div>
         <div class="step-item">
           <div class="num">范式二</div>
           <div class="label">打通离散空间和连续空间</div>
           <div class="desc" style="color: #7EC8A0;">优点：可能从根本上实现第三代AI</div>
-          <div class="desc" style="color: #E6A07E;">缺点：难以进行模型表示和获取</div>
+          <div class="desc" style="color: #F0D878;">缺点：难以进行模型表示和获取</div>
         </div>
       </div>
     </div>
@@ -477,25 +477,33 @@ h2 { font-size: 28px; font-weight: 600; line-height: 1.3; margin-bottom: 20px; c
       <p class="kicker">通往AGI</p>
       <h1>四步</h1>
       <div class="step-grid">
-        <div class="step-item">
-          <div class="num">1</div>
-          <div class="label">与人类交互</div>
-          <div class="desc">AI对齐</div>
+        <div class="step-item" style="display: flex; align-items: baseline; gap: 12px; flex-wrap: wrap;">
+          <div class="num" style="margin-bottom: 0;">1</div>
+          <div>
+            <div class="label">与人类交互</div>
+            <div class="desc">AI对齐</div>
+          </div>
         </div>
-        <div class="step-item">
-          <div class="num">2</div>
-          <div class="label">多模态生成</div>
-          <div class="desc">图像、视频</div>
+        <div class="step-item" style="display: flex; align-items: baseline; gap: 12px; flex-wrap: wrap;">
+          <div class="num" style="margin-bottom: 0;">2</div>
+          <div>
+            <div class="label">多模态生成</div>
+            <div class="desc">图像、视频</div>
+          </div>
         </div>
-        <div class="step-item">
-          <div class="num">3</div>
-          <div class="label">与数字世界交互</div>
-          <div class="desc">AI Agent</div>
+        <div class="step-item" style="display: flex; align-items: baseline; gap: 12px; flex-wrap: wrap;">
+          <div class="num" style="margin-bottom: 0;">3</div>
+          <div>
+            <div class="label">与数字世界交互</div>
+            <div class="desc">AI Agent</div>
+          </div>
         </div>
-        <div class="step-item">
-          <div class="num">4</div>
-          <div class="label">与客观世界交互</div>
-          <div class="desc">具身智能</div>
+        <div class="step-item" style="display: flex; align-items: baseline; gap: 12px; flex-wrap: wrap;">
+          <div class="num" style="margin-bottom: 0;">4</div>
+          <div>
+            <div class="label">与客观世界交互</div>
+            <div class="desc">具身智能</div>
+          </div>
         </div>
       </div>
       <p class="text-block" style="margin-top: 16px; font-size: 15px; color: rgba(255,255,255,0.5);"><strong style="color: white;">张院士观点：</strong>无需做人型机器人，关键是软件通用型</p>
@@ -506,11 +514,12 @@ h2 { font-size: 28px; font-weight: 600; line-height: 1.3; margin-bottom: 20px; c
   <div class="slide bg-2">
     <div class="content">
       <div class="deco-line"></div>
-      <p class="kicker">第一步</p>
+      <div style="display: inline-block; background: #C9A84C; color: #1E1045; font-size: 13px; font-weight: 700; padding: 6px 14px; border-radius: 20px; margin-bottom: 16px;">STEP 1 / 4</div>
+      <p class="kicker" style="margin-bottom: 8px;">第一步</p>
       <h1>AI对齐</h1>
       <p class="text-block">让AI学会和人类对话<br>对齐人类的价值观</p>
       <div class="step-item" style="text-align: center;">
-        <div style="font-size: 42px; font-weight: 700; color: #C9A84C;">40% → 5.5%</div>
+        <div style="font-size: 32px; font-weight: 700; color: #C9A84C;">40% → 5.5%</div>
         <div class="label">GPT-3 → GPT-5</div>
         <div class="desc">错误率持续下降</div>
       </div>
@@ -538,7 +547,8 @@ h2 { font-size: 28px; font-weight: 600; line-height: 1.3; margin-bottom: 20px; c
   <div class="slide bg-1">
     <div class="content">
       <div class="deco-line"></div>
-      <p class="kicker">第二步：多模态</p>
+      <div style="display: inline-block; background: #C9A84C; color: #1E1045; font-size: 13px; font-weight: 700; padding: 6px 14px; border-radius: 20px; margin-bottom: 16px;">STEP 2 / 4</div>
+      <p class="kicker" style="margin-bottom: 8px;">第二步：多模态</p>
       <h1>图像生成 · ViT</h1>
       <p class="text-block">将图像分割为patches<br>视为tokens<br>统一用Transformer处理</p>
       <div class="step-grid" style="margin-top: 16px;">
@@ -558,7 +568,8 @@ h2 { font-size: 28px; font-weight: 600; line-height: 1.3; margin-bottom: 20px; c
   <div class="slide bg-2">
     <div class="content">
       <div class="deco-line"></div>
-      <p class="kicker">第三步：智能体</p>
+      <div style="display: inline-block; background: #C9A84C; color: #1E1045; font-size: 13px; font-weight: 700; padding: 6px 14px; border-radius: 20px; margin-bottom: 16px;">STEP 3 / 4</div>
+      <p class="kicker" style="margin-bottom: 8px;">第三步：智能体</p>
       <h1>Agent</h1>
       <p class="text-block">能在环境中持续感知—思考—行动的系统：</p>
       <ul class="bullet-list">
@@ -577,7 +588,8 @@ h2 { font-size: 28px; font-weight: 600; line-height: 1.3; margin-bottom: 20px; c
   <div class="slide bg-3">
     <div class="content">
       <div class="deco-line"></div>
-      <p class="kicker">具身智能</p>
+      <div style="display: inline-block; background: #C9A84C; color: #1E1045; font-size: 13px; font-weight: 700; padding: 6px 14px; border-radius: 20px; margin-bottom: 16px;">STEP 4 / 4</div>
+      <p class="kicker" style="margin-bottom: 8px;">第四步：具身智能</p>
       <h1>无需人型</h1>
       <ul class="bullet-list">
         <li>外观可多样化</li>
@@ -636,7 +648,7 @@ h2 { font-size: 28px; font-weight: 600; line-height: 1.3; margin-bottom: 20px; c
       <div class="deco-line"></div>
       <p class="kicker">互动讨论</p>
       <h1>传统企业AI转型</h1>
-      <p class="text-block" style="margin-bottom: 16px; color: #E6A07E;"><strong style="color: #E6A07E;">🚩 最大痛点：缺乏清晰愿景（Vision）</strong></p>
+      <p class="text-block" style="margin-bottom: 16px; color: #F0D878;"><strong style="color: #F0D878;">🚩 最大痛点：缺乏清晰愿景（Vision）</strong></p>
       <ul class="bullet-list">
         <li>对AI应用后企业最终变成什么样没有清晰目标</li>
         <li>只能通过不断试错推进，投入资源却可能一无所得</li>
