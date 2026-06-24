@@ -13,54 +13,66 @@ body { position: fixed; top: 0; left: 0; right: 0; bottom: 0; }
 .deck { height: 100%; width: 100%; overflow-x: auto; overflow-y: hidden; -webkit-overflow-scrolling: touch; scroll-snap-type: x mandatory; display: flex; flex-direction: row; white-space: nowrap; }
 .deck::-webkit-scrollbar { display: none; }
 
-.slide { display: inline-block; width: 100vw; height: 100%; min-width: 100vw; min-height: 100%; scroll-snap-align: start; position: relative; vertical-align: top; overflow: hidden; padding: 60px 28px; }
+.slide { display: inline-block; width: 100vw; height: 100%; min-width: 100vw; min-height: 100%; scroll-snap-align: start; position: relative; vertical-align: top; overflow: hidden; padding: 40px 24px; }
 
 .bg-1 { background: linear-gradient(160deg, #2E1B5E 0%, #5B3FA0 40%, #7B5FB8 100%); }
 .bg-2 { background: linear-gradient(160deg, #251450 0%, #4E3590 40%, #6B50A8 100%); }
 .bg-3 { background: linear-gradient(160deg, #1E1045 0%, #452D80 40%, #5F45A0 100%); }
 
-.content { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 100%; max-width: 860px; padding: 0 24px; z-index: 2; }
+.content { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 100%; max-width: 680px; padding: 0 24px; z-index: 2; }
 
-.deco-line { width: 48px; height: 3px; background: #C9A84C; margin-bottom: 28px; border-radius: 2px; }
-.deco-line-center { margin: 0 auto 28px; }
-.kicker { font-size: 12px; letter-spacing: 0.2em; text-transform: uppercase; color: rgba(255,255,255,0.5); margin-bottom: 18px; font-weight: 500; }
+.deco-line { width: 40px; height: 3px; background: #C9A84C; margin-bottom: 20px; border-radius: 2px; }
+.deco-line-center { margin: 0 auto 20px; }
+.kicker { font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; color: rgba(255,255,255,0.45); margin-bottom: 12px; font-weight: 500; }
 
-h1 { font-size: clamp(2rem, 5vw, 3.5rem); font-weight: 700; line-height: 1.15; margin-bottom: 24px; color: white; letter-spacing: -0.02em; }
-h1 .highlight { color: #E6D5FF; position: relative; }
-h1 .highlight::after { content: ""; position: absolute; bottom: 4px; left: 0; right: 0; height: 10px; background: rgba(155,126,216,0.35); border-radius: 4px; z-index: -1; }
-h2 { font-size: clamp(1.3rem, 3vw, 2rem); font-weight: 600; line-height: 1.25; margin-bottom: 16px; color: white; }
-.lead { font-size: clamp(1rem, 2vw, 1.3rem); line-height: 1.6; color: rgba(255,255,255,0.7); max-width: 600px; }
+h1 { font-size: 28px; font-weight: 700; line-height: 1.2; margin-bottom: 16px; color: white; }
+h1 .highlight { color: #E6D5FF; }
+h2 { font-size: 22px; font-weight: 600; line-height: 1.3; margin-bottom: 12px; color: white; }
+.lead { font-size: 15px; line-height: 1.6; color: rgba(255,255,255,0.7); max-width: 520px; }
 .lead-center { margin: 0 auto; }
 
-.feature-list { list-style: none; margin-top: 20px; }
-.feature-list li { font-size: 16px; line-height: 2.0; color: rgba(255,255,255,0.65); padding-left: 24px; position: relative; }
-.feature-list li::before { content: ""; position: absolute; left: 0; top: 12px; width: 6px; height: 6px; border-radius: 50%; background: rgba(255,255,255,0.35); }
+.feature-list { list-style: none; margin-top: 12px; }
+.feature-list li { font-size: 14px; line-height: 1.8; color: rgba(255,255,255,0.65); padding-left: 20px; position: relative; }
+.feature-list li::before { content: ""; position: absolute; left: 0; top: 8px; width: 5px; height: 5px; border-radius: 50%; background: rgba(255,255,255,0.35); }
 
-.card { background: rgba(255,255,255,0.07); border-radius: 16px; padding: 32px; border: 1px solid rgba(255,255,255,0.1); max-width: 520px; }
+.card { background: rgba(255,255,255,0.07); border-radius: 14px; padding: 24px; border: 1px solid rgba(255,255,255,0.1); max-width: 480px; }
 
-.two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 36px; align-items: start; }
-.tag-row { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 20px; }
-.tag { padding: 10px 18px; background: rgba(255,255,255,0.1); border-radius: 10px; font-size: 13px; font-weight: 500; color: white; }
+.two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 28px; align-items: start; }
+.tag-row { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 16px; }
+.tag { padding: 8px 14px; background: rgba(255,255,255,0.1); border-radius: 8px; font-size: 12px; font-weight: 500; color: white; }
 .tag-highlight { background: rgba(255,255,255,0.2); }
 
-.step-number { width: 60px; height: 60px; border-radius: 50%; background: rgba(255,255,255,0.12); color: white; display: flex; align-items: center; justify-content: center; font-size: 22px; font-weight: 700; margin-bottom: 24px; }
-.step-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-top: 28px; }
-.step-item { background: rgba(255,255,255,0.07); border-radius: 16px; padding: 24px; border: 1px solid rgba(255,255,255,0.1); }
-.step-item .num { font-size: 26px; font-weight: 700; color: #C9A84C; margin-bottom: 10px; }
-.step-item .label { font-size: 14px; font-weight: 600; color: white; margin-bottom: 6px; }
-.step-item .desc { font-size: 13px; color: rgba(255,255,255,0.5); line-height: 1.6; }
+.step-number { width: 48px; height: 48px; border-radius: 50%; background: rgba(255,255,255,0.12); color: white; display: flex; align-items: center; justify-content: center; font-size: 20px; font-weight: 700; margin-bottom: 16px; }
+.step-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 20px; }
+.step-item { background: rgba(255,255,255,0.07); border-radius: 14px; padding: 18px; border: 1px solid rgba(255,255,255,0.1); }
+.step-item .num { font-size: 22px; font-weight: 700; color: #C9A84C; margin-bottom: 8px; }
+.step-item .label { font-size: 13px; font-weight: 600; color: white; margin-bottom: 4px; }
+.step-item .desc { font-size: 12px; color: rgba(255,255,255,0.5); line-height: 1.5; }
 
-.quote-block { text-align: center; max-width: 680px; margin: 0 auto; }
-.quote-block .quote-mark { font-size: 56px; line-height: 1; color: #C9A84C; opacity: 0.35; margin-bottom: -12px; }
-.quote-block p { font-size: clamp(1.2rem, 2.5vw, 1.8rem); line-height: 1.6; color: white; font-style: italic; font-weight: 500; }
-.quote-block .attribution { font-size: 14px; color: rgba(255,255,255,0.5); margin-top: 18px; }
+.quote-block { text-align: center; max-width: 560px; margin: 0 auto; }
+.quote-block .quote-mark { font-size: 48px; line-height: 1; color: #C9A84C; opacity: 0.35; margin-bottom: -8px; }
+.quote-block p { font-size: 18px; line-height: 1.6; color: white; font-style: italic; font-weight: 500; }
+.quote-block .attribution { font-size: 13px; color: rgba(255,255,255,0.5); margin-top: 14px; }
 
-.scroll-hint { position: fixed; bottom: 40px; left: 50%; transform: translateX(-50%); display: flex; flex-direction: column; align-items: center; gap: 8px; z-index: 3; }
-.scroll-hint-text { font-size: 11px; letter-spacing: 0.1em; color: rgba(255,255,255,0.4); }
-.scroll-arrow { width: 16px; height: 16px; border-right: 2px solid rgba(255,255,255,0.3); border-bottom: 2px solid rgba(255,255,255,0.3); transform: rotate(-45deg); animation: bounceRight 2s ease-in-out infinite; }
-@keyframes bounceRight { 0%, 100% { transform: rotate(-45deg) translateX(0); } 50% { transform: rotate(-45deg) translateX(5px); } }
+.scroll-hint { position: fixed; bottom: 32px; left: 50%; transform: translateX(-50%); display: flex; flex-direction: column; align-items: center; gap: 6px; z-index: 3; }
+.scroll-hint-text { font-size: 10px; letter-spacing: 0.1em; color: rgba(255,255,255,0.4); }
+.scroll-arrow { width: 14px; height: 14px; border-right: 2px solid rgba(255,255,255,0.3); border-bottom: 2px solid rgba(255,255,255,0.3); transform: rotate(-45deg); animation: bounceRight 2s ease-in-out infinite; }
+@keyframes bounceRight { 0%, 100% { transform: rotate(-45deg) translateX(0); } 50% { transform: rotate(-45deg) translateX(4px); } }
 
-@media (max-width: 768px) { .slide { padding: 32px 20px; } .two-col { grid-template-columns: 1fr; gap: 24px; } .card { padding: 24px 20px; } .step-grid { grid-template-columns: 1fr; } .content { max-width: 100%; } }
+.big-num { font-size: 48px; font-weight: 700; color: #C9A84C; line-height: 1; margin-bottom: 8px; }
+.year-tag { display: inline-block; padding: 5px 12px; background: rgba(255,255,255,0.12); border-radius: 20px; font-size: 12px; font-weight: 600; color: #C9A84C; margin-bottom: 12px; }
+
+@media (max-width: 768px) { 
+  .slide { padding: 28px 20px; } 
+  .two-col { grid-template-columns: 1fr; gap: 16px; } 
+  .card { padding: 20px 16px; } 
+  .step-grid { grid-template-columns: 1fr; } 
+  .content { max-width: 100%; } 
+  h1 { font-size: 24px; } 
+  h2 { font-size: 20px; } 
+  .lead { font-size: 14px; } 
+  .feature-list li { font-size: 13px; line-height: 1.7; } 
+}
 </style>
 </head>
 <body>
@@ -72,7 +84,7 @@ h2 { font-size: clamp(1.3rem, 3vw, 2rem); font-weight: 600; line-height: 1.25; m
       <div class="deco-line"></div>
       <p class="kicker">清华大学 · 张钹院士</p>
       <h1>人工智能的<br><span class="highlight">发展现状与未来</span></h1>
-      <p class="lead">从知识驱动到数据驱动，再到生成式模型——三代人工智能的演进与思考</p>
+      <p class="lead">从知识驱动到数据驱动，再到生成式模型</p>
       <div class="scroll-hint"><span class="scroll-hint-text">向右滑动</span><div class="scroll-arrow"></div></div>
     </div>
   </div>
@@ -83,7 +95,7 @@ h2 { font-size: clamp(1.3rem, 3vw, 2rem); font-weight: 600; line-height: 1.25; m
       <div class="deco-line"></div>
       <p class="kicker">人物</p>
       <h1>张钹是谁</h1>
-      <p class="lead" style="font-size: 1rem;">1935年生，福建福清人。中国科学院院士，清华大学计算机系教授，中国人工智能奠基者之一。</p>
+      <p class="lead" style="font-size: 1rem;">1935年生，福建福清人<br>中国科学院院士<br>清华大学计算机系教授</p>
     </div>
   </div>
 
@@ -94,7 +106,7 @@ h2 { font-size: clamp(1.3rem, 3vw, 2rem); font-weight: 600; line-height: 1.25; m
       <p class="kicker">成就</p>
       <h1>开创先河</h1>
       <div class="feature-list">
-        <li>首位在国际AI大会发表论文的中国科学家（1983）</li>
+        <li>首位在国际AI大会发表论文的中国人（1983）</li>
         <li>首位获得AI国际奖项的中国人（1984）</li>
         <li>创立中国首个智能机器人实验室（1985）</li>
         <li>在清华讲台坚守超过60年</li>
@@ -102,13 +114,12 @@ h2 { font-size: clamp(1.3rem, 3vw, 2rem); font-weight: 600; line-height: 1.25; m
     </div>
   </div>
 
-  <!-- 4. Two Schools Overview -->
+  <!-- 4. Two Schools -->
   <div class="slide bg-1">
     <div class="content">
       <div class="deco-line"></div>
-      <p class="kicker">2026年6月演讲 · 两大学派</p>
+      <p class="kicker">两大学派</p>
       <h1>行为主义<br>vs<br>内在主义</h1>
-      <p class="lead">人工智能的两条道路：一条从外部行为入手，一条从内部机理出发。</p>
     </div>
   </div>
 
@@ -118,7 +129,7 @@ h2 { font-size: clamp(1.3rem, 3vw, 2rem); font-weight: 600; line-height: 1.25; m
       <div class="deco-line"></div>
       <p class="kicker">主流学派</p>
       <h1>行为主义</h1>
-      <p class="lead">用机器模拟人类的行为——从外部表现入手，追求行为相似性，不追求工作原理的一致性。</p>
+      <p class="lead">用机器模拟人类行为<br><br>追求相似性<br>不追求原理一致性</p>
     </div>
   </div>
 
@@ -128,7 +139,7 @@ h2 { font-size: clamp(1.3rem, 3vw, 2rem); font-weight: 600; line-height: 1.25; m
       <div class="deco-line"></div>
       <p class="kicker">少数派</p>
       <h1>内在主义</h1>
-      <p class="lead">模拟大脑神经网络的工作原理。弱版本：脑启发计算；强版本：类脑计算。</p>
+      <p class="lead">模拟大脑神经网络<br><br>弱版本：脑启发计算<br>强版本：类脑计算</p>
     </div>
   </div>
 
@@ -138,13 +149,7 @@ h2 { font-size: clamp(1.3rem, 3vw, 2rem); font-weight: 600; line-height: 1.25; m
       <div class="deco-line"></div>
       <p class="kicker">智能体</p>
       <h1>感知 · 思考 · 行动</h1>
-      <p class="lead" style="margin-bottom: 20px;">在环境中持续感知、思考、行动，形成闭环。</p>
-      <div class="tag-row">
-        <div class="tag">感知 Sensing</div>
-        <div class="tag tag-highlight">思考 Thinking</div>
-        <div class="tag">行动 Acting</div>
-      </div>
-      <p style="margin-top: 16px; font-size: 13px; color: rgba(255,255,255,0.5);">情感与激励因素对智能体各环节进行调控。</p>
+      <p class="lead">在环境中持续<br>感知、思考、行动<br>形成闭环</p>
     </div>
   </div>
 
@@ -152,9 +157,9 @@ h2 { font-size: clamp(1.3rem, 3vw, 2rem); font-weight: 600; line-height: 1.25; m
   <div class="slide bg-2">
     <div class="content">
       <div class="deco-line"></div>
-      <p class="kicker">人工智能的4项基本任务</p>
+      <p class="kicker">四项基本任务</p>
       <h1>为智能行为<br>建立计算模型</h1>
-      <div class="step-grid" style="margin-top: 28px;">
+      <div class="step-grid" style="margin-top: 16px;">
         <div class="step-item">
           <div class="num">01</div>
           <div class="label">理性思维</div>
@@ -179,30 +184,30 @@ h2 { font-size: clamp(1.3rem, 3vw, 2rem); font-weight: 600; line-height: 1.25; m
     </div>
   </div>
 
-  <!-- 9. Three Generations Timeline -->
+  <!-- 9. Three Gen -->
   <div class="slide bg-3">
     <div class="content" style="text-align: center;">
       <div class="deco-line deco-line-center"></div>
       <p class="kicker">发展简史</p>
       <h1>三代人工智能</h1>
-      <div style="display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; margin-top: 28px;">
-        <div style="text-align: center; padding: 18px 24px; background: rgba(255,255,255,0.08); border-radius: 16px; min-width: 160px;">
-          <div style="font-size: 24px; font-weight: 700; color: #9B7ED8; margin-bottom: 6px;">第一代</div>
-          <div style="font-size: 12px; color: rgba(255,255,255,0.6);">符号主义 · 知识驱动</div>
-          <div style="font-size: 11px; color: rgba(255,255,255,0.4); margin-top: 4px;">1956-1980s</div>
+      <div style="margin-top: 16px; display: flex; gap: 10px; justify-content: center; flex-wrap: wrap;">
+        <div style="text-align: center; padding: 14px 18px; background: rgba(255,255,255,0.08); border-radius: 14px; min-width: 120px;">
+          <div style="font-size: 20px; font-weight: 700; color: #9B7ED8;">第一代</div>
+          <div style="font-size: 11px; color: rgba(255,255,255,0.6); margin-top: 2px;">符号主义</div>
+          <div style="font-size: 10px; color: rgba(255,255,255,0.4); margin-top: 2px;">1956-1980s</div>
         </div>
-        <div style="text-align: center; padding: 18px 24px; background: rgba(255,255,255,0.08); border-radius: 16px; min-width: 160px;">
-          <div style="font-size: 24px; font-weight: 700; color: #7EC8A0; margin-bottom: 6px;">第二代</div>
-          <div style="font-size: 12px; color: rgba(255,255,255,0.6);">连接主义 · 数据驱动</div>
-          <div style="font-size: 11px; color: rgba(255,255,255,0.4); margin-top: 4px;">1987-2015</div>
+        <div style="text-align: center; padding: 14px 18px; background: rgba(255,255,255,0.08); border-radius: 14px; min-width: 120px;">
+          <div style="font-size: 20px; font-weight: 700; color: #7EC8A0;">第二代</div>
+          <div style="font-size: 11px; color: rgba(255,255,255,0.6); margin-top: 2px;">连接主义</div>
+          <div style="font-size: 10px; color: rgba(255,255,255,0.4); margin-top: 2px;">1987-2015</div>
         </div>
-        <div style="text-align: center; padding: 18px 24px; background: rgba(255,255,255,0.12); border-radius: 16px; border: 1px solid rgba(255,255,255,0.15); min-width: 160px;">
-          <div style="font-size: 24px; font-weight: 700; color: #E6A07E; margin-bottom: 6px;">第三代</div>
-          <div style="font-size: 12px; color: rgba(255,255,255,0.6);">生成式AI · 大模型</div>
-          <div style="font-size: 11px; color: rgba(255,255,255,0.4); margin-top: 4px;">2015-</div>
+        <div style="text-align: center; padding: 14px 18px; background: rgba(255,255,255,0.12); border-radius: 14px; border: 1px solid rgba(255,255,255,0.15); min-width: 120px;">
+          <div style="font-size: 20px; font-weight: 700; color: #E6A07E;">第三代</div>
+          <div style="font-size: 11px; color: rgba(255,255,255,0.6); margin-top: 2px;">生成式AI</div>
+          <div style="font-size: 10px; color: rgba(255,255,255,0.4); margin-top: 2px;">2015-</div>
         </div>
       </div>
-      <p style="margin-top: 20px; font-size: 12px; color: rgba(255,255,255,0.4);">1978年 清华大学成立人工智能教研组</p>
+      <p style="margin-top: 16px; font-size: 11px; color: rgba(255,255,255,0.4);">1978年 清华成立人工智能教研组</p>
     </div>
   </div>
 
@@ -212,12 +217,7 @@ h2 { font-size: clamp(1.3rem, 3vw, 2rem); font-weight: 600; line-height: 1.25; m
       <div class="deco-line"></div>
       <p class="kicker">第一代 · 1956年起</p>
       <h1>知识驱动</h1>
-      <p class="lead" style="margin-bottom: 20px;">模拟白领能从事的工作：基于知识和经验，运用推理能力。</p>
-      <div class="feature-list">
-        <li>符号主义，由此及彼的推理</li>
-        <li>最早的人工智能系统是医疗诊断</li>
-        <li>模型可解释，人类能对结果签字</li>
-      </div>
+      <p class="lead">模拟白领工作<br>基于知识和经验<br>运用推理能力</p>
     </div>
   </div>
 
@@ -227,12 +227,7 @@ h2 { font-size: clamp(1.3rem, 3vw, 2rem); font-weight: 600; line-height: 1.25; m
       <div class="deco-line"></div>
       <p class="kicker">应用案例</p>
       <h1>美团即时物流</h1>
-      <p class="lead" style="margin-bottom: 20px;">外卖平台 → 配送平台 → 骑手。实时SLA：预计送达时间、配送费价格、配送范围。</p>
-      <div class="tag-row">
-        <div class="tag">成本</div>
-        <div class="tag tag-highlight">效率</div>
-        <div class="tag">体验</div>
-      </div>
+      <p class="lead">外卖平台→配送平台→骑手<br>成本·效率·体验</p>
     </div>
   </div>
 
@@ -242,53 +237,50 @@ h2 { font-size: clamp(1.3rem, 3vw, 2rem); font-weight: 600; line-height: 1.25; m
       <div class="deco-line"></div>
       <p class="kicker">自主创新</p>
       <h1>中国高铁</h1>
-      <p class="lead" style="margin-bottom: 20px;">用市场换技术，打破垄断，实现反超。</p>
-      <div class="step-grid" style="margin-top: 16px;">
-        <div class="step-item">
-          <div class="num">2004</div>
-          <div class="label">3.5亿/列</div>
-          <div class="desc">西门子傲慢出局</div>
+      <p class="lead">用市场换技术<br>打破垄断</p>
+    </div>
+  </div>
+
+  <!-- 13. HSR Data -->
+  <div class="slide bg-1">
+    <div class="content">
+      <div style="display: flex; gap: 10px; margin-top: 8px;">
+        <div style="text-align: center; flex: 1; padding: 12px; background: rgba(255,255,255,0.07); border-radius: 12px;">
+          <div style="font-size: 20px; font-weight: 700; color: #C9A84C;">2004</div>
+          <div style="font-size: 14px; font-weight: 600; color: white; margin-top: 4px;">3.5亿/列</div>
+          <div style="font-size: 11px; color: rgba(255,255,255,0.5); margin-top: 2px;">西门子出局</div>
         </div>
-        <div class="step-item">
-          <div class="num">2005</div>
-          <div class="label">1.9亿/列</div>
-          <div class="desc">报价腰斩</div>
+        <div style="text-align: center; flex: 1; padding: 12px; background: rgba(255,255,255,0.07); border-radius: 12px;">
+          <div style="font-size: 20px; font-weight: 700; color: #C9A84C;">2005</div>
+          <div style="font-size: 14px; font-weight: 600; color: white; margin-top: 4px;">1.9亿/列</div>
+          <div style="font-size: 11px; color: rgba(255,255,255,0.5); margin-top: 2px;">报价腰斩</div>
         </div>
-        <div class="step-item">
-          <div class="num">2025</div>
-          <div class="label">国产率98%</div>
-          <div class="desc">时速453km/h</div>
-        </div>
-        <div class="step-item" style="background: rgba(255,255,255,0.12); border: 1px solid rgba(255,255,255,0.2);">
-          <div class="num" style="color: white;">结论</div>
-          <div class="label">技术垄断→市场霸权</div>
-          <div class="desc">只有自主创新</div>
-        </div>
+      </div>
+      <div style="margin-top: 12px; padding: 14px; background: rgba(255,255,255,0.12); border-radius: 12px; border: 1px solid rgba(255,255,255,0.2); text-align: center;">
+        <div style="font-size: 24px; font-weight: 700; color: #C9A84C;">2025</div>
+        <div style="font-size: 16px; font-weight: 600; color: white; margin-top: 4px;">国产率98%</div>
+        <div style="font-size: 12px; color: rgba(255,255,255,0.6); margin-top: 2px;">全球70%市场 · 时速453km/h</div>
       </div>
     </div>
   </div>
 
-  <!-- 13. Expert System -->
-  <div class="slide bg-1">
+  <!-- 14. Expert System -->
+  <div class="slide bg-2">
     <div class="content">
       <div class="deco-line"></div>
       <p class="kicker">专家系统</p>
       <h1>消费营销</h1>
-      <div class="feature-list" style="margin-top: 8px;">
-        <li><strong style="color: white;">消费者洞察</strong>：从社交媒体识别消费趋势</li>
-        <li><strong style="color: white;">场景化推荐</strong>：从单品到生活场景"解决方案"</li>
-        <li><strong style="color: white;">个性化内容</strong>：同一产品差异化表达</li>
-      </div>
+      <p class="lead">消费者洞察<br>场景化推荐<br>个性化内容</p>
     </div>
   </div>
 
-  <!-- 14. Tsinghua -->
-  <div class="slide bg-2">
+  <!-- 15. Tsinghua -->
+  <div class="slide bg-3">
     <div class="content">
       <div class="deco-line"></div>
       <p class="kicker">清华贡献</p>
       <h1>从教研组到<br>国家重点实验室</h1>
-      <div class="step-grid" style="margin-top: 16px;">
+      <div class="step-grid" style="margin-top: 12px;">
         <div class="step-item">
           <div class="num">1978</div>
           <div class="label">人工智能教研组</div>
@@ -310,8 +302,8 @@ h2 { font-size: clamp(1.3rem, 3vw, 2rem); font-weight: 600; line-height: 1.25; m
     </div>
   </div>
 
-  <!-- 15. Deep Blue -->
-  <div class="slide bg-3">
+  <!-- 16. Deep Blue -->
+  <div class="slide bg-1">
     <div class="content">
       <div class="deco-line"></div>
       <p class="kicker">深蓝成功</p>
@@ -319,8 +311,8 @@ h2 { font-size: clamp(1.3rem, 3vw, 2rem); font-weight: 600; line-height: 1.25; m
     </div>
   </div>
 
-  <!-- 16. Deep Blue Details -->
-  <div class="slide bg-1">
+  <!-- 17. Deep Blue Data -->
+  <div class="slide bg-2">
     <div class="content">
       <div class="step-grid" style="margin-top: 8px;">
         <div class="step-item">
@@ -333,62 +325,79 @@ h2 { font-size: clamp(1.3rem, 3vw, 2rem); font-weight: 600; line-height: 1.25; m
           <div class="label">剪枝并行算法</div>
         </div>
       </div>
-      <div style="margin-top: 16px; padding: 20px; background: rgba(255,255,255,0.07); border-radius: 16px; border: 1px solid rgba(255,255,255,0.1); text-align: center;">
-        <div style="font-size: 42px; font-weight: 700; color: #C9A84C; margin-bottom: 6px;">2亿</div>
+      <div style="margin-top: 12px; padding: 16px; background: rgba(255,255,255,0.07); border-radius: 14px; border: 1px solid rgba(255,255,255,0.1); text-align: center;">
+        <div style="font-size: 36px; font-weight: 700; color: #C9A84C;">2亿</div>
         <div style="font-size: 16px; font-weight: 600; color: white;">棋局/秒</div>
-        <div style="font-size: 13px; color: rgba(255,255,255,0.5); margin-top: 2px;">平均预测8-12步</div>
+        <div style="font-size: 12px; color: rgba(255,255,255,0.5); margin-top: 2px;">平均预测8-12步</div>
       </div>
     </div>
   </div>
 
-  <!-- 17. Five Nos Overview -->
-  <div class="slide bg-2">
+  <!-- 18. Five Nos -->
+  <div class="slide bg-3">
     <div class="content" style="text-align: center;">
       <div class="deco-line deco-line-center"></div>
       <p class="kicker">第二代的缺陷</p>
       <h1>五个"不"</h1>
-      <div style="display: grid; grid-template-columns: repeat(5, 1fr); gap: 12px; margin-top: 28px;">
-        <div style="text-align: center;"><div style="font-size: 16px; font-weight: 600; color: white; margin-bottom: 4px;">不安全</div><p style="font-size: 11px; color: rgba(255,255,255,0.5);">对微小扰动极其脆弱</p></div>
-        <div style="text-align: center;"><div style="font-size: 16px; font-weight: 600; color: white; margin-bottom: 4px;">不可信</div><p style="font-size: 11px; color: rgba(255,255,255,0.5);">黑箱无法解释</p></div>
-        <div style="text-align: center;"><div style="font-size: 16px; font-weight: 600; color: white; margin-bottom: 4px;">不可控</div><p style="font-size: 11px; color: rgba(255,255,255,0.5);">行为难以预测</p></div>
-        <div style="text-align: center;"><div style="font-size: 16px; font-weight: 600; color: white; margin-bottom: 4px;">不可靠</div><p style="font-size: 11px; color: rgba(255,255,255,0.5);">泛化能力差</p></div>
-        <div style="text-align: center;"><div style="font-size: 16px; font-weight: 600; color: white; margin-bottom: 4px;">不易推广</div><p style="font-size: 11px; color: rgba(255,255,255,0.5);">不能真正"认识"</p></div>
+      <div style="display: flex; gap: 8px; margin-top: 16px; justify-content: center; flex-wrap: wrap;">
+        <div style="text-align: center; padding: 10px 14px; background: rgba(255,255,255,0.07); border-radius: 10px;">
+          <div style="font-size: 14px; font-weight: 600; color: white;">不安全</div>
+          <div style="font-size: 10px; color: rgba(255,255,255,0.5); margin-top: 2px;">对微小扰动极其脆弱</div>
+        </div>
+        <div style="text-align: center; padding: 10px 14px; background: rgba(255,255,255,0.07); border-radius: 10px;">
+          <div style="font-size: 14px; font-weight: 600; color: white;">不可信</div>
+          <div style="font-size: 10px; color: rgba(255,255,255,0.5); margin-top: 2px;">黑箱无法解释</div>
+        </div>
+        <div style="text-align: center; padding: 10px 14px; background: rgba(255,255,255,0.07); border-radius: 10px;">
+          <div style="font-size: 14px; font-weight: 600; color: white;">不可控</div>
+          <div style="font-size: 10px; color: rgba(255,255,255,0.5); margin-top: 2px;">行为难以预测</div>
+        </div>
+      </div>
+      <div style="display: flex; gap: 8px; margin-top: 8px; justify-content: center;">
+        <div style="text-align: center; padding: 10px 14px; background: rgba(255,255,255,0.07); border-radius: 10px;">
+          <div style="font-size: 14px; font-weight: 600; color: white;">不可靠</div>
+          <div style="font-size: 10px; color: rgba(255,255,255,0.5); margin-top: 2px;">泛化能力差</div>
+        </div>
+        <div style="text-align: center; padding: 10px 14px; background: rgba(255,255,255,0.07); border-radius: 10px;">
+          <div style="font-size: 14px; font-weight: 600; color: white;">不易推广</div>
+          <div style="font-size: 10px; color: rgba(255,255,255,0.5); margin-top: 2px;">不能真正"认识"</div>
+        </div>
       </div>
     </div>
   </div>
 
-  <!-- 18. Snow Mountain -->
-  <div class="slide bg-3">
+  <!-- 19. Snow Mountain -->
+  <div class="slide bg-1">
     <div class="content" style="text-align: center;">
       <h1>雪山变狗</h1>
-      <p class="lead" style="margin-top: 16px;">添加一点噪声<br>雪山变狗<br>自信度 99%</p>
-      <p style="margin-top: 16px; font-size: 13px; color: rgba(255,255,255,0.5);">刷脸也不安全</p>
+      <p class="lead" style="margin-top: 12px;">添加一点噪声<br>雪山变狗<br>自信度 99%</p>
+      <p style="margin-top: 12px; font-size: 12px; color: rgba(255,255,255,0.5);">刷脸也不安全</p>
     </div>
   </div>
 
-  <!-- 19. Gen 3 LLM -->
-  <div class="slide bg-1">
+  <!-- 20. Gen 3 LLM -->
+  <div class="slide bg-2">
     <div class="content">
       <div class="deco-line"></div>
       <p class="kicker">第三代 · 2020年起</p>
       <h1>LLM 的诞生</h1>
-      <p class="lead" style="margin-bottom: 20px;">主流学派的硅基智能道路走得通。</p>
-      <div class="tag-row">
+      <p class="lead">硅基智能道路<br>走得通</p>
+      <div class="tag-row" style="margin-top: 12px;">
         <div class="tag">机器会创作</div>
         <div class="tag tag-highlight">机器有意识</div>
         <div class="tag">有自知之明</div>
       </div>
-      <p style="margin-top: 16px; font-size: 13px; color: rgba(255,255,255,0.5);">中国的工程实现能力极强</p>
+      <p style="margin-top: 12px; font-size: 12px; color: rgba(255,255,255,0.5);">中国的工程实现能力极强</p>
     </div>
   </div>
 
-  <!-- 20. Big Model -->
-  <div class="slide bg-2">
+  <!-- 21. Big Model -->
+  <div class="slide bg-3">
     <div class="content">
       <div class="deco-line"></div>
       <p class="kicker">两个"大"</p>
       <h1>大模型</h1>
-      <div class="feature-list">
+      <div class="feature-list" style="margin-top: 8px;">
         <li>巨大的神经网络（Transformer）</li>
         <li>一次输入 2000+ token</li>
         <li>强大的计算能力</li>
@@ -396,101 +405,91 @@ h2 { font-size: clamp(1.3rem, 3vw, 2rem); font-weight: 600; line-height: 1.25; m
     </div>
   </div>
 
-  <!-- 21. Big Text -->
-  <div class="slide bg-3">
+  <!-- 22. Big Text -->
+  <div class="slide bg-1">
     <div class="content">
       <div class="deco-line"></div>
       <p class="kicker">两个"大"</p>
       <h1>大文本</h1>
-      <div class="feature-list">
-        <li>用语意向量表示文本（最重要的突破）</li>
+      <div class="feature-list" style="margin-top: 8px;">
+        <li>语意向量表示（最重要的突破）</li>
         <li>自监督学习，无需人工标注</li>
         <li>"接龙式学习"预测下一个词</li>
       </div>
-      <p style="margin-top: 20px; font-size: 13px; color: rgba(255,255,255,0.5); font-style: italic;">规模达到阈值，质量突然质变——但原因尚不明。</p>
+      <p style="margin-top: 16px; font-size: 12px; color: rgba(255,255,255,0.5); font-style: italic;">规模达到阈值，质量突然质变——但原因尚不明。</p>
     </div>
   </div>
 
-  <!-- 22. AI Alignment -->
+  <!-- 23. AI Alignment -->
+  <div class="slide bg-2">
+    <div class="content">
+      <div class="deco-line"></div>
+      <p class="kicker">第一步</p>
+      <h1>AI对齐</h1>
+      <p class="lead">与人类对齐<br>减少错误</p>
+    </div>
+  </div>
+
+  <!-- 24. Error Rate -->
+  <div class="slide bg-3">
+    <div class="content" style="text-align: center;">
+      <div class="big-num" style="font-size: 48px; font-weight: 700; color: #C9A84C; margin-bottom: 8px;">40% → 5.5%</div>
+      <h2>GPT-3 → GPT-5</h2>
+      <p class="lead" style="margin-top: 8px;">错误率持续下降</p>
+    </div>
+  </div>
+
+  <!-- 25. Neuro-Symbolic -->
   <div class="slide bg-1">
     <div class="content">
       <div class="deco-line"></div>
-      <p class="kicker">第一步：AI对齐</p>
-      <h1>与人类对齐<br>减少错误</h1>
-      <p class="lead">让AI学会和人类对话、对齐人类的价值观。</p>
-    </div>
-  </div>
-
-  <!-- 23. Error Rate -->
-  <div class="slide bg-2">
-    <div class="content" style="text-align: center;">
-      <div class="big-num" style="font-size: 56px; font-weight: 700; color: #C9A84C; margin-bottom: 12px;">40% → 5.5%</div>
-      <h2>GPT-3 → GPT-5</h2>
-      <p class="lead" style="margin-top: 12px;">错误率持续下降</p>
-      <div style="margin-top: 20px; padding: 16px; background: rgba(255,255,255,0.07); border-radius: 12px; font-size: 13px; color: rgba(255,255,255,0.5); text-align: left; max-width: 400px; margin-left: auto; margin-right: auto;">
-        GPT-4：不允许内容请求回应可能性低82%，真实回应可能性高40%
-      </div>
-    </div>
-  </div>
-
-  <!-- 24. Neuro-Symbolic -->
-  <div class="slide bg-3">
-    <div class="content">
-      <div class="deco-line"></div>
       <p class="kicker">未来架构</p>
-      <h1>神经-符号<br>混合架构</h1>
-      <p class="lead" style="margin-bottom: 20px;">将符号主义的可解释性回嵌到连接主义系统中。</p>
-      <div class="tag-row">
+      <h1>神经-符号<br>混合</h1>
+      <p class="lead">可解释性回嵌<br>连接主义系统</p>
+      <div class="tag-row" style="margin-top: 12px;">
         <div class="tag">知识库</div>
         <div class="tag">RAG</div>
         <div class="tag">工具调用</div>
       </div>
-      <p style="margin-top: 16px; font-size: 13px; color: rgba(255,255,255,0.5); font-style: italic;">"符号主义作为外部可验证模块，回嵌到连接主义系统里。"</p>
     </div>
   </div>
 
-  <!-- 25. Image Generation -->
-  <div class="slide bg-1">
+  <!-- 26. Image Generation -->
+  <div class="slide bg-2">
     <div class="content">
       <div class="deco-line"></div>
       <p class="kicker">第二步：多模态</p>
       <h1>图像生成<br>ViT</h1>
-      <p class="lead">将图像分割为patches，视为tokens，统一用Transformer处理。</p>
+      <p class="lead">图像分块<br>视为tokens<br>统一Transformer</p>
     </div>
   </div>
 
-  <!-- 26. Vidu -->
-  <div class="slide bg-2">
-    <div class="content">
-      <h1>图生文 · 文生视频</h1>
-      <p class="lead" style="margin-top: 16px;">Vidu 生数科技等应用涌现</p>
-      <p style="margin-top: 12px; font-size: 13px; color: rgba(255,255,255,0.5);">目前技术还只能理解相对简单的图</p>
-    </div>
-  </div>
-
-  <!-- 27. Agentic -->
+  <!-- 27. Vidu -->
   <div class="slide bg-3">
+    <div class="content" style="text-align: center;">
+      <h1>图生文·文生视频</h1>
+      <p class="lead" style="margin-top: 12px;">Vidu 生数科技</p>
+      <p style="margin-top: 8px; font-size: 12px; color: rgba(255,255,255,0.5);">目前只能理解相对简单的图</p>
+    </div>
+  </div>
+
+  <!-- 28. Agentic -->
+  <div class="slide bg-1">
     <div class="content">
       <div class="deco-line"></div>
       <p class="kicker">第三步：智能体</p>
       <h1>Agentic</h1>
-      <p class="lead" style="margin-bottom: 20px;">能在环境中持续感知—决策—行动的系统。</p>
-      <div class="tag-row">
-        <div class="tag">感知</div>
-        <div class="tag tag-highlight">思考 · LLM</div>
-        <div class="tag">行动</div>
-      </div>
-      <p style="margin-top: 16px; font-size: 13px; color: rgba(255,255,255,0.5);">外部世界 → 感知 → Tokens → 理性思考 → 行动 → 外部世界</p>
+      <p class="lead">感知→思考→行动<br>与外部世界闭环</p>
     </div>
   </div>
 
-  <!-- 28. AGI Four Steps -->
-  <div class="slide bg-1">
+  <!-- 29. AGI Four Steps -->
+  <div class="slide bg-2">
     <div class="content">
       <div class="deco-line"></div>
       <p class="kicker">通往AGI</p>
       <h1>四步</h1>
-      <div class="step-grid" style="margin-top: 16px;">
+      <div class="step-grid" style="margin-top: 12px;">
         <div class="step-item">
           <div class="num">1</div>
           <div class="label">与人类交互</div>
@@ -515,42 +514,33 @@ h2 { font-size: clamp(1.3rem, 3vw, 2rem); font-weight: 600; line-height: 1.25; m
     </div>
   </div>
 
-  <!-- 29. Embodied AI -->
-  <div class="slide bg-2">
+  <!-- 30. Embodied AI -->
+  <div class="slide bg-3">
     <div class="content">
       <div class="deco-line"></div>
       <p class="kicker">具身智能</p>
       <h1>无需人型</h1>
-      <p class="lead">外观可多样化，关键是软件通用型。</p>
+      <p class="lead">外观可多样化<br>关键是软件通用型</p>
     </div>
   </div>
 
-  <!-- 30. AI Education -->
-  <div class="slide bg-3">
+  <!-- 31. AI Education -->
+  <div class="slide bg-1">
     <div class="content">
       <div class="deco-line"></div>
       <h1>AI改变教育</h1>
-      <p class="lead" style="margin-top: 16px;">全民人工智能数智教育<br>从中小学开始</p>
+      <p class="lead" style="margin-top: 12px;">全民人工智能数智教育<br>从中小学开始</p>
     </div>
   </div>
 
-  <!-- 31. Quote -->
-  <div class="slide bg-1">
+  <!-- 32. Quote -->
+  <div class="slide bg-2">
     <div class="content">
       <div class="quote-block">
         <div class="quote-mark">"</div>
         <p>我们不能因为进展而过于乐观<br>也不必因为挫折而沮丧<br>人工智能是探索"无人区"<br>其魅力就在于它永远在路上</p>
         <div class="attribution">—— 张钹院士</div>
       </div>
-    </div>
-  </div>
-
-  <!-- 32. End -->
-  <div class="slide bg-2">
-    <div class="content" style="text-align: center;">
-      <div class="deco-line" style="margin: 0 auto 24px;"></div>
-      <p style="font-size: 13px; color: rgba(255,255,255,0.45); margin-bottom: 14px;">中国科学家与国际同行<br>处在同一起跑线上</p>
-      <h1 style="font-size: 24px;">张钹院士<br>人工智能的发展现状与未来</h1>
     </div>
   </div>
 
