@@ -2,56 +2,48 @@
 <html lang="zh-CN">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+<meta name="format-detection" content="telephone=no">
 <title>张钹院士 - 人工智能的发展现状与未来</title>
 <style>
-:root { --gold: #C9A84C; }
-* { box-sizing: border-box; margin: 0; padding: 0; }
-html, body { height: 100%; font-family: -apple-system, BlinkMacSystemFont, "PingFang SC", "Microsoft YaHei", sans-serif; background: #1E1045; color: white; }
-body { overflow: hidden; }
-.deck { height: 100dvh; width: 100vw; display: flex; overflow-x: auto; overflow-y: hidden; scroll-snap-type: x mandatory; -webkit-overflow-scrolling: touch; scrollbar-width: none; }
+* { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
+html, body { height: 100%; width: 100%; overflow: hidden; font-family: -apple-system, BlinkMacSystemFont, "PingFang SC", "Microsoft YaHei", "Helvetica Neue", sans-serif; background: #1E1045; }
+body { position: fixed; top: 0; left: 0; right: 0; bottom: 0; }
+
+.deck { height: 100%; width: 100%; overflow-x: auto; overflow-y: hidden; -webkit-overflow-scrolling: touch; scroll-snap-type: x mandatory; display: flex; flex-direction: row; white-space: nowrap; }
 .deck::-webkit-scrollbar { display: none; }
-.slide { min-width: 100vw; height: 100dvh; scroll-snap-align: start; position: relative; overflow: hidden; padding: 32px 28px; display: flex; align-items: center; justify-content: center; }
+
+.slide { display: inline-block; width: 100vw; height: 100%; min-width: 100vw; min-height: 100%; scroll-snap-align: start; position: relative; vertical-align: top; overflow: hidden; padding: 24px; }
+
 .bg-1 { background: linear-gradient(160deg, #2E1B5E 0%, #5B3FA0 40%, #7B5FB8 100%); }
 .bg-2 { background: linear-gradient(160deg, #251450 0%, #4E3590 40%, #6B50A8 100%); }
 .bg-3 { background: linear-gradient(160deg, #1E1045 0%, #452D80 40%, #5F45A0 100%); }
-.slide::after { content: ""; position: absolute; inset: 0; pointer-events: none; opacity: 0.03; background-image: linear-gradient(rgba(255,255,255,.08) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,.06) 1px, transparent 1px); background-size: 48px 48px; }
-.content { position: relative; z-index: 2; max-width: 520px; width: 100%; text-align: center; }
-.deco-line { width: 40px; height: 3px; background: var(--gold); margin: 0 auto 24px; border-radius: 2px; }
-.kicker { font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase; color: rgba(255,255,255,0.45); margin-bottom: 16px; font-weight: 500; }
-h1 { font-size: clamp(1.8rem, 6vw, 2.8rem); font-weight: 700; line-height: 1.15; margin-bottom: 20px; color: white; letter-spacing: -0.02em; }
+
+.content { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 100%; max-width: 420px; padding: 0 24px; text-align: center; z-index: 2; }
+
+.deco-line { width: 36px; height: 3px; background: #C9A84C; margin: 0 auto 20px; border-radius: 2px; }
+.kicker { font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase; color: rgba(255,255,255,0.45); margin-bottom: 14px; font-weight: 500; }
+
+h1 { font-size: 28px; font-weight: 700; line-height: 1.2; margin-bottom: 16px; color: #fff; }
 h1 .highlight { color: #E6D5FF; }
-h2 { font-size: clamp(1.1rem, 3.5vw, 1.5rem); font-weight: 600; line-height: 1.3; margin-bottom: 12px; color: white; }
-.lead { font-size: clamp(1rem, 3vw, 1.25rem); line-height: 1.6; color: rgba(255,255,255,0.65); max-width: 400px; margin: 0 auto; }
-.big-num { font-size: clamp(3.5rem, 12vw, 6rem); font-weight: 700; color: var(--gold); line-height: 1; margin-bottom: 12px; }
-.year-tag { display: inline-block; padding: 6px 16px; background: rgba(255,255,255,0.12); border-radius: 20px; font-size: 13px; font-weight: 600; color: var(--gold); margin-bottom: 16px; letter-spacing: 0.05em; }
-.card { background: rgba(255,255,255,0.07); border-radius: 16px; padding: 28px 24px; border: 1px solid rgba(255,255,255,0.1); max-width: 420px; margin: 0 auto; }
-.quote-block { text-align: center; max-width: 480px; margin: 0 auto; }
-.quote-block .quote-mark { font-size: 48px; line-height: 1; color: var(--gold); opacity: 0.35; margin-bottom: -12px; }
-.quote-block p { font-size: clamp(1.1rem, 3vw, 1.5rem); line-height: 1.6; color: white; font-style: italic; font-weight: 500; }
-.quote-block .attribution { font-size: 13px; color: rgba(255,255,255,0.45); margin-top: 16px; }
-.arrow-down { width: 16px; height: 16px; border-right: 2px solid rgba(255,255,255,0.25); border-bottom: 2px solid rgba(255,255,255,0.25); transform: rotate(45deg); margin: 16px auto; animation: bounceDown 2s ease-in-out infinite; }
-@keyframes bounceDown { 0%, 100% { transform: rotate(45deg) translateY(0); } 50% { transform: rotate(45deg) translateY(4px); } }
-.two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
-.icon-tag { font-size: 13px; padding: 8px 14px; background: rgba(255,255,255,0.1); border-radius: 8px; display: inline-block; margin: 4px; }
-@media (max-width: 768px) { .slide { padding: 28px 24px; } .two-col { grid-template-columns: 1fr; gap: 12px; } }
+h2 { font-size: 22px; font-weight: 600; line-height: 1.3; margin-bottom: 10px; color: #fff; }
+.lead { font-size: 16px; line-height: 1.6; color: rgba(255,255,255,0.65); }
+.big-num { font-size: 56px; font-weight: 700; color: #C9A84C; line-height: 1; margin-bottom: 10px; }
+.year-tag { display: inline-block; padding: 5px 14px; background: rgba(255,255,255,0.12); border-radius: 20px; font-size: 13px; font-weight: 600; color: #C9A84C; margin-bottom: 14px; }
 </style>
 </head>
 <body>
-<div class="deck">
+<div class="deck" id="deck">
 
-  <!-- 1. Cover -->
   <div class="slide bg-1">
     <div class="content">
       <div class="deco-line"></div>
       <p class="kicker">清华大学 · 张钹院士</p>
       <h1>人工智能的<br><span class="highlight">发展现状与未来</span></h1>
       <p class="lead">2026年6月演讲</p>
-      <div class="arrow-down"></div>
     </div>
   </div>
 
-  <!-- 2. Who -->
   <div class="slide bg-2">
     <div class="content">
       <div class="deco-line"></div>
@@ -61,7 +53,6 @@ h2 { font-size: clamp(1.1rem, 3.5vw, 1.5rem); font-weight: 600; line-height: 1.3
     </div>
   </div>
 
-  <!-- 3. Achievement 1 -->
   <div class="slide bg-3">
     <div class="content">
       <div class="year-tag">1983</div>
@@ -69,7 +60,6 @@ h2 { font-size: clamp(1.1rem, 3.5vw, 1.5rem); font-weight: 600; line-height: 1.3
     </div>
   </div>
 
-  <!-- 4. Achievement 2 -->
   <div class="slide bg-1">
     <div class="content">
       <div class="year-tag">1984</div>
@@ -77,16 +67,14 @@ h2 { font-size: clamp(1.1rem, 3.5vw, 1.5rem); font-weight: 600; line-height: 1.3
     </div>
   </div>
 
-  <!-- 5. Achievement 3 -->
   <div class="slide bg-2">
     <div class="content">
       <div class="year-tag">1985</div>
       <h2>创立中国首个<br>智能机器人实验室</h2>
-      <p class="lead">在清华讲台坚守超过60年</p>
+      <p class="lead">在清华讲台坚守超60年</p>
     </div>
   </div>
 
-  <!-- 6. Two Schools -->
   <div class="slide bg-3">
     <div class="content">
       <div class="deco-line"></div>
@@ -95,17 +83,15 @@ h2 { font-size: clamp(1.1rem, 3.5vw, 1.5rem); font-weight: 600; line-height: 1.3
     </div>
   </div>
 
-  <!-- 7. Behaviorism -->
   <div class="slide bg-1">
     <div class="content">
       <div class="deco-line"></div>
       <p class="kicker">主流学派</p>
       <h1>行为主义</h1>
-      <p class="lead">用机器模拟人类的行为<br><br>追求<strong>相似性</strong><br>不追求原理一致性</p>
+      <p class="lead">用机器模拟人类行为<br><br>追求相似性<br>不追求原理一致性</p>
     </div>
   </div>
 
-  <!-- 8. Internalism -->
   <div class="slide bg-2">
     <div class="content">
       <div class="deco-line"></div>
@@ -115,17 +101,15 @@ h2 { font-size: clamp(1.1rem, 3.5vw, 1.5rem); font-weight: 600; line-height: 1.3
     </div>
   </div>
 
-  <!-- 9. Agent -->
   <div class="slide bg-3">
     <div class="content">
       <div class="deco-line"></div>
       <p class="kicker">智能体</p>
       <h1>感知 · 思考 · 行动</h1>
-      <p class="lead">在环境中持续感知、思考、行动<br>形成闭环</p>
+      <p class="lead">在环境中持续<br>感知、思考、行动<br>形成闭环</p>
     </div>
   </div>
 
-  <!-- 10. Four Tasks -->
   <div class="slide bg-1">
     <div class="content">
       <div class="deco-line"></div>
@@ -134,7 +118,6 @@ h2 { font-size: clamp(1.1rem, 3.5vw, 1.5rem); font-weight: 600; line-height: 1.3
     </div>
   </div>
 
-  <!-- 11. Task 1 -->
   <div class="slide bg-2">
     <div class="content">
       <div class="big-num">01</div>
@@ -143,7 +126,6 @@ h2 { font-size: clamp(1.1rem, 3.5vw, 1.5rem); font-weight: 600; line-height: 1.3
     </div>
   </div>
 
-  <!-- 12. Task 2 -->
   <div class="slide bg-3">
     <div class="content">
       <div class="big-num">02</div>
@@ -152,7 +134,6 @@ h2 { font-size: clamp(1.1rem, 3.5vw, 1.5rem); font-weight: 600; line-height: 1.3
     </div>
   </div>
 
-  <!-- 13. Task 3 -->
   <div class="slide bg-1">
     <div class="content">
       <div class="big-num">03</div>
@@ -161,7 +142,6 @@ h2 { font-size: clamp(1.1rem, 3.5vw, 1.5rem); font-weight: 600; line-height: 1.3
     </div>
   </div>
 
-  <!-- 14. Task 4 -->
   <div class="slide bg-2">
     <div class="content">
       <div class="big-num">04</div>
@@ -170,7 +150,6 @@ h2 { font-size: clamp(1.1rem, 3.5vw, 1.5rem); font-weight: 600; line-height: 1.3
     </div>
   </div>
 
-  <!-- 15. Three Generations -->
   <div class="slide bg-3">
     <div class="content">
       <div class="deco-line"></div>
@@ -179,7 +158,6 @@ h2 { font-size: clamp(1.1rem, 3.5vw, 1.5rem); font-weight: 600; line-height: 1.3
     </div>
   </div>
 
-  <!-- 16. Gen 1 -->
   <div class="slide bg-1">
     <div class="content">
       <div class="year-tag">1956-1980s</div>
@@ -188,7 +166,6 @@ h2 { font-size: clamp(1.1rem, 3.5vw, 1.5rem); font-weight: 600; line-height: 1.3
     </div>
   </div>
 
-  <!-- 17. Gen 2 -->
   <div class="slide bg-2">
     <div class="content">
       <div class="year-tag">1987-2015</div>
@@ -197,7 +174,6 @@ h2 { font-size: clamp(1.1rem, 3.5vw, 1.5rem); font-weight: 600; line-height: 1.3
     </div>
   </div>
 
-  <!-- 18. Gen 3 -->
   <div class="slide bg-3">
     <div class="content">
       <div class="year-tag">2015-</div>
@@ -206,7 +182,6 @@ h2 { font-size: clamp(1.1rem, 3.5vw, 1.5rem); font-weight: 600; line-height: 1.3
     </div>
   </div>
 
-  <!-- 19. Tsinghua 1978 -->
   <div class="slide bg-1">
     <div class="content">
       <div class="year-tag">1978</div>
@@ -215,7 +190,6 @@ h2 { font-size: clamp(1.1rem, 3.5vw, 1.5rem); font-weight: 600; line-height: 1.3
     </div>
   </div>
 
-  <!-- 20. Knowledge Driven -->
   <div class="slide bg-2">
     <div class="content">
       <div class="deco-line"></div>
@@ -225,17 +199,15 @@ h2 { font-size: clamp(1.1rem, 3.5vw, 1.5rem); font-weight: 600; line-height: 1.3
     </div>
   </div>
 
-  <!-- 21. Meituan -->
   <div class="slide bg-3">
     <div class="content">
       <div class="deco-line"></div>
       <p class="kicker">应用案例</p>
       <h1>美团即时物流</h1>
-      <p class="lead">外卖平台 → 配送平台 → 骑手<br>成本 · 效率 · 体验</p>
+      <p class="lead">外卖平台→配送平台→骑手<br>成本·效率·体验</p>
     </div>
   </div>
 
-  <!-- 22. High Speed Rail -->
   <div class="slide bg-1">
     <div class="content">
       <div class="deco-line"></div>
@@ -245,7 +217,6 @@ h2 { font-size: clamp(1.1rem, 3.5vw, 1.5rem); font-weight: 600; line-height: 1.3
     </div>
   </div>
 
-  <!-- 23. HSR 2004 -->
   <div class="slide bg-2">
     <div class="content">
       <div class="year-tag">2004</div>
@@ -254,7 +225,6 @@ h2 { font-size: clamp(1.1rem, 3.5vw, 1.5rem); font-weight: 600; line-height: 1.3
     </div>
   </div>
 
-  <!-- 24. HSR 2005 -->
   <div class="slide bg-3">
     <div class="content">
       <div class="year-tag">2005</div>
@@ -263,7 +233,6 @@ h2 { font-size: clamp(1.1rem, 3.5vw, 1.5rem); font-weight: 600; line-height: 1.3
     </div>
   </div>
 
-  <!-- 25. HSR 2025 -->
   <div class="slide bg-1">
     <div class="content">
       <div class="year-tag">2025</div>
@@ -272,7 +241,6 @@ h2 { font-size: clamp(1.1rem, 3.5vw, 1.5rem); font-weight: 600; line-height: 1.3
     </div>
   </div>
 
-  <!-- 26. Expert System -->
   <div class="slide bg-2">
     <div class="content">
       <div class="deco-line"></div>
@@ -282,7 +250,6 @@ h2 { font-size: clamp(1.1rem, 3.5vw, 1.5rem); font-weight: 600; line-height: 1.3
     </div>
   </div>
 
-  <!-- 27. Tsinghua Lab -->
   <div class="slide bg-3">
     <div class="content">
       <div class="year-tag">1985</div>
@@ -291,7 +258,6 @@ h2 { font-size: clamp(1.1rem, 3.5vw, 1.5rem); font-weight: 600; line-height: 1.3
     </div>
   </div>
 
-  <!-- 28. Tsinghua National Lab -->
   <div class="slide bg-1">
     <div class="content">
       <div class="year-tag">1990</div>
@@ -300,16 +266,14 @@ h2 { font-size: clamp(1.1rem, 3.5vw, 1.5rem); font-weight: 600; line-height: 1.3
     </div>
   </div>
 
-  <!-- 29. Deep Blue -->
   <div class="slide bg-2">
     <div class="content">
       <div class="deco-line"></div>
       <p class="kicker">深蓝成功</p>
-      <h1>知识 + 算法 + 算力</h1>
+      <h1>知识+算法+算力</h1>
     </div>
   </div>
 
-  <!-- 30. Knowledge -->
   <div class="slide bg-3">
     <div class="content">
       <div class="big-num">70万</div>
@@ -318,7 +282,6 @@ h2 { font-size: clamp(1.1rem, 3.5vw, 1.5rem); font-weight: 600; line-height: 1.3
     </div>
   </div>
 
-  <!-- 31. Algorithm -->
   <div class="slide bg-1">
     <div class="content">
       <h1>α-β剪枝</h1>
@@ -326,7 +289,6 @@ h2 { font-size: clamp(1.1rem, 3.5vw, 1.5rem); font-weight: 600; line-height: 1.3
     </div>
   </div>
 
-  <!-- 32. Computing Power -->
   <div class="slide bg-2">
     <div class="content">
       <div class="big-num">2亿</div>
@@ -335,7 +297,6 @@ h2 { font-size: clamp(1.1rem, 3.5vw, 1.5rem); font-weight: 600; line-height: 1.3
     </div>
   </div>
 
-  <!-- 33. Five Nos -->
   <div class="slide bg-3">
     <div class="content">
       <div class="deco-line"></div>
@@ -344,7 +305,6 @@ h2 { font-size: clamp(1.1rem, 3.5vw, 1.5rem); font-weight: 600; line-height: 1.3
     </div>
   </div>
 
-  <!-- 34. Unsafe -->
   <div class="slide bg-1">
     <div class="content">
       <h1>不安全</h1>
@@ -352,7 +312,6 @@ h2 { font-size: clamp(1.1rem, 3.5vw, 1.5rem); font-weight: 600; line-height: 1.3
     </div>
   </div>
 
-  <!-- 35. Unexplainable -->
   <div class="slide bg-2">
     <div class="content">
       <h1>不可信</h1>
@@ -360,7 +319,6 @@ h2 { font-size: clamp(1.1rem, 3.5vw, 1.5rem); font-weight: 600; line-height: 1.3
     </div>
   </div>
 
-  <!-- 36. Uncontrollable -->
   <div class="slide bg-3">
     <div class="content">
       <h1>不可控</h1>
@@ -368,7 +326,6 @@ h2 { font-size: clamp(1.1rem, 3.5vw, 1.5rem); font-weight: 600; line-height: 1.3
     </div>
   </div>
 
-  <!-- 37. Gen 3 LLM -->
   <div class="slide bg-1">
     <div class="content">
       <div class="deco-line"></div>
@@ -378,17 +335,15 @@ h2 { font-size: clamp(1.1rem, 3.5vw, 1.5rem); font-weight: 600; line-height: 1.3
     </div>
   </div>
 
-  <!-- 38. Two Big -->
   <div class="slide bg-2">
     <div class="content">
       <div class="deco-line"></div>
       <p class="kicker">两个"大"</p>
-      <h1>大模型 + 大文本</h1>
+      <h1>大模型+大文本</h1>
       <p class="lead">Transformer架构<br>语意向量表示<br>自监督学习</p>
     </div>
   </div>
 
-  <!-- 39. Emergence -->
   <div class="slide bg-3">
     <div class="content">
       <div class="deco-line"></div>
@@ -397,7 +352,6 @@ h2 { font-size: clamp(1.1rem, 3.5vw, 1.5rem); font-weight: 600; line-height: 1.3
     </div>
   </div>
 
-  <!-- 40. AI Alignment -->
   <div class="slide bg-1">
     <div class="content">
       <div class="deco-line"></div>
@@ -407,15 +361,13 @@ h2 { font-size: clamp(1.1rem, 3.5vw, 1.5rem); font-weight: 600; line-height: 1.3
     </div>
   </div>
 
-  <!-- 41. Error Rate -->
   <div class="slide bg-2">
     <div class="content">
-      <div class="big-num">40% → 5.5%</div>
-      <p class="lead">GPT-3 → GPT-5<br>错误率持续下降</p>
+      <div class="big-num">40%→5.5%</div>
+      <p class="lead">GPT-3→GPT-5<br>错误率持续下降</p>
     </div>
   </div>
 
-  <!-- 42. Neuro-Symbolic -->
   <div class="slide bg-3">
     <div class="content">
       <div class="deco-line"></div>
@@ -425,7 +377,6 @@ h2 { font-size: clamp(1.1rem, 3.5vw, 1.5rem); font-weight: 600; line-height: 1.3
     </div>
   </div>
 
-  <!-- 43. ViT -->
   <div class="slide bg-1">
     <div class="content">
       <div class="deco-line"></div>
@@ -435,35 +386,31 @@ h2 { font-size: clamp(1.1rem, 3.5vw, 1.5rem); font-weight: 600; line-height: 1.3
     </div>
   </div>
 
-  <!-- 44. Multimodal -->
   <div class="slide bg-2">
     <div class="content">
-      <h1>图生文 · 文生视频</h1>
+      <h1>图生文·文生视频</h1>
       <p class="lead">Vidu 生数科技</p>
     </div>
   </div>
 
-  <!-- 45. Agentic -->
   <div class="slide bg-3">
     <div class="content">
       <div class="deco-line"></div>
       <p class="kicker">第三步：智能体</p>
       <h1>Agentic</h1>
-      <p class="lead">感知 → 思考 → 行动<br>与外部世界闭环</p>
+      <p class="lead">感知→思考→行动<br>与外部世界闭环</p>
     </div>
   </div>
 
-  <!-- 46. AGI -->
   <div class="slide bg-1">
     <div class="content">
       <div class="deco-line"></div>
       <p class="kicker">通往AGI</p>
       <h1>四步</h1>
-      <p class="lead">① 与人类交互<br>② 多模态生成<br>③ 与数字世界交互<br>④ 与客观世界交互</p>
+      <p class="lead">①与人类交互<br>②多模态生成<br>③与数字世界交互<br>④与客观世界交互</p>
     </div>
   </div>
 
-  <!-- 47. Embodied AI -->
   <div class="slide bg-2">
     <div class="content">
       <div class="deco-line"></div>
@@ -473,7 +420,6 @@ h2 { font-size: clamp(1.1rem, 3.5vw, 1.5rem); font-weight: 600; line-height: 1.3
     </div>
   </div>
 
-  <!-- 48. Education -->
   <div class="slide bg-3">
     <div class="content">
       <div class="deco-line"></div>
@@ -482,53 +428,71 @@ h2 { font-size: clamp(1.1rem, 3.5vw, 1.5rem); font-weight: 600; line-height: 1.3
     </div>
   </div>
 
-  <!-- 49. Quote -->
   <div class="slide bg-1">
     <div class="content">
-      <div class="quote-block">
-        <div class="quote-mark">"</div>
-        <p>我们不能因为进展而过于乐观<br>也不必因为挫折而沮丧<br>人工智能是探索"无人区"<br>其魅力就在于它永远在路上</p>
-        <div class="attribution">—— 张钹院士</div>
-      </div>
+      <div style="font-size: 48px; color: #C9A84C; opacity: 0.35; margin-bottom: -8px;">"</div>
+      <p style="font-size: 18px; line-height: 1.7; color: #fff; font-style: italic; font-weight: 500;">我们不能因为进展而过于乐观<br>也不必因为挫折而沮丧<br>人工智能是探索"无人区"<br>其魅力就在于它永远在路上</p>
+      <p style="font-size: 13px; color: rgba(255,255,255,0.45); margin-top: 16px;">—— 张钹院士</p>
     </div>
   </div>
 
-  <!-- 50. End -->
   <div class="slide bg-2">
     <div class="content">
       <div class="deco-line"></div>
-      <p class="kicker" style="font-size: 13px; text-transform: none; letter-spacing: 0.1em;">中国科学家与国际同行<br>处在同一起跑线上</p>
-      <h1 style="font-size: clamp(1.4rem, 4vw, 2.2rem);">张钹院士<br>人工智能的发展现状与未来</h1>
+      <p style="font-size: 13px; color: rgba(255,255,255,0.45); margin-bottom: 14px;">中国科学家与国际同行<br>处在同一起跑线上</p>
+      <h1 style="font-size: 22px;">张钹院士<br>人工智能的发展现状与未来</h1>
     </div>
   </div>
 
 </div>
 
 <script>
-let currentSlide = 0;
-const slides = document.querySelectorAll('.slide');
-const deck = document.querySelector('.deck');
+(function(){
+  var current = 0;
+  var slides = document.querySelectorAll('.slide');
+  var deck = document.getElementById('deck');
+  var total = slides.length;
 
-document.addEventListener('keydown', (e) => {
-  if (e.key === 'ArrowRight' || e.key === 'ArrowDown' || e.key === ' ') {
-    e.preventDefault();
-    if (currentSlide < slides.length - 1) {
-      currentSlide++;
-      slides[currentSlide].scrollIntoView({ behavior: 'smooth', inline: 'start' });
+  document.addEventListener('keydown', function(e){
+    if(e.key === 'ArrowRight' || e.key === 'ArrowDown' || e.key === ' '){
+      e.preventDefault();
+      if(current < total-1){
+        current++;
+        slides[current].scrollIntoView({ behavior: 'smooth', inline: 'start' });
+      }
+    } else if(e.key === 'ArrowLeft' || e.key === 'ArrowUp'){
+      e.preventDefault();
+      if(current > 0){
+        current--;
+        slides[current].scrollIntoView({ behavior: 'smooth', inline: 'start' });
+      }
     }
-  } else if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') {
-    e.preventDefault();
-    if (currentSlide > 0) {
-      currentSlide--;
-      slides[currentSlide].scrollIntoView({ behavior: 'smooth', inline: 'start' });
-    }
-  }
-});
+  });
 
-deck.addEventListener('scroll', () => {
-  const slideWidth = window.innerWidth;
-  currentSlide = Math.round(deck.scrollLeft / slideWidth);
-});
+  var touchStartX = 0;
+  var touchEndX = 0;
+  deck.addEventListener('touchstart', function(e){
+    touchStartX = e.changedTouches[0].screenX;
+  }, {passive: true});
+  deck.addEventListener('touchend', function(e){
+    touchEndX = e.changedTouches[0].screenX;
+    var diff = touchStartX - touchEndX;
+    if(Math.abs(diff) > 50){
+      if(diff > 0 && current < total-1){
+        current++;
+        slides[current].scrollIntoView({ behavior: 'smooth', inline: 'start' });
+      } else if(diff < 0 && current > 0){
+        current--;
+        slides[current].scrollIntoView({ behavior: 'smooth', inline: 'start' });
+      }
+    }
+  }, {passive: true});
+
+  deck.addEventListener('scroll', function(){
+    var w = window.innerWidth || document.documentElement.clientWidth;
+    current = Math.round(deck.scrollLeft / w);
+  }, {passive: true});
+})();
 </script>
 </body>
 </html>
