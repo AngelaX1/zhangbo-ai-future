@@ -1,1260 +1,1238 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Academician Zhang Bo - AI: Current State and Future</title>
-    <style>
-        :root {
-            --primary: #1a1a2e;
-            --secondary: #16213e;
-            --accent: #0f3460;
-            --highlight: #e94560;
-            --text: #f5f5f5;
-            --text-muted: #b8b8b8;
-        }
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
-            background: var(--primary);
-            color: var(--text);
-            line-height: 1.6;
-            overflow-x: hidden;
-        }
-        .slide {
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            padding: 4rem 2rem;
-            position: relative;
-        }
-        .slide:nth-child(odd) { background: var(--primary); }
-        .slide:nth-child(even) { background: var(--secondary); }
-        .slide-title {
-            font-size: 3rem;
-            font-weight: 700;
-            margin-bottom: 2rem;
-            text-align: center;
-            background: linear-gradient(135deg, #fff 0%, var(--highlight) 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-        .slide-subtitle {
-            font-size: 1.5rem;
-            color: var(--text-muted);
-            margin-bottom: 3rem;
-            text-align: center;
-        }
-        .content-card {
-            background: rgba(255,255,255,0.05);
-            border-radius: 20px;
-            padding: 2.5rem;
-            max-width: 900px;
-            width: 100%;
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255,255,255,0.1);
-        }
-        .two-col {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 2rem;
-            max-width: 1100px;
-            width: 100%;
-        }
-        .col-card {
-            background: rgba(255,255,255,0.05);
-            border-radius: 20px;
-            padding: 2rem;
-            border: 1px solid rgba(255,255,255,0.1);
-        }
-        .tag {
-            display: inline-block;
-            padding: 0.3rem 1rem;
-            border-radius: 20px;
-            font-size: 0.85rem;
-            font-weight: 600;
-            margin-bottom: 1rem;
-        }
-        .tag-mainstream { background: rgba(233, 69, 96, 0.2); color: var(--highlight); }
-        .tag-minority { background: rgba(79, 172, 254, 0.2); color: #4facfe; }
-        .tag-gen { background: rgba(255, 200, 50, 0.2); color: #ffc800; }
-        h3 { font-size: 1.5rem; margin-bottom: 1rem; color: #fff; }
-        p, li { color: var(--text-muted); font-size: 1.1rem; margin-bottom: 0.8rem; }
-        ul { list-style: none; padding-left: 0; }
-        ul li::before {
-            content: "→";
-            color: var(--highlight);
-            margin-right: 0.5rem;
-        }
-        .highlight-box {
-            background: linear-gradient(135deg, rgba(233, 69, 96, 0.1) 0%, rgba(15, 52, 96, 0.3) 100%);
-            border-left: 4px solid var(--highlight);
-            padding: 1.5rem;
-            border-radius: 0 10px 10px 0;
-            margin: 1.5rem 0;
-        }
-        .timeline {
-            display: flex;
-            justify-content: space-between;
-            max-width: 1000px;
-            width: 100%;
-            margin: 2rem 0;
-            position: relative;
-        }
-        .timeline::before {
-            content: '';
-            position: absolute;
-            top: 30px;
-            left: 10%;
-            right: 10%;
-            height: 2px;
-            background: linear-gradient(90deg, var(--highlight), #4facfe);
-        }
-        .timeline-item {
-            text-align: center;
-            flex: 1;
-            position: relative;
-        }
-        .timeline-dot {
-            width: 20px;
-            height: 20px;
-            border-radius: 50%;
-            background: var(--highlight);
-            margin: 0 auto 1rem;
-            position: relative;
-            z-index: 1;
-        }
-        .timeline-year { font-size: 1.2rem; font-weight: 700; color: var(--highlight); }
-        .timeline-text { font-size: 0.9rem; color: var(--text-muted); margin-top: 0.5rem; }
-        .stats-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 2rem;
-            max-width: 900px;
-            width: 100%;
-            margin: 2rem 0;
-        }
-        .stat-card {
-            background: rgba(255,255,255,0.05);
-            border-radius: 15px;
-            padding: 1.5rem;
-            text-align: center;
-            border: 1px solid rgba(255,255,255,0.1);
-        }
-        .stat-number { font-size: 2.5rem; font-weight: 700; color: var(--highlight); }
-        .stat-label { color: var(--text-muted); margin-top: 0.5rem; }
-        .quote {
-            font-style: italic;
-            font-size: 1.3rem;
-            text-align: center;
-            max-width: 800px;
-            margin: 2rem auto;
-            padding: 2rem;
-            border-top: 1px solid rgba(255,255,255,0.1);
-            border-bottom: 1px solid rgba(255,255,255,0.1);
-        }
-        .quote-author { color: var(--highlight); margin-top: 1rem; font-style: normal; }
-        .nav-dots {
-            position: fixed;
-            right: 2rem;
-            top: 50%;
-            transform: translateY(-50%);
-            display: flex;
-            flex-direction: column;
-            gap: 0.5rem;
-            z-index: 100;
-        }
-        .nav-dot {
-            width: 10px;
-            height: 10px;
-            border-radius: 50%;
-            background: rgba(255,255,255,0.3);
-            cursor: pointer;
-            transition: all 0.3s;
-        }
-        .nav-dot:hover, .nav-dot.active { background: var(--highlight); transform: scale(1.3); }
-        .warning { color: #ffc800; }
-        .step-badge {
-            display: inline-block;
-            width: 40px;
-            height: 40px;
-            line-height: 40px;
-            text-align: center;
-            border-radius: 50%;
-            background: var(--highlight);
-            color: #fff;
-            font-weight: 700;
-            margin-right: 1rem;
-        }
-        @media (max-width: 768px) {
-            .slide-title { font-size: 2rem; }
-            .two-col { grid-template-columns: 1fr; }
-            .stats-grid { grid-template-columns: 1fr; }
-            .timeline { flex-direction: column; }
-            .timeline::before { display: none; }
-        }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+<meta name="format-detection" content="telephone=no">
+<title>Academician Zhang Bo - AI: Current State and Future</title>
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; word-wrap: break-word; overflow-wrap: break-word; }
+html, body { height: 100%; width: 100%; overflow: hidden; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif; background: #1E1045; color: white; }
+body { position: fixed; top: 0; left: 0; right: 0; bottom: 0; }
+
+.deck { height: 100%; width: 100%; overflow-x: auto; overflow-y: hidden; -webkit-overflow-scrolling: touch; scroll-snap-type: x mandatory; display: flex; flex-direction: row; white-space: nowrap; }
+.deck::-webkit-scrollbar { display: none; }
+
+.slide { display: inline-block; width: 100vw; height: 100%; min-width: 100vw; min-height: 100%; scroll-snap-align: start; position: relative; vertical-align: top; overflow: hidden; padding: 48px 32px 80px; }
+
+.bg-1 { background: linear-gradient(160deg, #2E1B5E 0%, #5B3FA0 40%, #7B5FB8 100%); }
+.bg-2 { background: linear-gradient(160deg, #251450 0%, #4E3590 40%, #6B50A8 100%); }
+.bg-3 { background: linear-gradient(160deg, #1E1045 0%, #452D80 40%, #5F45A0 100%); }
+
+.content { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 100%; max-width: 600px; padding: 0 24px; z-index: 2; }
+
+.deco-line { width: 48px; height: 3px; background: #C9A84C; margin-bottom: 24px; border-radius: 2px; }
+.kicker { font-size: 14px; letter-spacing: 0.2em; text-transform: uppercase; color: rgba(255,255,255,0.5); margin-bottom: 16px; font-weight: 500; }
+
+h1 { font-size: 40px; font-weight: 700; line-height: 1.2; margin-bottom: 24px; color: white; }
+h1 .highlight { color: #E6D5FF; }
+
+.text-block { font-size: 20px; line-height: 1.8; color: rgba(255,255,255,0.7); margin-bottom: 16px; }
+
+.bullet-list { list-style: none; margin-top: 12px; }
+.bullet-list li { font-size: 20px; line-height: 1.9; color: rgba(255,255,255,0.7); padding-left: 24px; position: relative; margin-bottom: 12px; }
+.bullet-list li::before { content: "·"; position: absolute; left: 0; color: #C9A84C; font-weight: bold; font-size: 24px; }
+
+.tag-row { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 20px; }
+.tag { padding: 12px 18px; background: rgba(255,255,255,0.1); border-radius: 10px; font-size: 15px; font-weight: 500; color: white; }
+.tag-highlight { background: rgba(255,255,255,0.2); }
+
+.step-grid { display: grid; grid-template-columns: 1fr; gap: 14px; margin-top: 20px; }
+.step-item { background: rgba(255,255,255,0.07); border-radius: 14px; padding: 18px 22px; border: 1px solid rgba(255,255,255,0.1); }
+.step-item .num { font-size: 26px; font-weight: 700; color: #C9A84C; margin-bottom: 6px; }
+.step-item .label { font-size: 18px; font-weight: 600; color: white; margin-bottom: 4px; }
+.step-item .desc { font-size: 15px; color: rgba(255,255,255,0.5); line-height: 1.6; }
+
+.quote-block { text-align: center; max-width: 540px; margin: 0 auto; }
+.quote-block .quote-mark { font-size: 64px; line-height: 1; color: #C9A84C; opacity: 0.35; margin-bottom: -12px; }
+.quote-block p { font-size: 22px; line-height: 1.8; color: white; font-style: italic; font-weight: 500; }
+.quote-block .attribution { font-size: 16px; color: rgba(255,255,255,0.5); margin-top: 16px; }
+
+.scroll-hint { position: absolute; bottom: 100px; left: 50%; transform: translateX(-50%); display: flex; flex-direction: column; align-items: center; gap: 8px; z-index: 3; }
+.scroll-hint-text { font-size: 12px; letter-spacing: 0.1em; color: rgba(255,255,255,0.4); }
+.scroll-arrow { width: 16px; height: 16px; border-right: 2px solid rgba(255,255,255,0.3); border-bottom: 2px solid rgba(255,255,255,0.3); transform: rotate(-45deg); animation: bounceRight 2s ease-in-out infinite; }
+@keyframes bounceRight { 0%, 100% { transform: rotate(-45deg) translateX(0); } 50% { transform: rotate(-45deg) translateX(5px); } }
+
+.big-num { font-size: 56px; font-weight: 700; color: #C9A84C; line-height: 1; margin-bottom: 12px; }
+
+.progress-bar { position: fixed; bottom: 0; left: 0; right: 0; height: 4px; background: rgba(255,255,255,0.1); z-index: 10; }
+.progress-fill { height: 100%; background: #C9A84C; width: 0%; transition: width 0.3s ease; }
+.progress-text { position: fixed; bottom: 10px; right: 16px; font-size: 12px; color: rgba(255,255,255,0.4); z-index: 10; }
+
+.step-badge { display: inline-block; background: #C9A84C; color: #1E1045; font-size: 13px; font-weight: 700; padding: 6px 14px; border-radius: 20px; margin-bottom: 16px; }
+
+@media (max-width: 768px) { 
+  .slide { padding: 40px 24px 80px; } 
+  .content { max-width: 100%; } 
+  h1 { font-size: 32px; } 
+  .text-block { font-size: 18px; } 
+  .bullet-list li { font-size: 18px; } 
+  .step-item .label { font-size: 16px; }
+  .step-item .desc { font-size: 14px; }
+  .quote-block p { font-size: 20px; }
+}
+</style>
 </head>
 <body>
+<div class="deck" id="deck">
 
-<!-- Slide 1: Cover -->
-<section class="slide">
-    <div style="text-align: center;">
-        <p style="color: var(--text-muted); font-size: 1.2rem; margin-bottom: 1rem;">Tsinghua University · Academician Zhang Bo</p>
-        <h1 class="slide-title" style="font-size: 3.5rem;">Artificial Intelligence:<br>Current State and Future</h1>
-        <p class="slide-subtitle">From Knowledge-Driven to Data-Driven<br>to Generative Models</p>
-        <p style="color: var(--text-muted); margin-top: 3rem;">→ Scroll to explore</p>
+  <!-- 1. Cover -->
+  <div class="slide bg-1">
+    <div class="content">
+      <div class="deco-line"></div>
+      <p class="kicker">Tsinghua University · Academician Zhang Bo</p>
+      <h1>Artificial Intelligence:<br><span class="highlight">Current State and Future</span></h1>
+      <p class="text-block">From Knowledge-Driven to Data-Driven<br>to Generative Models</p>
     </div>
-</section>
+    <div class="scroll-hint"><span class="scroll-hint-text">Swipe to explore</span><div class="scroll-arrow"></div></div>
+  </div>
 
-<!-- Slide 2: Person -->
-<section class="slide">
-    <h2 class="slide-title">Zhang Bo</h2>
-    <div class="content-card">
-        <ul>
-            <li>Born 1935, Fuqing, Fujian</li>
-            <li>Member, Chinese Academy of Sciences (1995)</li>
-            <li>Professor, Department of Computer Science, Tsinghua University</li>
-            <li>Honorary Dean, Institute for Artificial Intelligence, Tsinghua</li>
-        </ul>
-        <div class="highlight-box" style="margin-top: 2rem;">
-            <h3>Key Achievements</h3>
-            <ul>
-                <li>First Chinese to publish at an international AI conference (1983)</li>
-                <li>First Chinese to win an international AI award (1984)</li>
-                <li>Founded China's first intelligent robotics lab (1985)</li>
-                <li>Trained China's first AI PhD (1987)</li>
-                <li>Over 60 years on the Tsinghua podium</li>
-            </ul>
-        </div>
+  <!-- 2. Person -->
+  <div class="slide bg-2">
+    <div class="content">
+      <div class="deco-line"></div>
+      <p class="kicker">Profile</p>
+      <h1>Zhang Bo</h1>
+      <ul class="bullet-list">
+        <li>Born 1935, Fuqing, Fujian</li>
+        <li>Member, Chinese Academy of Sciences (1995)</li>
+        <li>Professor, Dept. of Computer Science, Tsinghua</li>
+        <li>Honorary Dean, Institute for AI, Tsinghua</li>
+      </ul>
+      <div class="step-item" style="margin-top: 16px;">
+        <div class="label">Key Achievements</div>
+        <div class="desc">First Chinese to publish at an int'l AI conference (1983)</div>
+        <div class="desc">First Chinese to win an international AI award (1984)</div>
+        <div class="desc">Founded China's first intelligent robotics lab (1985)</div>
+        <div class="desc">Trained China's first AI PhD (1987)</div>
+        <div class="desc">Over 60 years on the Tsinghua podium</div>
+      </div>
     </div>
-</section>
+  </div>
 
-<!-- Slide 3: Two Schools -->
-<section class="slide">
-    <h2 class="slide-title">Behaviorism vs. Internalism</h2>
-    <div class="two-col">
-        <div class="col-card">
-            <span class="tag tag-mainstream">Mainstream</span>
-            <h3>Behaviorism</h3>
-            <p>Simulate human behavior · Pursue similarity</p>
-            <p>Do not seek consistency in working principles</p>
-            <p style="margin-top: 1rem; color: var(--text-muted);">"Black box" methodology: focus only on input-output</p>
+  <!-- 3. Two Schools -->
+  <div class="slide bg-3">
+    <div class="content">
+      <div class="deco-line"></div>
+      <p class="kicker">Two Schools</p>
+      <h1>Behaviorism vs. Internalism</h1>
+      <div class="step-grid" style="margin-top: 16px;">
+        <div class="step-item" style="border-left: 3px solid #7EC8A0;">
+          <div class="num" style="color: #7EC8A0;">Mainstream</div>
+          <div class="label">Behaviorism</div>
+          <div class="desc" style="font-size: 16px;">Simulate human behavior · Pursue similarity</div>
+          <div class="desc" style="font-size: 16px;">Do not seek consistency in working principles</div>
         </div>
-        <div class="col-card">
-            <span class="tag tag-minority">Minority</span>
-            <h3>Internalism</h3>
-            <p>Simulate brain neural networks · Pursue consistency</p>
-            <p>Explore the same path to intelligence as humans</p>
+        <div class="step-item" style="border-left: 3px solid #9B7ED8;">
+          <div class="num" style="color: #9B7ED8;">Minority</div>
+          <div class="label">Internalism</div>
+          <div class="desc" style="font-size: 16px;">Simulate brain neural networks · Pursue consistency</div>
+          <div class="desc" style="font-size: 16px;">Explore the same path to intelligence as humans</div>
         </div>
+      </div>
     </div>
-</section>
+  </div>
 
-<!-- Slide 4: Behaviorism -->
-<section class="slide">
-    <span class="tag tag-mainstream">Mainstream School</span>
-    <h2 class="slide-title" style="margin-top: 1rem;">Behaviorism</h2>
-    <div class="content-card">
-        <p style="font-size: 1.3rem; color: #fff; margin-bottom: 2rem;">Use machines to simulate human behavior</p>
-        <ul>
-            <li>Pursue similarity</li>
-            <li>Do not seek consistency in working principles</li>
-            <li>"Black box" methodology: focus only on input-output</li>
-            <li>Explore a machine intelligence path different from humans</li>
-        </ul>
-        <div style="margin-top: 2rem; padding: 1rem; background: rgba(233,69,96,0.1); border-radius: 10px;">
-            <p style="color: var(--highlight); font-weight: 600;">Deep Learning &nbsp;·&nbsp; Large Language Models</p>
-        </div>
+  <!-- 4. Behaviorism -->
+  <div class="slide bg-1">
+    <div class="content">
+      <div class="deco-line"></div>
+      <p class="kicker">Mainstream School</p>
+      <h1>Behaviorism</h1>
+      <p class="text-block">Use machines to simulate human behavior</p>
+      <ul class="bullet-list">
+        <li>Pursue <strong style="color: white;">similarity</strong></li>
+        <li>Do not seek consistency in working principles</li>
+        <li>"Black box" methodology: focus only on input-output</li>
+        <li>Explore a machine intelligence path different from humans</li>
+      </ul>
+      <div class="tag-row">
+        <div class="tag">Deep Learning</div>
+        <div class="tag tag-highlight">Large Language Models</div>
+      </div>
     </div>
-</section>
+  </div>
 
-<!-- Slide 5: Internalism -->
-<section class="slide">
-    <span class="tag tag-minority">Minority</span>
-    <h2 class="slide-title" style="margin-top: 1rem;">Internalism · Brain-Centered</h2>
-    <div class="content-card">
-        <p style="font-size: 1.3rem; color: #fff; margin-bottom: 2rem;">Simulate the working principles of brain neural networks</p>
-        <ul>
-            <li>Pursue consistency between machine and brain neural mechanisms</li>
-            <li>Explore the same path to intelligence as humans</li>
-        </ul>
-        <div class="two-col" style="margin-top: 2rem;">
-            <div class="col-card">
-                <h3>Weak Version</h3>
-                <p><strong>Brain-Inspired Computing</strong></p>
-                <p>Borrow from brain functional architecture; implementation may differ</p>
-            </div>
-            <div class="col-card">
-                <h3>Strong Version</h3>
-                <p><strong>Brain-Like Computing</strong></p>
-                <p>High consistency at the neural mechanism level, e.g., neuromorphic chips</p>
-            </div>
+  <!-- 5. Internalism -->
+  <div class="slide bg-2">
+    <div class="content">
+      <div class="deco-line"></div>
+      <p class="kicker">Minority</p>
+      <h1>Internalism · Brain-Centered</h1>
+      <p class="text-block">Simulate the working principles of brain neural networks</p>
+      <ul class="bullet-list">
+        <li>Pursue consistency between machine and brain neural mechanisms</li>
+        <li>Explore the same path to intelligence as humans</li>
+      </ul>
+      <div class="step-grid" style="margin-top: 16px;">
+        <div class="step-item">
+          <div class="num">Weak</div>
+          <div class="label">Brain-Inspired Computing</div>
+          <div class="desc">Borrow from brain functional architecture; implementation may differ</div>
         </div>
+        <div class="step-item">
+          <div class="num">Strong</div>
+          <div class="label">Brain-Like Computing</div>
+          <div class="desc">High consistency at neural mechanism level, e.g. neuromorphic chips</div>
+        </div>
+      </div>
     </div>
-</section>
+  </div>
 
-<!-- Slide 6: Agent -->
-<section class="slide">
-    <h2 class="slide-title">Intelligent Agent</h2>
-    <p class="slide-subtitle">Perception · Thinking · Action</p>
-    <div class="content-card">
-        <p style="font-size: 1.2rem; color: #fff; margin-bottom: 2rem;">Closed-loop architecture for continuous operation in an environment:</p>
-        <div style="display: flex; justify-content: center; gap: 2rem; margin: 2rem 0; flex-wrap: wrap;">
-            <div style="text-align: center; padding: 1.5rem 2rem; background: rgba(233,69,96,0.2); border-radius: 15px;">
-                <div style="font-size: 2rem;">👁</div>
-                <p style="color: #fff; margin-top: 0.5rem;">Perception</p>
-                <p style="font-size: 0.9rem;">Acquire info from environment</p>
-            </div>
-            <div style="font-size: 2rem; color: var(--highlight);">→</div>
-            <div style="text-align: center; padding: 1.5rem 2rem; background: rgba(79,172,254,0.2); border-radius: 15px;">
-                <div style="font-size: 2rem;">🧠</div>
-                <p style="color: #fff; margin-top: 0.5rem;">Thinking</p>
-                <p style="font-size: 0.9rem;">Process information, decide</p>
-            </div>
-            <div style="font-size: 2rem; color: var(--highlight);">→</div>
-            <div style="text-align: center; padding: 1.5rem 2rem; background: rgba(255,200,50,0.2); border-radius: 15px;">
-                <div style="font-size: 2rem;">⚡</div>
-                <p style="color: #fff; margin-top: 0.5rem;">Action</p>
-                <p style="font-size: 0.9rem;">Act upon environment</p>
-            </div>
-        </div>
-        <div class="highlight-box">
-            <p><strong>Emotion & Motivation Regulation:</strong> Located at the top level, modulating the three modules of perception, thinking, and action</p>
-        </div>
+  <!-- 6. Agent -->
+  <div class="slide bg-3">
+    <div class="content">
+      <div class="deco-line"></div>
+      <p class="kicker">Intelligent Agent</p>
+      <h1>Perception · Thinking · Action</h1>
+      <p class="text-block">Closed-loop architecture for continuous operation:</p>
+      <ul class="bullet-list">
+        <li><strong style="color: white;">Perception</strong> → Acquire info from environment</li>
+        <li><strong style="color: white;">Thinking</strong> → Process information, decide</li>
+        <li><strong style="color: white;">Action</strong> → Act upon environment</li>
+      </ul>
+      <div class="step-item" style="margin-top: 16px;">
+        <div class="label" style="color: #F0D878;">Emotion & Motivation Regulation</div>
+        <div class="desc">Located at the top level, modulating the three modules</div>
+      </div>
     </div>
-</section>
+  </div>
 
-<!-- Slide 7: Four Tasks -->
-<section class="slide">
-    <h2 class="slide-title">Four Fundamental Tasks</h2>
-    <p class="slide-subtitle">Building computational models for intelligent behavior</p>
-    <div class="stats-grid">
-        <div class="stat-card">
-            <div class="stat-number">01</div>
-            <div class="stat-label" style="color: #fff; font-weight: 600;">Rational Thinking</div>
-            <div class="stat-label">Reasoning, planning, decision-making</div>
+  <!-- 7. Four Tasks -->
+  <div class="slide bg-1">
+    <div class="content">
+      <div class="deco-line"></div>
+      <p class="kicker">Four Fundamental Tasks</p>
+      <h1>Building Computational Models</h1>
+      <div class="step-grid">
+        <div class="step-item">
+          <div class="num">01</div>
+          <div class="label">Rational Thinking</div>
+          <div class="desc">Reasoning, planning, decision-making</div>
         </div>
-        <div class="stat-card">
-            <div class="stat-number">02</div>
-            <div class="stat-label" style="color: #fff; font-weight: 600;">Sensation</div>
-            <div class="stat-label">Vision, hearing, touch</div>
+        <div class="step-item">
+          <div class="num">02</div>
+          <div class="label">Sensation</div>
+          <div class="desc">Vision, hearing, touch</div>
         </div>
-        <div class="stat-card">
-            <div class="stat-number">03</div>
-            <div class="stat-label" style="color: #fff; font-weight: 600;">Motor Control</div>
-            <div class="stat-label">Movement, robot manipulation</div>
+        <div class="step-item">
+          <div class="num">03</div>
+          <div class="label">Motor Control</div>
+          <div class="desc">Movement, robot manipulation</div>
         </div>
-        <div class="stat-card" style="grid-column: 2;">
-            <div class="stat-number">04</div>
-            <div class="stat-label" style="color: #fff; font-weight: 600;">Emotion & Intention</div>
-            <div class="stat-label">Frontier challenge in AI</div>
+        <div class="step-item" style="border: 1px solid rgba(240,216,120,0.3);">
+          <div class="num" style="color: #F0D878;">04</div>
+          <div class="label">Emotion & Intention</div>
+          <div class="desc">Frontier challenge in AI</div>
         </div>
+      </div>
     </div>
-</section>
+  </div>
 
-<!-- Slide 8: Three Generations -->
-<section class="slide">
-    <h2 class="slide-title">Three Generations of AI</h2>
-    <div class="timeline">
-        <div class="timeline-item">
-            <div class="timeline-dot"></div>
-            <div class="timeline-year">1st Gen</div>
-            <div class="timeline-text">Knowledge-Driven<br>Symbolism<br>From 1956</div>
+  <!-- 8. Three Generations -->
+  <div class="slide bg-2">
+    <div class="content">
+      <div class="deco-line"></div>
+      <p class="kicker">Development History</p>
+      <h1>Three Generations of AI</h1>
+      <div class="step-grid" style="margin-top: 16px;">
+        <div class="step-item" style="border-left: 3px solid #9B7ED8;">
+          <div class="num" style="color: #9B7ED8;">1st Gen</div>
+          <div class="label">Knowledge-Driven · Symbolism</div>
+          <div class="desc">From 1956 · Reasoning based on knowledge & experience</div>
         </div>
-        <div class="timeline-item">
-            <div class="timeline-dot" style="background: #4facfe;"></div>
-            <div class="timeline-year" style="color: #4facfe;">2nd Gen</div>
-            <div class="timeline-text">Data-Driven<br>Connectionism<br>From 1980s</div>
+        <div class="step-item" style="border-left: 3px solid #7EC8A0;">
+          <div class="num" style="color: #7EC8A0;">2nd Gen</div>
+          <div class="label">Data-Driven · Connectionism</div>
+          <div class="desc">From 1980s · Deep learning based on big data</div>
         </div>
-        <div class="timeline-item">
-            <div class="timeline-dot" style="background: #ffc800;"></div>
-            <div class="timeline-year" style="color: #ffc800;">3rd Gen</div>
-            <div class="timeline-text">Knowledge+Data Fusion<br>Proposed 2020</div>
+        <div class="step-item" style="border-left: 3px solid #F0D878;">
+          <div class="num" style="color: #F0D878;">3rd Gen</div>
+          <div class="label">Knowledge + Data Fusion</div>
+          <div class="desc">Proposed 2020 · Interpretable, robust AI theory</div>
         </div>
+      </div>
+      <p class="text-block" style="margin-top: 16px; font-size: 15px; color: rgba(255,255,255,0.5);">1978: Tsinghua established AI teaching & research group</p>
     </div>
-    <p style="color: var(--text-muted); margin-top: 2rem;">1978: Tsinghua established AI teaching & research group</p>
-</section>
+  </div>
 
-<!-- Slide 9: First Generation -->
-<section class="slide">
-    <span class="tag tag-gen">First Generation · From 1956</span>
-    <h2 class="slide-title" style="margin-top: 1rem;">Knowledge-Driven</h2>
-    <div class="content-card">
-        <p style="font-size: 1.2rem; color: #fff; margin-bottom: 1.5rem;">Birth: 1956 Dartmouth Summer Research Project</p>
-        <ul>
-            <li>John McCarthy, Marvin Minsky, and other pioneers</li>
-            <li>Proposed: "Every aspect of learning can be precisely simulated by machines"</li>
-            <li>Birth of Symbolism</li>
-        </ul>
-        <div class="highlight-box">
-            <p><strong>Core Goal:</strong> Make machines think like humans (reasoning, decision-making, diagnosis, design, planning, etc.)</p>
-        </div>
+  <!-- 9. First Generation -->
+  <div class="slide bg-3">
+    <div class="content">
+      <div class="deco-line"></div>
+      <p class="kicker">First Generation · From 1956</p>
+      <h1>Knowledge-Driven</h1>
+      <p class="text-block"><strong style="color: white;">Birth:</strong> 1956 Dartmouth Summer Research Project</p>
+      <ul class="bullet-list">
+        <li>John McCarthy, Marvin Minsky, and other pioneers</li>
+        <li>Proposed: "Every aspect of learning can be simulated by machines"</li>
+        <li>Birth of Symbolism</li>
+      </ul>
+      <div class="step-item" style="margin-top: 16px;">
+        <div class="label">Core Goal</div>
+        <div class="desc">Make machines think like humans (reasoning, decision-making, diagnosis, planning)</div>
+      </div>
     </div>
-</section>
+  </div>
 
-<!-- Slide 10: First Gen Architecture -->
-<section class="slide">
-    <h2 class="slide-title">Knowledge-Driven Model</h2>
-    <p class="slide-subtitle">Physical symbol reasoning based on knowledge and experience</p>
-    <div class="content-card">
-        <div style="text-align: center; margin: 2rem 0;">
-            <div style="display: inline-flex; align-items: center; gap: 1rem; flex-wrap: wrap; justify-content: center;">
-                <div style="padding: 1rem 2rem; background: rgba(233,69,96,0.2); border-radius: 10px;">Expert</div>
-                <span style="font-size: 1.5rem;">→</span>
-                <div style="padding: 1rem 2rem; background: rgba(79,172,254,0.2); border-radius: 10px;">Knowledge Base</div>
-                <span style="font-size: 1.5rem;">→</span>
-                <div style="padding: 1rem 2rem; background: rgba(255,200,50,0.2); border-radius: 10px;">Inference Engine</div>
-            </div>
-            <p style="margin-top: 1rem; color: var(--text-muted);">User ↔ System bidirectional interaction</p>
-        </div>
-        <p style="text-align: center; color: var(--text-muted);">Newell & Simon, ACM 1976</p>
+  <!-- 10. Knowledge Model -->
+  <div class="slide bg-1">
+    <div class="content">
+      <div class="deco-line"></div>
+      <p class="kicker">First Gen · Core Architecture</p>
+      <h1>Knowledge-Driven Model</h1>
+      <p class="text-block">Physical symbol reasoning based on knowledge and experience</p>
+      <ul class="bullet-list">
+        <li>Expert → Knowledge Base (manually encoded)</li>
+        <li>Inference Engine → Symbol processing & search</li>
+        <li>User ↔ System bidirectional interaction</li>
+      </ul>
+      <p class="text-block" style="margin-top: 16px; font-size: 15px; color: rgba(255,255,255,0.5);">Newell & Simon, ACM 1976</p>
     </div>
-</section>
+  </div>
 
-<!-- Slide 11: MYCIN -->
-<section class="slide">
-    <h2 class="slide-title">MYCIN Expert System</h2>
-    <p class="slide-subtitle">Early 1970s · Stanford University & affiliated hospitals</p>
-    <div class="content-card">
-        <ul>
-            <li>Diagnosis of blood bacterial infections & coagulation disorders</li>
-            <li>Antibiotic prescription recommendations</li>
-            <li>600+ expert rules</li>
-        </ul>
-        <div class="highlight-box" style="margin-top: 1.5rem;">
-            <p><strong>Five-Module Architecture:</strong> Consultation → Explanation → Knowledge Acquisition → Knowledge Base → Inference Engine</p>
-        </div>
+  <!-- 11. MYCIN -->
+  <div class="slide bg-2">
+    <div class="content">
+      <div class="deco-line"></div>
+      <p class="kicker">First Gen · Classic Case</p>
+      <h1>MYCIN Expert System</h1>
+      <p class="text-block">Early 1970s · Stanford University & affiliated hospitals</p>
+      <ul class="bullet-list">
+        <li>Diagnosis of blood bacterial infections</li>
+        <li>Antibiotic prescription recommendations</li>
+        <li>600+ expert rules</li>
+      </ul>
+      <div class="step-item" style="margin-top: 16px;">
+        <div class="label">Five-Module Architecture</div>
+        <div class="desc">Consultation → Explanation → Knowledge Acquisition → Knowledge Base → Inference Engine</div>
+      </div>
     </div>
-</section>
+  </div>
 
-<!-- Slide 12: Chinese Practice -->
-<section class="slide">
-    <h2 class="slide-title">Guan Youbo TCM Diagnosis System</h2>
-    <p class="slide-subtitle">1980s · Xiyuan Hospital & Institute of Automation, CAS</p>
-    <div class="content-card">
-        <ul>
-            <li>Experience of renowned TCM liver disease expert Guan Youbo</li>
-            <li>Hepatitis diagnosis knowledge base + inference engine</li>
-            <li>Doctors input patient data; system outputs diagnosis</li>
-        </ul>
-        <div class="highlight-box" style="margin-top: 1.5rem;">
-            <p>A representative of Chinese expert systems applied to traditional medicine</p>
-        </div>
+  <!-- 12. Guan Youbo -->
+  <div class="slide bg-3">
+    <div class="content">
+      <div class="deco-line"></div>
+      <p class="kicker">First Gen · China Practice</p>
+      <h1>Guan Youbo TCM System</h1>
+      <p class="text-block">1980s · Xiyuan Hospital & Institute of Automation, CAS</p>
+      <ul class="bullet-list">
+        <li>Experience of renowned TCM liver disease expert Guan Youbo</li>
+        <li>Hepatitis diagnosis knowledge base + inference engine</li>
+        <li>Doctors input patient data; system outputs diagnosis</li>
+      </ul>
+      <p class="text-block" style="margin-top: 16px; font-size: 15px; color: rgba(255,255,255,0.5);">A representative of Chinese expert systems in traditional medicine</p>
     </div>
-</section>
+  </div>
 
-<!-- Slide 13: Deep Blue -->
-<section class="slide">
-    <h2 class="slide-title">Deep Blue · 1997</h2>
-    <p class="slide-subtitle">Knowledge + Algorithms + Computing Power</p>
-    <div class="stats-grid">
-        <div class="stat-card">
-            <div class="stat-number">700K</div>
-            <div class="stat-label">Master chess games</div>
+  <!-- 13. Deep Blue -->
+  <div class="slide bg-1">
+    <div class="content">
+      <div class="deco-line"></div>
+      <p class="kicker">First Gen · Pinnacle</p>
+      <h1>Deep Blue · 1997</h1>
+      <p class="text-block">Knowledge + Algorithms + Computing Power</p>
+      <div class="step-grid" style="margin-top: 16px;">
+        <div class="step-item">
+          <div class="num">700K</div>
+          <div class="label">Master chess games</div>
+          <div class="desc">8,000 evaluation function parameters</div>
         </div>
-        <div class="stat-card">
-            <div class="stat-number">8,000</div>
-            <div class="stat-label">Evaluation function parameters</div>
+        <div class="step-item">
+          <div class="num">α-β</div>
+          <div class="label">Pruning parallel algorithm</div>
         </div>
-        <div class="stat-card">
-            <div class="stat-number">200M</div>
-            <div class="stat-label">Positions/second</div>
-        </div>
+      </div>
+      <div class="step-item" style="margin-top: 14px; text-align: center;">
+        <div class="big-num" style="font-size: 42px;">200M</div>
+        <div class="label">Positions/second</div>
+        <div class="desc">Average lookahead: 8-12 moves</div>
+      </div>
     </div>
-    <p style="text-align: center; color: var(--text-muted); margin-top: 1rem;">Average lookahead: 8-12 moves · α-β pruning parallel algorithm</p>
-</section>
+  </div>
 
-<!-- Slide 14: Meituan -->
-<section class="slide">
-    <h2 class="slide-title">Meituan Instant Logistics</h2>
-    <p class="slide-subtitle">Platform → Delivery → Rider</p>
-    <div class="content-card">
-        <ul>
-            <li>Real-time SLA: estimated delivery time</li>
-            <li>Delivery fee pricing</li>
-            <li>Delivery scope</li>
-        </ul>
-        <div style="display: flex; justify-content: center; gap: 2rem; margin-top: 2rem;">
-            <div style="text-align: center;">
-                <div style="font-size: 2rem; color: var(--highlight);">💰</div>
-                <p>Cost</p>
-            </div>
-            <div style="text-align: center;">
-                <div style="font-size: 2rem; color: #4facfe;">⚡</div>
-                <p>Efficiency</p>
-            </div>
-            <div style="text-align: center;">
-                <div style="font-size: 2rem; color: #ffc800;">😊</div>
-                <p>Experience</p>
-            </div>
-        </div>
+  <!-- 14. Meituan -->
+  <div class="slide bg-2">
+    <div class="content">
+      <div class="deco-line"></div>
+      <p class="kicker">Modern Application</p>
+      <h1>Meituan Instant Logistics</h1>
+      <p class="text-block">Platform → Delivery → Rider</p>
+      <ul class="bullet-list">
+        <li>Real-time SLA: estimated delivery time</li>
+        <li>Delivery fee pricing</li>
+        <li>Delivery scope</li>
+      </ul>
+      <div class="tag-row">
+        <div class="tag">Cost</div>
+        <div class="tag tag-highlight">Efficiency</div>
+        <div class="tag">Experience</div>
+      </div>
     </div>
-</section>
+  </div>
 
-<!-- Slide 15: High-Speed Rail -->
-<section class="slide">
-    <h2 class="slide-title">China's High-Speed Rail</h2>
-    <p class="slide-subtitle">Market for technology, breaking monopolies, achieving surpassing</p>
-    <div class="timeline">
-        <div class="timeline-item">
-            <div class="timeline-dot"></div>
-            <div class="timeline-year">2004</div>
-            <div class="timeline-text">¥350M/train<br>Siemens arrogantly out</div>
+  <!-- 15. High-Speed Rail -->
+  <div class="slide bg-3">
+    <div class="content">
+      <div class="deco-line"></div>
+      <p class="kicker">Independent Innovation</p>
+      <h1>China's High-Speed Rail</h1>
+      <p class="text-block">Market for technology, breaking monopolies, achieving surpassing</p>
+      <div class="step-grid" style="margin-top: 16px;">
+        <div class="step-item">
+          <div class="num">2004</div>
+          <div class="label">¥350M/train</div>
+          <div class="desc">Siemens arrogantly out</div>
         </div>
-        <div class="timeline-item">
-            <div class="timeline-dot" style="background: #4facfe;"></div>
-            <div class="timeline-year" style="color: #4facfe;">2005</div>
-            <div class="timeline-text">¥190M/train<br>Same rival, price halved</div>
+        <div class="step-item">
+          <div class="num">2005</div>
+          <div class="label">¥190M/train</div>
+          <div class="desc">Same rival, price halved</div>
         </div>
-        <div class="timeline-item">
-            <div class="timeline-dot" style="background: #ffc800;"></div>
-            <div class="timeline-year" style="color: #ffc800;">2025</div>
-            <div class="timeline-text">98% localization<br>453km/h · 70% global market</div>
+        <div class="step-item" style="background: rgba(255,255,255,0.12); border: 1px solid rgba(255,255,255,0.2);">
+          <div class="num" style="color: white;">2025</div>
+          <div class="label">98% localization</div>
+          <div class="desc">453km/h · 70% global market</div>
         </div>
+      </div>
     </div>
-</section>
+  </div>
 
-<!-- Slide 16: Marketing -->
-<section class="slide">
-    <h2 class="slide-title">Consumer Marketing</h2>
-    <div class="content-card">
-        <ul>
-            <li><strong>Consumer Insights:</strong> Identifying consumer trends from social media</li>
-            <li><strong>Scenario-based Recommendations:</strong> From single products to lifestyle "solutions"</li>
-            <li><strong>Personalized Content:</strong> Same product, differentiated messaging</li>
-        </ul>
+  <!-- 16. Marketing -->
+  <div class="slide bg-1">
+    <div class="content">
+      <div class="deco-line"></div>
+      <p class="kicker">Expert System</p>
+      <h1>Consumer Marketing</h1>
+      <ul class="bullet-list">
+        <li>Consumer insights: identifying trends from social media</li>
+        <li>Scenario-based recommendations: from single product to lifestyle "solutions"</li>
+        <li>Personalized content: same product, differentiated messaging</li>
+      </ul>
     </div>
-</section>
+  </div>
 
-<!-- Slide 17: Tsinghua Contribution -->
-<section class="slide">
-    <h2 class="slide-title">Tsinghua's Journey</h2>
-    <p class="slide-subtitle">From teaching group to national key laboratory</p>
-    <div class="timeline">
-        <div class="timeline-item">
-            <div class="timeline-dot"></div>
-            <div class="timeline-year">1978</div>
-            <div class="timeline-text">AI Teaching &<br>Research Group</div>
+  <!-- 17. Tsinghua -->
+  <div class="slide bg-2">
+    <div class="content">
+      <div class="deco-line"></div>
+      <p class="kicker">Tsinghua's Contribution</p>
+      <h1>From Teaching Group to National Lab</h1>
+      <div class="step-grid" style="margin-top: 16px;">
+        <div class="step-item">
+          <div class="num">1978</div>
+          <div class="label">AI Teaching & Research Group</div>
         </div>
-        <div class="timeline-item">
-            <div class="timeline-dot" style="background: #4facfe;"></div>
-            <div class="timeline-year" style="color: #4facfe;">1985</div>
-            <div class="timeline-text">Intelligent Robotics<br>Laboratory</div>
+        <div class="step-item">
+          <div class="num">1985</div>
+          <div class="label">Intelligent Robotics Laboratory</div>
         </div>
-        <div class="timeline-item">
-            <div class="timeline-dot" style="background: #ffc800;"></div>
-            <div class="timeline-year" style="color: #ffc800;">1990</div>
-            <div class="timeline-text">National Key<br>Laboratory</div>
+        <div class="step-item">
+          <div class="num">1990</div>
+          <div class="label">National Key Laboratory</div>
         </div>
+        <div class="step-item">
+          <div class="num">1980s</div>
+          <div class="label">Quotient Space Theory</div>
+          <div class="desc">First IJCAI paper (1983)</div>
+        </div>
+      </div>
     </div>
-    <div style="display: flex; justify-content: center; gap: 2rem; margin-top: 2rem;">
-        <div class="stat-card" style="max-width: 200px;">
-            <div class="stat-label">1980s</div>
-            <div class="stat-label" style="color: #fff;">Quotient Space Theory</div>
-        </div>
-        <div class="stat-card" style="max-width: 200px;">
-            <div class="stat-label">1983</div>
-            <div class="stat-label" style="color: #fff;">First IJCAI Paper</div>
-        </div>
-    </div>
-</section>
+  </div>
 
-<!-- Slide 18: Second Generation -->
-<section class="slide">
-    <span class="tag tag-mainstream">Second Generation · From 1980s</span>
-    <h2 class="slide-title" style="margin-top: 1rem;">Connectionism · Data-Driven</h2>
-    <div class="content-card">
-        <p style="font-size: 1.2rem; color: #fff; margin-bottom: 1.5rem;">Use deep artificial neural networks to simulate human perceptual behavior</p>
-        <ul>
-            <li>Connectionism = Sub-symbolism</li>
-            <li>Intelligence comes from connection weights of many simple units</li>
-            <li>Learn from data, not preset rules</li>
-        </ul>
-        <div class="highlight-box" style="margin-top: 1.5rem;">
-            <p><strong>Three Elements:</strong> Data + Algorithms + Computing Power</p>
-        </div>
+  <!-- 18. Second Generation -->
+  <div class="slide bg-3">
+    <div class="content">
+      <div class="deco-line"></div>
+      <p class="kicker">Second Generation · From 1980s</p>
+      <h1>Connectionism · Data-Driven</h1>
+      <p class="text-block">Use deep artificial neural networks<br>to simulate human perceptual behavior</p>
+      <ul class="bullet-list">
+        <li>Connectionism = Sub-symbolism</li>
+        <li>Intelligence comes from connection weights</li>
+        <li>Learn from data, not preset rules</li>
+      </ul>
+      <div class="step-item" style="margin-top: 16px;">
+        <div class="label">Three Elements</div>
+        <div class="desc">Data + Algorithms + Computing Power</div>
+      </div>
     </div>
-</section>
+  </div>
 
-<!-- Slide 19: Three Waves -->
-<section class="slide">
-    <h2 class="slide-title">Three Waves</h2>
-    <p class="slide-subtitle">From Perceptron to Big Data-ism</p>
-    <div class="stats-grid">
-        <div class="stat-card">
-            <div class="stat-label" style="color: var(--highlight); font-weight: 600;">1940s-1960s</div>
-            <div class="stat-label" style="color: #fff; margin: 0.5rem 0;">Perceptron Era</div>
-            <div class="stat-label">Neural-inspired "learnable machine" prototype</div>
+  <!-- 19. Three Waves -->
+  <div class="slide bg-1">
+    <div class="content">
+      <div class="deco-line"></div>
+      <p class="kicker">Second Gen · Three Waves</p>
+      <h1>From Perceptron to Big Data-ism</h1>
+      <div class="step-grid" style="margin-top: 16px;">
+        <div class="step-item">
+          <div class="num">1940s-1960s</div>
+          <div class="label">Perceptron Era</div>
+          <div class="desc">Neural-inspired "learnable machine" prototype</div>
         </div>
-        <div class="stat-card">
-            <div class="stat-label" style="color: #4facfe; font-weight: 600;">1980s-1990s</div>
-            <div class="stat-label" style="color: #fff; margin: 0.5rem 0;">Connectionism Revival</div>
-            <div class="stat-label">Backpropagation matures, statistical learning rises</div>
+        <div class="step-item">
+          <div class="num">1980s-1990s</div>
+          <div class="label">Connectionism Revival</div>
+          <div class="desc">Backpropagation matures, statistical learning rises</div>
         </div>
-        <div class="stat-card">
-            <div class="stat-label" style="color: #ffc800; font-weight: 600;">2000s-Present</div>
-            <div class="stat-label" style="color: #fff; margin: 0.5rem 0;">Big Data-ism</div>
-            <div class="stat-label">Deep learning explosion, compute & data scale-driven</div>
+        <div class="step-item">
+          <div class="num">2000s-Present</div>
+          <div class="label">Big Data-ism</div>
+          <div class="desc">Deep learning explosion, compute & data scale-driven</div>
         </div>
+      </div>
     </div>
-</section>
+  </div>
 
-<!-- Slide 20: Milestones -->
-<section class="slide">
-    <h2 class="slide-title">Key Milestones</h2>
-    <p class="slide-subtitle">Backpropagation & CNN</p>
-    <div class="content-card">
-        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem;">
-            <div>
-                <p style="color: var(--highlight); font-weight: 600;">1974</p>
-                <p>Werbos — Early form of backpropagation</p>
-            </div>
-            <div>
-                <p style="color: var(--highlight); font-weight: 600;">1980</p>
-                <p>Fukushima — CNN prototype: Neocognitron</p>
-            </div>
-            <div>
-                <p style="color: var(--highlight); font-weight: 600;">1986</p>
-                <p>Rumelhart-Hinton-Williams — Backpropagation as standard tool</p>
-            </div>
-            <div>
-                <p style="color: var(--highlight); font-weight: 600;">1989</p>
-                <p>LeCun — BP + convolution for handwriting recognition</p>
-            </div>
+  <!-- 20. Milestones -->
+  <div class="slide bg-2">
+    <div class="content">
+      <div class="deco-line"></div>
+      <p class="kicker">Second Gen · Key Milestones</p>
+      <h1>Backpropagation & CNN</h1>
+      <div class="step-grid" style="margin-top: 16px;">
+        <div class="step-item">
+          <div class="num">1974</div>
+          <div class="label">Werbos</div>
+          <div class="desc">Early form of backpropagation</div>
         </div>
+        <div class="step-item">
+          <div class="num">1980</div>
+          <div class="label">Fukushima</div>
+          <div class="desc">CNN prototype — Neocognitron</div>
+        </div>
+        <div class="step-item">
+          <div class="num">1986</div>
+          <div class="label">Rumelhart-Hinton-Williams</div>
+          <div class="desc">Backpropagation as standard tool</div>
+        </div>
+        <div class="step-item">
+          <div class="num">1989</div>
+          <div class="label">LeCun</div>
+          <div class="desc">BP + convolution for handwriting recognition</div>
+        </div>
+      </div>
     </div>
-</section>
+  </div>
 
-<!-- Slide 21: Perceptual Knowledge -->
-<section class="slide">
-    <h2 class="slide-title">Perceptual Knowledge Through Self-Learning</h2>
-    <div class="content-card">
-        <p style="font-size: 1.2rem; color: #fff; margin-bottom: 1.5rem;">Rational knowledge can be taught; perceptual knowledge must be self-learned</p>
-        <ul>
-            <li>Babies recognize their mother without being taught</li>
-            <li>Without language training, they can distinguish faces</li>
-            <li>This is the essence of "self-learning" in perceptual knowledge</li>
-        </ul>
-        <div class="highlight-box" style="margin-top: 1.5rem;">
-            <p>Deep learning is precisely the technical path that simulates this self-learning mechanism</p>
-        </div>
+  <!-- 21. Self-Learning -->
+  <div class="slide bg-3">
+    <div class="content">
+      <div class="deco-line"></div>
+      <p class="kicker">Second Gen · Core Mechanism</p>
+      <h1>Perceptual Knowledge Through Self-Learning</h1>
+      <p class="text-block">Rational knowledge can be taught;<br>perceptual knowledge must be self-learned</p>
+      <ul class="bullet-list">
+        <li>Babies recognize their mother without being taught</li>
+        <li>Without language training, they can distinguish faces</li>
+        <li>This is the essence of "self-learning"</li>
+      </ul>
+      <p class="text-block" style="margin-top: 16px; font-size: 15px; color: rgba(255,255,255,0.5);">Deep learning simulates this self-learning mechanism</p>
     </div>
-</section>
+  </div>
 
-<!-- Slide 22: Image Recognition -->
-<section class="slide">
-    <h2 class="slide-title">Image Recognition Surpasses Humans</h2>
-    <p class="slide-subtitle">ImageNet image recognition error rate:</p>
-    <div class="stats-grid">
-        <div class="stat-card">
-            <div class="stat-number">26%</div>
-            <div class="stat-label">2011</div>
+  <!-- 22. Image Recognition -->
+  <div class="slide bg-1">
+    <div class="content">
+      <div class="deco-line"></div>
+      <p class="kicker">Second Gen · Breakthrough</p>
+      <h1>Image Recognition Surpasses Humans</h1>
+      <p class="text-block">ImageNet image recognition error rate:</p>
+      <div class="step-grid" style="margin-top: 16px;">
+        <div class="step-item">
+          <div class="num">2011</div>
+          <div class="label">26%</div>
         </div>
-        <div class="stat-card">
-            <div class="stat-number">16%</div>
-            <div class="stat-label">2012 · Hinton</div>
-            <div class="stat-label" style="color: var(--highlight);">Deep learning revolution begins</div>
+        <div class="step-item" style="border: 1px solid rgba(240,216,120,0.3);">
+          <div class="num" style="color: #F0D878;">2012</div>
+          <div class="label">16% · Hinton</div>
+          <div class="desc">Deep learning revolution begins</div>
         </div>
-        <div class="stat-card">
-            <div class="stat-number">3.57%</div>
-            <div class="stat-label">2015 · Microsoft</div>
-            <div class="stat-label" style="color: #4facfe;">Surpasses human level 5.1%</div>
+        <div class="step-item">
+          <div class="num">2015</div>
+          <div class="label">3.57% · Microsoft</div>
+          <div class="desc">Surpasses human level 5.1%</div>
         </div>
+      </div>
+      <p class="text-block" style="margin-top: 16px; font-size: 15px; color: rgba(255,255,255,0.5);">Speech recognition: 2001 >20% → 2017 <5%</p>
     </div>
-    <p style="text-align: center; color: var(--text-muted); margin-top: 2rem;">Speech recognition: 2001 >20% → 2017</p>
-</section>
+  </div>
 
-<!-- Slide 23: Big Data Prediction -->
-<section class="slide">
-    <h2 class="slide-title">Big Data Prediction</h2>
-    <div class="content-card">
-        <ul>
-            <li>Infectious disease trend prediction: accurate early warning up to two weeks ahead</li>
-            <li>Stock price prediction</li>
-            <li>Used car sales prediction</li>
-        </ul>
-        <p style="text-align: center; color: var(--text-muted); margin-top: 1.5rem;">Tsinghua University AI Research Institute · Intelligent Information Acquisition Research Center</p>
+  <!-- 23. Big Data Prediction -->
+  <div class="slide bg-2">
+    <div class="content">
+      <div class="deco-line"></div>
+      <p class="kicker">Second Gen · Application</p>
+      <h1>Big Data Prediction</h1>
+      <ul class="bullet-list">
+        <li>Infectious disease trend prediction:<br>accurate early warning up to two weeks ahead</li>
+        <li>Stock price prediction</li>
+        <li>Used car sales prediction</li>
+      </ul>
+      <p class="text-block" style="margin-top: 16px; font-size: 15px; color: rgba(255,255,255,0.5);">Tsinghua AI Research Institute · Intelligent Information Acquisition Center</p>
     </div>
-</section>
+  </div>
 
-<!-- Slide 24: Affective Computing -->
-<section class="slide">
-    <h2 class="slide-title">Affective Computing</h2>
-    <p class="slide-subtitle">Giving machines the ability to perceive, understand, express, and adapt to emotions</p>
-    <div class="stats-grid">
-        <div class="stat-card">
-            <div class="stat-label" style="color: var(--highlight); font-weight: 600;">Input</div>
-            <div class="stat-label" style="color: #fff; margin: 0.5rem 0;">Multimodal Data</div>
-            <div class="stat-label">Facial · Voice · Gesture</div>
+  <!-- 24. Affective Computing -->
+  <div class="slide bg-3">
+    <div class="content">
+      <div class="deco-line"></div>
+      <p class="kicker">Second Gen · Emotional Intelligence</p>
+      <h1>Affective Computing</h1>
+      <p class="text-block">Giving machines the ability to perceive,<br>understand, express and adapt to emotions</p>
+      <div class="step-grid" style="margin-top: 16px;">
+        <div class="step-item">
+          <div class="num">Input</div>
+          <div class="label">Multimodal Data Collection</div>
+          <div class="desc">Facial · Voice · Gesture</div>
         </div>
-        <div class="stat-card">
-            <div class="stat-label" style="color: #4facfe; font-weight: 600;">Recognition</div>
-            <div class="stat-label" style="color: #fff; margin: 0.5rem 0;">Emotion Analysis</div>
-            <div class="stat-label">Anger · Fear · Joy · Pain</div>
+        <div class="step-item">
+          <div class="num">Recognition</div>
+          <div class="label">Emotion Analysis</div>
+          <div class="desc">Anger · Fear · Joy · Pain</div>
         </div>
-        <div class="stat-card">
-            <div class="stat-label" style="color: #ffc800; font-weight: 600;">Interaction</div>
-            <div class="stat-label" style="color: #fff; margin: 0.5rem 0;">Robot Understanding</div>
-            <div class="stat-label">Bidirectional human-machine emotional exchange</div>
+        <div class="step-item">
+          <div class="num">Interaction</div>
+          <div class="label">Robot Understanding</div>
+          <div class="desc">Bidirectional human-machine emotional exchange</div>
         </div>
+      </div>
     </div>
-</section>
+  </div>
 
-<!-- Slide 25: Five Defects -->
-<section class="slide">
-    <h2 class="slide-title" style="color: #ffc800;">Five Fundamental Defects</h2>
-    <div class="content-card">
-        <ul>
-            <li><span style="color: #ffc800;"><strong>Unsafe</strong></span> — Extremely vulnerable to tiny perturbations</li>
-            <li><span style="color: #ffc800;"><strong>Untrustworthy</strong></span> — Black-box algorithms, unexplainable</li>
-            <li><span style="color: #ffc800;"><strong>Uncontrollable</strong></span> — Behavior hard to predict</li>
-            <li><span style="color: #ffc800;"><strong>Unreliable</strong></span> — Poor generalization ability</li>
-            <li><span style="color: #ffc800;"><strong>Not Generalizable</strong></span> — Can only discriminate, not truly "recognize"</li>
-        </ul>
-        <div class="highlight-box" style="margin-top: 1.5rem; border-left-color: #ffc800;">
-            <p>Computers "don't know where the horse is" — they only classify in feature vector space</p>
-        </div>
+  <!-- 25. Five Defects -->
+  <div class="slide bg-1">
+    <div class="content">
+      <div class="deco-line"></div>
+      <p class="kicker">Fundamental Defects of 2nd Gen</p>
+      <h1>Five "Uns"</h1>
+      <ul class="bullet-list">
+        <li><strong style="color: #F0D878;">Unsafe</strong> — Extremely vulnerable to tiny perturbations</li>
+        <li><strong style="color: #F0D878;">Untrustworthy</strong> — Black-box, unexplainable</li>
+        <li><strong style="color: #F0D878;">Uncontrollable</strong> — Behavior hard to predict</li>
+        <li><strong style="color: #F0D878;">Unreliable</strong> — Poor generalization</li>
+        <li><strong style="color: #F0D878;">Not Generalizable</strong> — Can only discriminate, not truly "recognize"</li>
+      </ul>
+      <p class="text-block" style="margin-top: 16px; font-size: 15px; color: rgba(255,255,255,0.5); font-style: italic;">Computers "don't know where the horse is"<br>They only classify in feature vector space</p>
     </div>
-</section>
+  </div>
 
-<!-- Slide 26: Snow Mountain to Dog -->
-<section class="slide">
-    <h2 class="slide-title" style="color: #ffc800;">Snow Mountain → Dog</h2>
-    <div class="content-card" style="text-align: center;">
-        <p style="font-size: 1.3rem; color: #fff; margin-bottom: 2rem;">Add a little noise → Snow mountain becomes dog</p>
-        <div style="font-size: 3rem; margin: 2rem 0;">🏔️ + 🔊 = 🐕</div>
-        <p style="font-size: 2rem; color: #ffc800; font-weight: 700;">Confidence: 99.99%</p>
-        <p style="margin-top: 1.5rem; color: var(--text-muted);">Face recognition isn't safe either</p>
+  <!-- 26. Snow Mountain -->
+  <div class="slide bg-2">
+    <div class="content">
+      <h1 style="color: #F0D878;">Snow Mountain → Dog</h1>
+      <ul class="bullet-list" style="margin-top: 20px;">
+        <li>Add a little noise</li>
+        <li>Snow mountain becomes dog</li>
+        <li>Confidence: 99.99%</li>
+      </ul>
+      <p class="text-block" style="margin-top: 20px; font-size: 16px; color: rgba(255,255,255,0.5);">Face recognition isn't safe either</p>
     </div>
-</section>
+  </div>
 
-<!-- Slide 27: Third Generation -->
-<section class="slide">
-    <span class="tag tag-gen">Third Generation · Proposed 2020</span>
-    <h2 class="slide-title" style="margin-top: 1rem;">60 Years of Exploration</h2>
-    <div class="content-card">
-        <p style="font-size: 1.2rem; color: #fff; margin-bottom: 1.5rem;">Common three elements of first two generations:</p>
-        <div style="display: flex; justify-content: center; gap: 2rem; margin: 2rem 0; flex-wrap: wrap;">
-            <div style="padding: 1rem 2rem; background: rgba(233,69,96,0.2); border-radius: 10px; text-align: center;">
-                <div style="color: #fff; font-weight: 600;">Knowledge/Data</div>
-            </div>
-            <div style="padding: 1rem 2rem; background: rgba(79,172,254,0.2); border-radius: 10px; text-align: center;">
-                <div style="color: #fff; font-weight: 600;">Algorithms</div>
-            </div>
-            <div style="padding: 1rem 2rem; background: rgba(255,200,50,0.2); border-radius: 10px; text-align: center;">
-                <div style="color: #fff; font-weight: 600;">Computing Power</div>
-            </div>
-        </div>
-        <div class="highlight-box">
-            <p>Current AI is essentially <strong>ANI</strong> (Artificial Narrow Intelligence) — specialized for specific domains, using specific models, completing specific tasks</p>
-        </div>
+  <!-- 27. Third Generation -->
+  <div class="slide bg-3">
+    <div class="content">
+      <div class="deco-line"></div>
+      <p class="kicker">Third Generation · Proposed 2020</p>
+      <h1>60 Years of Exploration</h1>
+      <p class="text-block">Common three elements of first two generations:</p>
+      <div class="tag-row">
+        <div class="tag">Knowledge/Data</div>
+        <div class="tag">Algorithms</div>
+        <div class="tag">Computing Power</div>
+      </div>
+      <p class="text-block" style="margin-top: 16px;">Current AI is essentially<br><strong style="color: white;">ANI — Artificial Narrow Intelligence</strong></p>
+      <ul class="bullet-list">
+        <li>Specialized for specific domains</li>
+        <li>Using specific models (algorithms)</li>
+        <li>Completing specific tasks</li>
+      </ul>
     </div>
-</section>
+  </div>
 
-<!-- Slide 28: Fusion Drive -->
-<section class="slide">
-    <h2 class="slide-title">Knowledge + Data Fusion Drive</h2>
-    <div class="content-card">
-        <p style="font-size: 1.2rem; color: #fff; margin-bottom: 1.5rem;">To overcome AI's inherent flaws, the only way is to apply four elements simultaneously</p>
-        <div class="stats-grid" style="grid-template-columns: 1fr 1fr;">
-            <div class="stat-card">
-                <div class="stat-label" style="color: var(--highlight); font-weight: 600;">Knowledge</div>
-                <div class="stat-label">Symbolic Reasoning</div>
-            </div>
-            <div class="stat-card">
-                <div class="stat-label" style="color: #4facfe; font-weight: 600;">Data</div>
-                <div class="stat-label">Statistical Learning</div>
-            </div>
-            <div class="stat-card">
-                <div class="stat-label" style="color: #ffc800; font-weight: 600;">Algorithms</div>
-                <div class="stat-label">Model Methods</div>
-            </div>
-            <div class="stat-card">
-                <div class="stat-label" style="color: #fff; font-weight: 600;">Computing</div>
-                <div class="stat-label">Engineering</div>
-            </div>
+  <!-- 28. Fusion Drive -->
+  <div class="slide bg-1">
+    <div class="content">
+      <div class="deco-line"></div>
+      <p class="kicker">Third Gen · Fusion Drive</p>
+      <h1>Knowledge + Data Fusion Drive</h1>
+      <p class="text-block">To overcome AI's inherent flaws,<br>the only way is to <strong style="color: white;">apply four elements simultaneously</strong></p>
+      <div class="step-grid" style="margin-top: 16px;">
+        <div class="step-item">
+          <div class="num">Knowledge</div>
+          <div class="label">Symbolic Reasoning</div>
         </div>
-        <div class="highlight-box" style="margin-top: 1.5rem;">
-            <p>Build interpretable, robust AI theory; develop safe, trustworthy, reliable, scalable AI technology</p>
+        <div class="step-item">
+          <div class="num">Data</div>
+          <div class="label">Statistical Learning</div>
         </div>
+        <div class="step-item">
+          <div class="num">Algorithms</div>
+          <div class="label">Model Methods</div>
+        </div>
+        <div class="step-item">
+          <div class="num">Computing</div>
+          <div class="label">Engineering</div>
+        </div>
+      </div>
+      <p class="text-block" style="margin-top: 16px; font-size: 15px; color: rgba(255,255,255,0.5);">Build interpretable, robust AI theory<br>Develop safe, trustworthy, reliable, scalable AI</p>
     </div>
-</section>
+  </div>
 
-<!-- Slide 29: Two Paradigms -->
-<section class="slide">
-    <h2 class="slide-title">Two Exploration Paradigms</h2>
-    <p class="slide-subtitle">Bridging discrete and continuous space</p>
-    <div class="two-col">
-        <div class="col-card">
-            <h3>Paradigm One</h3>
-            <p>All processing in continuous space</p>
-            <p style="color: #4facfe;">✓ Computer processing is convenient</p>
-            <p style="color: #ffc800;">✗ Knowledge loses much semantics when converted to vectors</p>
+  <!-- 29. Two Paradigms -->
+  <div class="slide bg-2">
+    <div class="content">
+      <div class="deco-line"></div>
+      <p class="kicker">Third Gen · Two Paradigms</p>
+      <h1>Bridging Discrete & Continuous Space</h1>
+      <div class="step-grid" style="margin-top: 16px;">
+        <div class="step-item">
+          <div class="num">Paradigm One</div>
+          <div class="label">All processing in continuous space</div>
+          <div class="desc" style="color: #7EC8A0;">✓ Computer processing is convenient</div>
+          <div class="desc" style="color: #F0D878;">✗ Knowledge loses much semantics when converted to vectors</div>
         </div>
-        <div class="col-card">
-            <h3>Paradigm Two</h3>
-            <p>Bridge discrete and continuous space</p>
-            <p style="color: #4facfe;">✓ May fundamentally achieve 3rd-gen AI</p>
-            <p style="color: #ffc800;">✗ Difficult model representation and acquisition</p>
+        <div class="step-item">
+          <div class="num">Paradigm Two</div>
+          <div class="label">Bridge discrete and continuous space</div>
+          <div class="desc" style="color: #7EC8A0;">✓ May fundamentally achieve 3rd-gen AI</div>
+          <div class="desc" style="color: #F0D878;">✗ Difficult model representation and acquisition</div>
         </div>
+      </div>
     </div>
-</section>
+  </div>
 
-<!-- Slide 30: Two Bigs -->
-<section class="slide">
-    <h2 class="slide-title">Two "Bigs"</h2>
-    <p class="slide-subtitle">Big Models + Big Text</p>
-    <div class="two-col">
-        <div class="col-card">
-            <h3>Big Models</h3>
-            <p>Transformer architecture</p>
-            <p>2,000+ tokens in one input</p>
+  <!-- 30. Two Bigs -->
+  <div class="slide bg-3">
+    <div class="content">
+      <div class="deco-line"></div>
+      <p class="kicker">Two "Bigs"</p>
+      <h1>Big Models + Big Text</h1>
+      <div class="step-grid" style="margin-top: 16px;">
+        <div class="step-item">
+          <div class="num">Big Models</div>
+          <div class="label">Transformer Architecture</div>
+          <div class="desc">2,000+ tokens in one input</div>
         </div>
-        <div class="col-card">
-            <h3>Big Text</h3>
-            <p>Self-supervised learning</p>
-            <p>"Chain-style learning" — predict next word</p>
-            <p>When scale crosses threshold, quality suddenly improves</p>
+        <div class="step-item">
+          <div class="num">Big Text</div>
+          <div class="label">Self-Supervised Learning</div>
+          <div class="desc">"Chain-style learning" — predict next word</div>
         </div>
+      </div>
+      <p class="text-block" style="margin-top: 16px; font-size: 15px; color: rgba(255,255,255,0.5);">When scale crosses threshold, quality suddenly improves</p>
     </div>
-</section>
+  </div>
 
-<!-- Slide 31: LLM -->
-<section class="slide">
-    <h2 class="slide-title">Large Language Models</h2>
-    <p class="slide-subtitle">GPT · ChatGPT</p>
-    <div class="timeline">
-        <div class="timeline-item">
-            <div class="timeline-dot"></div>
-            <div class="timeline-year">Jun 2018</div>
-            <div class="timeline-text">GPT-1<br>Generative pre-training paradigm begins</div>
+  <!-- 31. GPT -->
+  <div class="slide bg-1">
+    <div class="content">
+      <div class="deco-line"></div>
+      <p class="kicker">Large Language Models</p>
+      <h1>GPT · ChatGPT</h1>
+      <div class="step-grid" style="margin-top: 16px;">
+        <div class="step-item">
+          <div class="num">Jun 2018</div>
+          <div class="label">GPT-1 Released</div>
+          <div class="desc">Generative pre-training paradigm begins</div>
         </div>
-        <div class="timeline-item">
-            <div class="timeline-dot" style="background: #ffc800;"></div>
-            <div class="timeline-year" style="color: #ffc800;">Nov 2022</div>
-            <div class="timeline-text">ChatGPT<br>Ignites global AI wave</div>
+        <div class="step-item" style="border: 1px solid rgba(240,216,120,0.3);">
+          <div class="num" style="color: #F0D878;">Nov 2022</div>
+          <div class="label">ChatGPT Released</div>
+          <div class="desc">Ignites global AI application wave</div>
         </div>
+      </div>
+      <p class="text-block" style="margin-top: 16px; font-size: 15px; color: rgba(255,255,255,0.5);">G = Generative · P = Pre-trained · T = Transformer</p>
     </div>
-    <div style="text-align: center; margin-top: 2rem;">
-        <p><strong>G</strong> = Generative · <strong>P</strong> = Pre-trained · <strong>T</strong> = Transformer</p>
-    </div>
-</section>
+  </div>
 
-<!-- Slide 32: Scaling Law -->
-<section class="slide">
-    <h2 class="slide-title">Scaling Law</h2>
-    <p class="slide-subtitle">Compute makes miracles</p>
-    <div class="stats-grid">
-        <div class="stat-card">
-            <div class="stat-number">117M</div>
-            <div class="stat-label">GPT-1 · Jun 2018</div>
+  <!-- 32. Scaling Law -->
+  <div class="slide bg-2">
+    <div class="content">
+      <div class="deco-line"></div>
+      <p class="kicker">Scaling Law</p>
+      <h1>Compute Makes Miracles</h1>
+      <p class="text-block">GPT series parameter growth:</p>
+      <div class="step-grid" style="margin-top: 16px;">
+        <div class="step-item">
+          <div class="num">GPT-1</div>
+          <div class="label">117M parameters</div>
+          <div class="desc">Jun 2018</div>
         </div>
-        <div class="stat-card">
-            <div class="stat-number">1.5B</div>
-            <div class="stat-label">GPT-2 · Feb 2019</div>
+        <div class="step-item">
+          <div class="num">GPT-2</div>
+          <div class="label">1.5B parameters</div>
+          <div class="desc">Feb 2019</div>
         </div>
-        <div class="stat-card">
-            <div class="stat-number">175B</div>
-            <div class="stat-label">GPT-3 · May 2020</div>
+        <div class="step-item">
+          <div class="num">GPT-3</div>
+          <div class="label">175B parameters</div>
+          <div class="desc">May 2020</div>
         </div>
+        <div class="step-item" style="border: 1px solid rgba(240,216,120,0.3);">
+          <div class="num" style="color: #F0D878;">GPT-4</div>
+          <div class="label">1.7T parameters</div>
+          <div class="desc">Mar 2023</div>
+        </div>
+      </div>
+      <p class="text-block" style="margin-top: 16px; font-size: 15px; color: rgba(255,255,255,0.5);">117M → 1.7T, ~1,450× growth</p>
     </div>
-    <div style="text-align: center; margin-top: 2rem;">
-        <div class="stat-card" style="display: inline-block; max-width: 300px;">
-            <div class="stat-number">1.7T</div>
-            <div class="stat-label">GPT-4 · Mar 2023</div>
-        </div>
-    </div>
-    <p style="text-align: center; color: var(--text-muted); margin-top: 1.5rem;">117M → 1.7T, ~1,450× growth</p>
-</section>
+  </div>
 
-<!-- Slide 33: LLM Capabilities -->
-<section class="slide">
-    <h2 class="slide-title">LLM Capabilities</h2>
-    <p class="slide-subtitle">Language Generation · Interaction · Transfer</p>
-    <div class="stats-grid">
-        <div class="stat-card">
-            <div class="stat-label" style="color: var(--highlight); font-weight: 600;">① Generation</div>
-            <div class="stat-label">Generate diverse, coherent, style-controllable human-like text in open domains</div>
+  <!-- 33. LLM Capabilities -->
+  <div class="slide bg-3">
+    <div class="content">
+      <div class="deco-line"></div>
+      <p class="kicker">LLM Capabilities</p>
+      <h1>Generation · Interaction · Transfer</h1>
+      <div class="step-grid" style="margin-top: 16px;">
+        <div class="step-item">
+          <div class="num">①</div>
+          <div class="label">Powerful Language Generation</div>
+          <div class="desc">Generate diverse, coherent, style-controllable human-like text</div>
         </div>
-        <div class="stat-card">
-            <div class="stat-label" style="color: #4facfe; font-weight: 600;">② Interaction</div>
-            <div class="stat-label">Natural language dialogue between humans and machines in open domains</div>
+        <div class="step-item">
+          <div class="num">②</div>
+          <div class="label">Powerful Language Interaction</div>
+          <div class="desc">Natural language dialogue in open domains</div>
         </div>
-        <div class="stat-card">
-            <div class="stat-label" style="color: #ffc800; font-weight: 600;">③ Transfer</div>
-            <div class="stat-label">Pre-training → fine-tuning for downstream tasks</div>
+        <div class="step-item">
+          <div class="num">③</div>
+          <div class="label">Certain Transfer Ability</div>
+          <div class="desc">Pre-training → fine-tuning for downstream tasks</div>
         </div>
+      </div>
+      <div class="step-item" style="margin-top: 14px; border: 1px solid rgba(240,216,120,0.3);">
+        <div class="label" style="color: #F0D878;">⚠️ Inherent Defect: Hallucination</div>
+        <div class="desc">Generating seemingly plausible but actually false content</div>
+      </div>
     </div>
-    <div class="highlight-box" style="margin-top: 2rem; border-left-color: #ffc800;">
-        <p class="warning">⚠️ Inherent defect: Hallucination — generating seemingly plausible but actually false content</p>
-    </div>
-</section>
+  </div>
 
-<!-- Slide 34: Two Paths -->
-<section class="slide">
-    <h2 class="slide-title">Two Paths to Improve LLMs</h2>
-    <div class="two-col">
-        <div class="col-card">
-            <h3>External Drive</h3>
-            <p>Use external resources to improve capabilities</p>
-            <ul style="margin-top: 1rem;">
-                <li>Prompt engineering · In-context learning</li>
-                <li>AI alignment · RLHF</li>
-            </ul>
+  <!-- 34. Two Paths -->
+  <div class="slide bg-1">
+    <div class="content">
+      <div class="deco-line"></div>
+      <p class="kicker">Improving LLMs</p>
+      <h1>Two Paths</h1>
+      <div class="step-grid" style="margin-top: 16px;">
+        <div class="step-item">
+          <div class="num">External Drive</div>
+          <div class="label">Use external resources to improve</div>
+          <div class="desc">Prompt engineering · In-context learning</div>
+          <div class="desc">AI alignment · RLHF</div>
         </div>
-        <div class="col-card">
-            <h3>Internal Optimization</h3>
-            <p>Use internal capabilities to improve performance</p>
-            <ul style="margin-top: 1rem;">
-                <li>RLAIF · AI feedback reinforcement</li>
-                <li>Distillation · CoT chain-of-thought</li>
-            </ul>
+        <div class="step-item">
+          <div class="num">Internal Optimization</div>
+          <div class="label">Use internal capabilities to improve</div>
+          <div class="desc">RLAIF · AI feedback reinforcement</div>
+          <div class="desc">Distillation · CoT chain-of-thought</div>
         </div>
+      </div>
     </div>
-</section>
+  </div>
 
-<!-- Slide 35: Jiuge -->
-<section class="slide">
-    <h2 class="slide-title">Early AI Creation: "Jiuge"</h2>
-    <p class="slide-subtitle">Tsinghua AI poetry generation system — trained on 300,000 ancient poems</p>
-    <div class="content-card">
-        <ul>
-            <li>Encoder-decoder + constraint conditions</li>
-            <li>Theme words, rhythm, length constraints</li>
-        </ul>
-        <div class="highlight-box" style="margin-top: 1.5rem; border-left-color: #ffc800;">
-            <p><strong>Core problem:</strong> Poor generalization — "parroting" rather than true creation</p>
-            <p style="margin-top: 0.5rem;">Writing about "poverty alleviation": clichés, off-topic</p>
-        </div>
+  <!-- 35. Jiuge -->
+  <div class="slide bg-2">
+    <div class="content">
+      <div class="deco-line"></div>
+      <p class="kicker">Early AI Creation</p>
+      <h1>"Jiuge" Limitations</h1>
+      <p class="text-block">Tsinghua AI poetry generation system<br>Trained on 300,000 ancient poems</p>
+      <ul class="bullet-list">
+        <li>Encoder-decoder + constraint conditions</li>
+        <li>Theme words, rhythm, length constraints</li>
+      </ul>
+      <div class="step-item" style="margin-top: 16px;">
+        <div class="label" style="color: #F0D878;">Core Problem: Poor Generalization</div>
+        <div class="desc">"Parroting" rather than true creation</div>
+        <div class="desc">Writing about "poverty alleviation": clichés, off-topic</div>
+      </div>
     </div>
-</section>
+  </div>
 
-<!-- Slide 36: DeepSeek Poetry -->
-<section class="slide">
-    <h2 class="slide-title">Can AI Really Create?</h2>
-    <p class="slide-subtitle">DeepSeek writes poetry</p>
-    <div class="content-card" style="text-align: center; max-width: 600px;">
-        <p style="color: var(--text-muted); margin-bottom: 1rem;">Quatrain · "Poverty Alleviation"</p>
-        <div style="font-size: 1.3rem; line-height: 2; color: #fff;">
-            <p>Spring breeze crosses ridges, knocks on wicker gates</p>
-            <p>Warm words melt frozen soil's traces</p>
-            <p>Don't say green mountains lack rich roads</p>
-            <p>One golden plough strike breaks poverty's roots</p>
+  <!-- 36. DeepSeek Poetry -->
+  <div class="slide bg-3">
+    <div class="content">
+      <div class="deco-line"></div>
+      <p class="kicker">Can AI Really Create?</p>
+      <h1>DeepSeek Writes Poetry</h1>
+      <p class="text-block">Quatrain · "Poverty Alleviation"</p>
+      <div class="step-item" style="text-align: center; margin-top: 16px;">
+        <div class="desc" style="font-size: 18px; color: white; line-height: 2;">
+          Spring breeze crosses ridges, knocks on wicker gates<br>
+          Warm words melt frozen soil's traces<br>
+          Don't say green mountains lack rich roads<br>
+          One golden plough strike breaks poverty's roots
         </div>
-        <div class="highlight-box" style="margin-top: 2rem;">
-            <p>Image construction, emotional expression, metrical compliance — not direct database copying</p>
-        </div>
+      </div>
+      <p class="text-block" style="margin-top: 16px; font-size: 15px; color: rgba(255,255,255,0.5);">Image construction, emotional expression, metrical compliance<br>Not direct database copying</p>
     </div>
-</section>
+  </div>
 
-<!-- Slide 37: Three Questions -->
-<section class="slide">
-    <h2 class="slide-title">Three Philosophical Questions</h2>
-    <div class="stats-grid">
-        <div class="stat-card">
-            <div class="stat-number">Q1</div>
-            <div class="stat-label" style="color: #fff; margin: 0.5rem 0;">Can machines create?</div>
-            <div class="stat-label">Or only parrot?</div>
+  <!-- 37. Three Questions -->
+  <div class="slide bg-1">
+    <div class="content">
+      <div class="deco-line"></div>
+      <p class="kicker">Philosophical Questions</p>
+      <h1>Three Questions on AI</h1>
+      <div class="step-grid" style="margin-top: 16px;">
+        <div class="step-item">
+          <div class="num">Q1</div>
+          <div class="label">Can machines create?</div>
+          <div class="desc">Or only parrot?</div>
         </div>
-        <div class="stat-card">
-            <div class="stat-number">Q2</div>
-            <div class="stat-label" style="color: #fff; margin: 0.5rem 0;">Do machines understand?</div>
-            <div class="stat-label">Do they have "consciousness"?</div>
+        <div class="step-item">
+          <div class="num">Q2</div>
+          <div class="label">Do machines understand their behavior?</div>
+          <div class="desc">Do they have "consciousness"?</div>
         </div>
-        <div class="stat-card">
-            <div class="stat-number">Q3</div>
-            <div class="stat-label" style="color: #fff; margin: 0.5rem 0;">Do machines know themselves?</div>
-            <div class="stat-label">What they know and don't know?</div>
+        <div class="step-item">
+          <div class="num">Q3</div>
+          <div class="label">Do machines know themselves?</div>
+          <div class="desc">What they know and don't know?</div>
         </div>
+      </div>
+      <p class="text-block" style="margin-top: 16px; font-size: 15px; color: rgba(255,255,255,0.5); font-style: italic;">"The limits of my language mean the limits of my world"<br>— Ludwig Wittgenstein</p>
     </div>
-    <div class="quote">
-        "The limits of my language mean the limits of my world."
-        <div class="quote-author">— Ludwig Wittgenstein</div>
-    </div>
-</section>
+  </div>
 
-<!-- Slide 38: Road to AGI -->
-<section class="slide">
-    <h2 class="slide-title">Road to AGI</h2>
-    <div class="content-card">
-        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
-            <div style="padding: 1rem; background: rgba(233,69,96,0.1); border-radius: 10px;">
-                <span class="step-badge">1</span><strong>Improve LLMs</strong><br>Break Scaling Law
-            </div>
-            <div style="padding: 1rem; background: rgba(79,172,254,0.1); border-radius: 10px;">
-                <span class="step-badge">2</span><strong>Multimodal Generation</strong><br>Image, video, voice
-            </div>
-            <div style="padding: 1rem; background: rgba(255,200,50,0.1); border-radius: 10px;">
-                <span class="step-badge">3</span><strong>Agentization</strong><br>AI Agent
-            </div>
-            <div style="padding: 1rem; background: rgba(233,69,96,0.1); border-radius: 10px;">
-                <span class="step-badge">4</span><strong>Embodied Intelligence</strong><br>General-purpose robots
-            </div>
-            <div style="padding: 1rem; background: rgba(79,172,254,0.1); border-radius: 10px;">
-                <span class="step-badge">5</span><strong>World Models</strong><br>Spatial intelligence
-            </div>
-            <div style="padding: 1rem; background: rgba(255,200,50,0.1); border-radius: 10px;">
-                <span class="step-badge">6</span><strong>Big Data Models</strong><br>LDM
-            </div>
+  <!-- 38. Road to AGI -->
+  <div class="slide bg-2">
+    <div class="content">
+      <div class="deco-line"></div>
+      <p class="kicker">Road to AGI</p>
+      <h1>Six Steps to AGI</h1>
+      <div class="step-grid">
+        <div class="step-item" style="display: flex; align-items: baseline; gap: 12px; flex-wrap: wrap;">
+          <div class="num" style="margin-bottom: 0;">1</div>
+          <div>
+            <div class="label">Improve LLM Performance</div>
+            <div class="desc">Break Scaling Law</div>
+          </div>
         </div>
-        <div class="highlight-box" style="margin-top: 1.5rem;">
-            <p>Academician Zhang's view: No need for humanoid robots; the key is software generality</p>
+        <div class="step-item" style="display: flex; align-items: baseline; gap: 12px; flex-wrap: wrap;">
+          <div class="num" style="margin-bottom: 0;">2</div>
+          <div>
+            <div class="label">Multimodal Generation</div>
+            <div class="desc">Image, video, voice</div>
+          </div>
         </div>
-    </div>
-</section>
-
-<!-- Slide 39: Step 1 -->
-<section class="slide">
-    <span class="tag tag-gen">Step 1 / 6</span>
-    <h2 class="slide-title" style="margin-top: 1rem;">AI Alignment</h2>
-    <div class="content-card">
-        <p style="font-size: 1.2rem; color: #fff; margin-bottom: 1.5rem;">Teach AI to dialogue with humans, align with human values</p>
-        <div style="text-align: center; margin: 2rem 0;">
-            <div style="font-size: 3rem; font-weight: 700; color: var(--highlight);">40% → 5.5%</div>
-            <p style="color: var(--text-muted);">GPT-3 → GPT-5 error rate continues falling</p>
+        <div class="step-item" style="display: flex; align-items: baseline; gap: 12px; flex-wrap: wrap;">
+          <div class="num" style="margin-bottom: 0;">3</div>
+          <div>
+            <div class="label">Agentization</div>
+            <div class="desc">AI Agent</div>
+          </div>
         </div>
-        <p style="text-align: center;">GPT-4: 82% lower likelihood of responding to disallowed content requests</p>
-    </div>
-</section>
-
-<!-- Slide 40: Neuro-Symbolic -->
-<section class="slide">
-    <h2 class="slide-title">Neuro-Symbolic Hybrid</h2>
-    <p class="slide-subtitle">Embed symbolism's interpretability back into connectionist systems</p>
-    <div class="content-card">
-        <div style="display: flex; justify-content: center; gap: 1.5rem; margin: 2rem 0; flex-wrap: wrap;">
-            <div style="padding: 1rem 1.5rem; background: rgba(233,69,96,0.2); border-radius: 10px;">Knowledge Base</div>
-            <div style="padding: 1rem 1.5rem; background: rgba(79,172,254,0.2); border-radius: 10px;">RAG</div>
-            <div style="padding: 1rem 1.5rem; background: rgba(255,200,50,0.2); border-radius: 10px;">Tool Calling</div>
+        <div class="step-item" style="display: flex; align-items: baseline; gap: 12px; flex-wrap: wrap;">
+          <div class="num" style="margin-bottom: 0;">4</div>
+          <div>
+            <div class="label">Embodied Intelligence</div>
+            <div class="desc">General-purpose robots</div>
+          </div>
         </div>
-        <div class="highlight-box">
-            <p>"Symbolism as an externally verifiable module, embedded back into connectionist systems."</p>
+        <div class="step-item" style="display: flex; align-items: baseline; gap: 12px; flex-wrap: wrap;">
+          <div class="num" style="margin-bottom: 0;">5</div>
+          <div>
+            <div class="label">World Models</div>
+            <div class="desc">Spatial intelligence</div>
+          </div>
         </div>
-    </div>
-</section>
-
-<!-- Slide 41: Step 2 -->
-<section class="slide">
-    <span class="tag tag-mainstream">Step 2 / 6: Multimodal</span>
-    <h2 class="slide-title" style="margin-top: 1rem;">Image Generation · ViT</h2>
-    <div class="content-card">
-        <p style="font-size: 1.2rem; color: #fff; margin-bottom: 1.5rem;">Split images into patches, treat as tokens, process uniformly with Transformer</p>
-        <div class="two-col" style="margin-top: 1.5rem;">
-            <div class="col-card">
-                <h3>Image → Text</h3>
-                <p>Can only understand relatively simple images</p>
-            </div>
-            <div class="col-card">
-                <h3>Text → Video</h3>
-                <p>Vidu by Shengshu Technology</p>
-            </div>
+        <div class="step-item" style="display: flex; align-items: baseline; gap: 12px; flex-wrap: wrap;">
+          <div class="num" style="margin-bottom: 0;">6</div>
+          <div>
+            <div class="label">Big Data Models</div>
+            <div class="desc">LDM</div>
+          </div>
         </div>
+      </div>
+      <p class="text-block" style="margin-top: 16px; font-size: 15px; color: rgba(255,255,255,0.5);"><strong style="color: white;">Academician Zhang's view:</strong> No need for humanoid robots; the key is software generality</p>
     </div>
-</section>
+  </div>
 
-<!-- Slide 42: Step 3 -->
-<section class="slide">
-    <span class="tag tag-mainstream">Step 3 / 6: Agent</span>
-    <h2 class="slide-title" style="margin-top: 1rem;">Intelligent Agent</h2>
-    <div class="content-card" style="text-align: center;">
-        <p style="font-size: 1.2rem; color: #fff; margin-bottom: 2rem;">Systems that continuously perceive-think-act in an environment:</p>
-        <div style="display: flex; justify-content: center; align-items: center; gap: 1.5rem; flex-wrap: wrap;">
-            <div style="padding: 1rem 2rem; background: rgba(233,69,96,0.2); border-radius: 10px;">Perception</div>
-            <span style="font-size: 1.5rem;">→</span>
-            <div style="padding: 1rem 2rem; background: rgba(79,172,254,0.2); border-radius: 10px;">Thinking · LLM</div>
-            <span style="font-size: 1.5rem;">→</span>
-            <div style="padding: 1rem 2rem; background: rgba(255,200,50,0.2); border-radius: 10px;">Action</div>
+  <!-- 39. AI Alignment -->
+  <div class="slide bg-3">
+    <div class="content">
+      <div class="deco-line"></div>
+      <div class="step-badge">STEP 1 / 6</div>
+      <p class="kicker" style="margin-bottom: 8px;">Step One</p>
+      <h1>AI Alignment</h1>
+      <p class="text-block">Teach AI to dialogue with humans,<br>align with human values</p>
+      <div class="step-item" style="text-align: center;">
+        <div style="font-size: 32px; font-weight: 700; color: #C9A84C;">40% → 5.5%</div>
+        <div class="label">GPT-3 → GPT-5</div>
+        <div class="desc">Error rate continues falling</div>
+      </div>
+      <p class="text-block" style="margin-top: 16px; font-size: 15px; color: rgba(255,255,255,0.5);">GPT-4: 82% lower likelihood of responding to disallowed content</p>
+    </div>
+  </div>
+
+  <!-- 40. Neuro-Symbolic -->
+  <div class="slide bg-1">
+    <div class="content">
+      <div class="deco-line"></div>
+      <p class="kicker">Future Architecture</p>
+      <h1>Neuro-Symbolic Hybrid</h1>
+      <p class="text-block">Embed symbolism's interpretability<br>back into connectionist systems</p>
+      <div class="tag-row">
+        <div class="tag">Knowledge Base</div>
+        <div class="tag">RAG</div>
+        <div class="tag">Tool Calling</div>
+      </div>
+      <p class="text-block" style="margin-top: 16px; font-size: 15px; color: rgba(255,255,255,0.5); font-style: italic;">"Symbolism as an externally verifiable module,<br>embedded back into connectionist systems."</p>
+    </div>
+  </div>
+
+  <!-- 41. Image Generation -->
+  <div class="slide bg-2">
+    <div class="content">
+      <div class="deco-line"></div>
+      <div class="step-badge">STEP 2 / 6</div>
+      <p class="kicker" style="margin-bottom: 8px;">Step Two: Multimodal</p>
+      <h1>Image Generation · ViT</h1>
+      <p class="text-block">Split images into patches,<br>treat as tokens,<br>process uniformly with Transformer</p>
+      <div class="step-grid" style="margin-top: 16px;">
+        <div class="step-item">
+          <div class="label">Image → Text</div>
+          <div class="desc">Can only understand relatively simple images</div>
         </div>
-    </div>
-</section>
-
-<!-- Slide 43: Step 4 -->
-<section class="slide">
-    <span class="tag tag-mainstream">Step 4 / 6: Embodied</span>
-    <h2 class="slide-title" style="margin-top: 1rem;">Embodied Intelligence</h2>
-    <div class="content-card">
-        <ul>
-            <li>Appearance can be diverse</li>
-            <li>The key is software generality</li>
-        </ul>
-        <div class="highlight-box" style="margin-top: 1.5rem;">
-            <p>Academician Zhang's view differs from Musk's</p>
+        <div class="step-item">
+          <div class="label">Text → Video</div>
+          <div class="desc">Vidu by Shengshu Technology</div>
         </div>
+      </div>
     </div>
-</section>
+  </div>
 
-<!-- Slide 44: Step 5 -->
-<section class="slide">
-    <span class="tag tag-mainstream">Step 5 / 6: World Model</span>
-    <h2 class="slide-title" style="margin-top: 1rem;">Imagine → Plan → Execute</h2>
-    <div class="content-card">
-        <p style="font-size: 1.2rem; color: #fff; margin-bottom: 1.5rem;">"Predictable world representation" inside the agent:</p>
-        <ul>
-            <li><strong>State representation:</strong> Compress environmental information</li>
-            <li><strong>Dynamics:</strong> Predict "what happens to the world if I do this"</li>
-            <li><strong>Observation model:</strong> Generate multimodal outputs</li>
-            <li><strong>Reward/Cost:</strong> Evaluate good/bad and danger</li>
-        </ul>
-        <div class="highlight-box" style="margin-top: 1.5rem;">
-            <p>Not directly perceiving the world, but building a predictable internal model</p>
+  <!-- 42. Agent -->
+  <div class="slide bg-3">
+    <div class="content">
+      <div class="deco-line"></div>
+      <div class="step-badge">STEP 3 / 6</div>
+      <p class="kicker" style="margin-bottom: 8px;">Step Three: Agent</p>
+      <h1>Intelligent Agent</h1>
+      <p class="text-block">Systems that continuously<br>perceive-think-act in an environment:</p>
+      <ul class="bullet-list">
+        <li>Perception → Thinking → Action</li>
+        <li>Forming a closed loop with the external world</li>
+      </ul>
+      <div class="tag-row">
+        <div class="tag">Perception</div>
+        <div class="tag tag-highlight">Thinking · LLM</div>
+        <div class="tag">Action</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 43. Embodied AI -->
+  <div class="slide bg-1">
+    <div class="content">
+      <div class="deco-line"></div>
+      <div class="step-badge">STEP 4 / 6</div>
+      <p class="kicker" style="margin-bottom: 8px;">Step Four: Embodied</p>
+      <h1>Embodied Intelligence</h1>
+      <ul class="bullet-list">
+        <li>Appearance can be diverse</li>
+        <li>The key is software generality</li>
+      </ul>
+      <p class="text-block" style="margin-top: 16px; font-size: 15px; color: rgba(255,255,255,0.5);">Academician Zhang's view differs from Musk's</p>
+    </div>
+  </div>
+
+  <!-- 44. World Models -->
+  <div class="slide bg-2">
+    <div class="content">
+      <div class="deco-line"></div>
+      <div class="step-badge">STEP 5 / 6</div>
+      <p class="kicker" style="margin-bottom: 8px;">Step Five: World Model</p>
+      <h1>Imagine → Plan → Execute</h1>
+      <p class="text-block">"Predictable world representation"<br>inside the agent:</p>
+      <ul class="bullet-list">
+        <li><strong style="color: white;">State representation:</strong> Compress environmental information</li>
+        <li><strong style="color: white;">Dynamics:</strong> Predict "what happens if I do this"</li>
+        <li><strong style="color: white;">Observation model:</strong> Generate multimodal outputs</li>
+        <li><strong style="color: white;">Reward/Cost:</strong> Evaluate good/bad and danger</li>
+      </ul>
+      <p class="text-block" style="margin-top: 16px; font-size: 15px; color: rgba(255,255,255,0.5);">Not directly perceiving the world,<br>but building a predictable internal model</p>
+    </div>
+  </div>
+
+  <!-- 45. LDM -->
+  <div class="slide bg-3">
+    <div class="content">
+      <div class="deco-line"></div>
+      <div class="step-badge">STEP 6 / 6</div>
+      <p class="kicker" style="margin-bottom: 8px;">Step Six: Big Data Model</p>
+      <h1>Structured Data General Model</h1>
+      <p class="text-block">Large Data Model (LDM)</p>
+      <ul class="bullet-list">
+        <li>Process structured data (tables, databases, knowledge graphs)</li>
+        <li>Solve LLM's "numerical hallucination" problem</li>
+        <li>Cross-table reasoning, data consistency</li>
+      </ul>
+      <p class="text-block" style="margin-top: 16px; font-size: 15px; color: rgba(255,255,255,0.5);">Corresponds to LLM,<br>expanding the large model paradigm beyond language</p>
+    </div>
+  </div>
+
+  <!-- 46. AI Education -->
+  <div class="slide bg-1">
+    <div class="content">
+      <div class="deco-line"></div>
+      <h1>AI Changes Education</h1>
+      <ul class="bullet-list" style="margin-top: 20px;">
+        <li>Universal AI & digital intelligence education</li>
+        <li>Starting from primary and secondary school</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- 47. AI & Art -->
+  <div class="slide bg-2">
+    <div class="content">
+      <div class="deco-line"></div>
+      <p class="kicker">Discussion</p>
+      <h1>AI & Artistic Creation</h1>
+      <p class="text-block" style="margin-bottom: 16px;"><strong style="color: white;">Core Judgment</strong><br>In the AI era, everything is possible.<br>There is no human ability AI cannot replace.</p>
+      <ul class="bullet-list">
+        <li>Human aesthetic judgment<br>can be learned by AI through practice</li>
+        <li>Humans give prompts and feedback;<br>AI autonomously completes creation</li>
+        <li>Ultimately can fully meet human aesthetic requirements</li>
+        <li>Future "painters who can't paint" may emerge</li>
+      </ul>
+      <p class="text-block" style="margin-top: 16px; font-size: 15px; color: rgba(255,255,255,0.5); font-style: italic;">This seemingly absurd trend will inevitably be realized</p>
+    </div>
+  </div>
+
+  <!-- 48. Enterprise AI -->
+  <div class="slide bg-3">
+    <div class="content">
+      <div class="deco-line"></div>
+      <p class="kicker">Discussion</p>
+      <h1>Traditional Enterprise AI Transformation</h1>
+      <p class="text-block" style="margin-bottom: 16px; color: #F0D878;"><strong style="color: #F0D878;">🚩 Biggest Pain Point: Lack of Clear Vision</strong></p>
+      <ul class="bullet-list">
+        <li>No clear target of what the enterprise<br>will become after AI application</li>
+        <li>Can only advance through trial and error,<br>investing resources but possibly gaining nothing</li>
+        <li>New AI startups have clear goals;<br>they only need to solve how to achieve them</li>
+        <li>Venture capital separates risk;<br>entrepreneurs don't bear failure risk</li>
+      </ul>
+      <p class="text-block" style="margin-top: 16px; font-size: 15px; color: rgba(255,255,255,0.5); font-style: italic;">The current era is a golden age for AI entrepreneurship;<br>what suffers are traditional enterprises without direction</p>
+    </div>
+  </div>
+
+  <!-- 49. Quote -->
+  <div class="slide bg-1">
+    <div class="content">
+      <div class="quote-block">
+        <div class="quote-mark">"</div>
+        <p>We should not be overly optimistic<br>because of progress,<br>nor discouraged because of setbacks.<br>Artificial intelligence is exploring "uncharted territory."<br>Its charm lies in being always on the road.</p>
+        <div class="attribution">— Academician Zhang Bo</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 50. End -->
+  <div class="slide bg-2">
+    <div class="content" style="text-align: center;">
+      <div class="deco-line" style="margin: 0 auto 24px;"></div>
+      <p class="text-block" style="font-size: 16px; color: rgba(255,255,255,0.45); margin-bottom: 16px;">AI is exploring "uncharted territory"<br>Its charm lies in being always on the road</p>
+      <div class="step-grid" style="margin: 24px 0;">
+        <div class="step-item">
+          <div class="num">Theory</div>
+          <div class="desc">New Discovery</div>
         </div>
-    </div>
-</section>
-
-<!-- Slide 45: Step 6 -->
-<section class="slide">
-    <span class="tag tag-mainstream">Step 6 / 6: Big Data Model</span>
-    <h2 class="slide-title" style="margin-top: 1rem;">Structured Data General Model</h2>
-    <p class="slide-subtitle">Large Data Model (LDM)</p>
-    <div class="content-card">
-        <ul>
-            <li>Process structured data (tables, databases, knowledge graphs)</li>
-            <li>Solve LLM's "numerical hallucination" problem</li>
-            <li>Cross-table reasoning, data consistency</li>
-        </ul>
-        <div class="highlight-box" style="margin-top: 1.5rem;">
-            <p>Corresponds to LLM, expanding the large model paradigm beyond language</p>
+        <div class="step-item">
+          <div class="num">→ Tech</div>
+          <div class="desc">Innovation</div>
         </div>
-    </div>
-</section>
-
-<!-- Slide 46: AI Education -->
-<section class="slide">
-    <h2 class="slide-title">AI Changes Education</h2>
-    <div class="content-card" style="text-align: center;">
-        <ul style="display: inline-block; text-align: left;">
-            <li>Universal AI & digital intelligence education</li>
-            <li>Starting from primary and secondary school</li>
-        </ul>
-    </div>
-</section>
-
-<!-- Slide 47: AI & Art -->
-<section class="slide">
-    <h2 class="slide-title">AI & Artistic Creation</h2>
-    <div class="content-card">
-        <div class="highlight-box">
-            <p style="font-size: 1.2rem; color: #fff;"><strong>Core Judgment:</strong> In the AI era, everything is possible. There is no human ability that AI completely cannot replace.</p>
+        <div class="step-item">
+          <div class="num">→ App</div>
+          <div class="desc">Deployment</div>
         </div>
-        <ul style="margin-top: 1.5rem;">
-            <li>Human aesthetic judgment can be learned by AI through practice guidance</li>
-            <li>Humans give prompts and feedback; AI autonomously completes creation and revision</li>
-            <li>Ultimately can fully meet human aesthetic requirements</li>
-            <li>In the future, "painters who can't paint" may emerge</li>
-        </ul>
-        <p style="text-align: center; color: var(--highlight); margin-top: 1.5rem; font-weight: 600;">This seemingly absurd trend will inevitably be realized</p>
-    </div>
-</section>
-
-<!-- Slide 48: Traditional Enterprise -->
-<section class="slide">
-    <h2 class="slide-title">Traditional Enterprise AI Transformation</h2>
-    <div class="content-card">
-        <div class="highlight-box" style="border-left-color: #ffc800;">
-            <p class="warning" style="font-size: 1.2rem;">🚩 Biggest Pain Point: Lack of Clear Vision</p>
+        <div class="step-item">
+          <div class="num">→ Industry</div>
+          <div class="desc">Development</div>
         </div>
-        <ul style="margin-top: 1.5rem;">
-            <li>No clear target of what the enterprise will become after AI application</li>
-            <li>Can only advance through trial and error, investing resources but possibly gaining nothing</li>
-            <li>New AI startups have clear goals; they only need to solve how to achieve them</li>
-            <li>Venture capital environment separates risk; entrepreneurs don't bear failure risk</li>
-        </ul>
-        <p style="text-align: center; color: var(--highlight); margin-top: 1.5rem; font-weight: 600;">The current era is a golden age for AI entrepreneurship; what suffers are traditional enterprises that can't find direction</p>
+      </div>
+      <p class="text-block" style="font-size: 15px; color: rgba(255,255,255,0.4); margin-bottom: 16px;">A Long Road Ahead</p>
+      <h1 style="font-size: 26px;">Academician Zhang Bo<br>AI: Current State and Future</h1>
     </div>
-</section>
+  </div>
 
-<!-- Slide 49: Quote -->
-<section class="slide">
-    <div class="quote" style="font-size: 1.5rem; max-width: 900px;">
-        "We should not be overly optimistic because of progress,<br>
-        nor discouraged because of setbacks.<br>
-        Artificial intelligence is exploring 'uncharted territory.'<br>
-        Its charm lies in the fact that it is always on the road."
-        <div class="quote-author">— Academician Zhang Bo</div>
-    </div>
-    <div style="text-align: center; margin-top: 3rem;">
-        <p style="font-size: 1.2rem; color: #fff;">AI is exploring "uncharted territory"</p>
-        <p style="font-size: 1.2rem; color: var(--highlight);">Its charm lies in being always on the road</p>
-    </div>
-</section>
-
-<!-- Slide 50: End -->
-<section class="slide">
-    <div style="text-align: center;">
-        <div style="display: flex; justify-content: center; gap: 3rem; margin: 3rem 0; flex-wrap: wrap;">
-            <div style="text-align: center;">
-                <div style="font-size: 2rem; color: var(--highlight);">📖</div>
-                <p style="color: #fff; margin-top: 0.5rem;">Theory</p>
-                <p style="color: var(--text-muted);">New Discovery</p>
-            </div>
-            <div style="font-size: 2rem; color: var(--highlight);">→</div>
-            <div style="text-align: center;">
-                <div style="font-size: 2rem; color: #4facfe;">⚙️</div>
-                <p style="color: #fff; margin-top: 0.5rem;">Technology</p>
-                <p style="color: var(--text-muted);">Innovation</p>
-            </div>
-            <div style="font-size: 2rem; color: #4facfe;">→</div>
-            <div style="text-align: center;">
-                <div style="font-size: 2rem; color: #ffc800;">🚀</div>
-                <p style="color: #fff; margin-top: 0.5rem;">Application</p>
-                <p style="color: var(--text-muted);">Deployment</p>
-            </div>
-            <div style="font-size: 2rem; color: #ffc800;">→</div>
-            <div style="text-align: center;">
-                <div style="font-size: 2rem; color: #fff;">🏭</div>
-                <p style="color: #fff; margin-top: 0.5rem;">Industry</p>
-                <p style="color: var(--text-muted);">Development</p>
-            </div>
-        </div>
-        <p style="font-size: 2rem; color: var(--highlight); margin-top: 2rem;">A Long Road Ahead</p>
-    </div>
-</section>
-
-<!-- Slide 51: Footer -->
-<section class="slide" style="min-height: 50vh;">
-    <div style="text-align: center;">
-        <h2 style="font-size: 2rem; margin-bottom: 1rem;">Academician Zhang Bo</h2>
-        <p style="color: var(--text-muted);">Artificial Intelligence: Current State and Future</p>
-        <p style="color: var(--text-muted); margin-top: 2rem; font-size: 0.9rem;">Original course notes translated by AI assistant</p>
-    </div>
-</section>
-
-<div class="nav-dots">
-    <div class="nav-dot active" onclick="scrollToSection(0)"></div>
-    <div class="nav-dot" onclick="scrollToSection(1)"></div>
-    <div class="nav-dot" onclick="scrollToSection(2)"></div>
-    <div class="nav-dot" onclick="scrollToSection(3)"></div>
-    <div class="nav-dot" onclick="scrollToSection(4)"></div>
-    <div class="nav-dot" onclick="scrollToSection(5)"></div>
-    <div class="nav-dot" onclick="scrollToSection(6)"></div>
-    <div class="nav-dot" onclick="scrollToSection(7)"></div>
-    <div class="nav-dot" onclick="scrollToSection(8)"></div>
-    <div class="nav-dot" onclick="scrollToSection(9)"></div>
 </div>
 
-<script>
-    const slides = document.querySelectorAll('.slide');
-    const dots = document.querySelectorAll('.nav-dot');
-    
-    function scrollToSection(index) {
-        slides[index].scrollIntoView({ behavior: 'smooth' });
-    }
-    
-    const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                const index = Array.from(slides).indexOf(entry.target);
-                dots.forEach((dot, i) => {
-                    dot.classList.toggle('active', i === Math.floor(index / 5));
-                });
-            }
-        });
-    }, { threshold: 0.5 });
-    
-    slides.forEach(slide => observer.observe(slide));
-</script>
+<div class="progress-bar"><div class="progress-fill" id="progressFill"></div></div>
+<div class="progress-text" id="progressText">1 / 50</div>
 
+<script>
+(function(){
+  var current = 0;
+  var slides = document.querySelectorAll('.slide');
+  var deck = document.getElementById('deck');
+  var total = slides.length;
+  var progressFill = document.getElementById('progressFill');
+  var progressText = document.getElementById('progressText');
+
+  function updateProgress() {
+    var percent = ((current + 1) / total) * 100;
+    progressFill.style.width = percent + '%';
+    progressText.textContent = (current + 1) + ' / ' + total;
+  }
+
+  document.addEventListener('keydown', function(e){
+    if(e.key === 'ArrowRight' || e.key === 'ArrowDown' || e.key === ' '){
+      e.preventDefault();
+      if(current < total-1){
+        current++;
+        slides[current].scrollIntoView({ behavior: 'smooth', inline: 'start' });
+        updateProgress();
+      }
+    } else if(e.key === 'ArrowLeft' || e.key === 'ArrowUp'){
+      e.preventDefault();
+      if(current > 0){
+        current--;
+        slides[current].scrollIntoView({ behavior: 'smooth', inline: 'start' });
+        updateProgress();
+      }
+    }
+  });
+
+  var touchStartX = 0;
+  var touchEndX = 0;
+  deck.addEventListener('touchstart', function(e){
+    touchStartX = e.changedTouches[0].screenX;
+  }, {passive: true});
+  deck.addEventListener('touchend', function(e){
+    touchEndX = e.changedTouches[0].screenX;
+    var diff = touchStartX - touchEndX;
+    if(Math.abs(diff) > 50){
+      if(diff > 0 && current < total-1){
+        current++;
+        slides[current].scrollIntoView({ behavior: 'smooth', inline: 'start' });
+        updateProgress();
+      } else if(diff < 0 && current > 0){
+        current--;
+        slides[current].scrollIntoView({ behavior: 'smooth', inline: 'start' });
+        updateProgress();
+      }
+    }
+  }, {passive: true});
+
+  deck.addEventListener('scroll', function(){
+    var w = window.innerWidth || document.documentElement.clientWidth;
+    var newCurrent = Math.round(deck.scrollLeft / w);
+    if(newCurrent !== current){
+      current = newCurrent;
+      updateProgress();
+    }
+  }, {passive: true});
+
+  updateProgress();
+})();
+</script>
 </body>
 </html>
